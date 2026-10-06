@@ -1,0 +1,41 @@
+{
+  "name": "bimfinity-video",
+  "version": "1.0.0",
+  "description": "BIMfinity : le copilote en action (vidéo Remotion 16:9 et 9:16)",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@react-three/fiber": "9.8.1",
+    "@remotion/cli": "4.0.533",
+    "@remotion/google-fonts": "4.0.533",
+    "@remotion/layout-utils": "4.0.533",
+    "@remotion/media": "4.0.533",
+    "@remotion/three": "4.0.533",
+    "@remotion/zod-types": "4.0.533",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.533",
+    "three": "0.186.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.533",
+    "@types/react": "19.2.7",
+    "@types/three": "0.186.0",
+    "@types/web": "0.0.166",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "render:16x9": "remotion render Master-16x9 out/bimfinity-16x9.mp4",
+    "render:9x16": "remotion render Social-9x16 out/bimfinity-9x16.mp4",
+    "render:all": "npm run render:16x9 && npm run render:9x16",
+    "audio:placeholders": "node scripts/generate-placeholder-audio.mjs",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc"
+  }
+}
