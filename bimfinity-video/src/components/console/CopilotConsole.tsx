@@ -74,7 +74,9 @@ export const useConsoleGeometry = (query: string) => {
     lineHeight: c.queryLineHeight,
   });
   const lineCount = Math.max(1, fit.lines.length);
-  const barHeight = Math.round(c.padY * 2 + lineCount * fit.fontSize * c.queryLineHeight);
+  const barHeight = Math.round(
+    c.padY * 2 + lineCount * fit.fontSize * c.queryLineHeight,
+  );
   return {
     width: c.width,
     left: (layout.width - c.width) / 2,
@@ -100,7 +102,14 @@ const TypedText: React.FC<{ text: string; count: number; cursor: number }> = ({
   let offset = 0;
 
   const caret = (
-    <span style={{ position: "relative", display: "inline-block", width: 0, height: "1em" }}>
+    <span
+      style={{
+        position: "relative",
+        display: "inline-block",
+        width: 0,
+        height: "1em",
+      }}
+    >
       <span
         style={{
           position: "absolute",
@@ -133,7 +142,11 @@ const TypedText: React.FC<{ text: string; count: number; cursor: number }> = ({
                 return (
                   <Fragment key={charIndex}>
                     {count === index ? caret : null}
-                    <span style={{ visibility: index < count ? "visible" : "hidden" }}>
+                    <span
+                      style={{
+                        visibility: index < count ? "visible" : "hidden",
+                      }}
+                    >
                       {character}
                     </span>
                   </Fragment>
@@ -159,7 +172,9 @@ const Orb: React.FC<{ size: number; activity: number; frame: number }> = ({
   const rotation = frame * (1.2 + 7 * activity);
   const breathe = 1 + 0.06 * activity * Math.sin(frame * 0.35);
   return (
-    <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+    <div
+      style={{ position: "relative", width: size, height: size, flexShrink: 0 }}
+    >
       <div
         style={{
           position: "absolute",
@@ -211,7 +226,10 @@ const SendButton: React.FC<{
       }}
     >
       <div style={{ position: "absolute", opacity: 1 - done }}>
-        <SendArrow size={icon} color={submitted > 0.5 ? colors.text : colors.accent} />
+        <SendArrow
+          size={icon}
+          color={submitted > 0.5 ? colors.text : colors.accent}
+        />
       </div>
       <div style={{ position: "absolute", opacity: done }}>
         <CheckMark size={icon} color={colors.text} progress={done} />
@@ -221,6 +239,9 @@ const SendButton: React.FC<{
 };
 
 /* ---------- Console ---------- */
+
+const LABEL_DOT = 8;
+const LABEL_GAP = 12;
 
 export const CopilotConsole: React.FC<{
   label: string;
@@ -233,6 +254,17 @@ export const CopilotConsole: React.FC<{
   const c = layout.console;
   const geometry = useConsoleGeometry(query);
   const text = frenchTypography(query);
+  const labelText = frenchTypography(label);
+  const labelFit = useFitText({
+    text: labelText,
+    fontFamily: fonts.body,
+    fontWeight: fontWeights.bodyMedium,
+    letterSpacingEm: 0.04,
+    maxWidth: c.width - c.padX * 2 - LABEL_DOT - LABEL_GAP,
+    maxLines: 1,
+    maxFontSize: c.labelFontSize,
+    minFontSize: Math.round(c.labelFontSize * 0.7),
+  });
   const appearScale = 0.94 + 0.06 * state.appear;
 
   // Balayage lumineux du traitement, en boucle continue.
@@ -259,11 +291,11 @@ export const CopilotConsole: React.FC<{
           bottom: `calc(100% + ${c.labelGap}px)`,
           display: "flex",
           alignItems: "center",
-          gap: 12,
+          gap: LABEL_GAP,
           opacity: state.labelOpacity,
           fontFamily: fonts.body,
           fontWeight: fontWeights.bodyMedium,
-          fontSize: c.labelFontSize,
+          fontSize: labelFit.fontSize,
           letterSpacing: "0.04em",
           color: colors.accent,
           whiteSpace: "nowrap",
@@ -271,8 +303,8 @@ export const CopilotConsole: React.FC<{
       >
         <span
           style={{
-            width: 8,
-            height: 8,
+            width: LABEL_DOT,
+            height: LABEL_DOT,
             borderRadius: "50%",
             background: colors.glow,
             boxShadow: `0 0 12px ${colors.glow}`,
@@ -280,7 +312,7 @@ export const CopilotConsole: React.FC<{
             flexShrink: 0,
           }}
         />
-        <span>{frenchTypography(label)}</span>
+        <span>{labelText}</span>
       </div>
 
       {/* Anneau de validation */}
@@ -300,7 +332,7 @@ export const CopilotConsole: React.FC<{
       <GlassCard
         opacity={state.appear}
         glow={Math.min(1, 0.3 + 0.7 * state.pulse + 0.45 * state.processing)}
-        phase={0}
+        clockFrame={globalFrame}
         style={{
           width: "100%",
           height: "100%",
@@ -310,10 +342,15 @@ export const CopilotConsole: React.FC<{
           padding: `0 ${c.padX}px`,
           boxSizing: "border-box",
           overflow: "hidden",
-          filter: state.appear < 1 ? `blur(${(1 - state.appear) * 14}px)` : undefined,
+          filter:
+            state.appear < 1 ? `blur(${(1 - state.appear) * 14}px)` : undefined,
         }}
       >
-        <Orb size={c.orbSize} activity={Math.max(state.processing, state.pulse * 0.6)} frame={globalFrame} />
+        <Orb
+          size={c.orbSize}
+          activity={Math.max(state.processing, state.pulse * 0.6)}
+          frame={globalFrame}
+        />
         <div
           style={{
             flex: 1,
@@ -327,7 +364,11 @@ export const CopilotConsole: React.FC<{
             opacity: 1 - 0.18 * state.processing * (1 - state.done),
           }}
         >
-          <TypedText text={text} count={state.typedCount} cursor={state.cursor} />
+          <TypedText
+            text={text}
+            count={state.typedCount}
+            cursor={state.cursor}
+          />
         </div>
         <SendButton
           size={c.buttonSize}

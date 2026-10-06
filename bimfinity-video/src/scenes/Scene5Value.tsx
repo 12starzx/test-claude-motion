@@ -6,7 +6,13 @@
  * Entrées en stagger avec parallaxe par ligne, mot clé en bleu.
  */
 import { useMemo } from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Easing,
+  interpolate,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { HighlightedText } from "../components/ui/HighlightedText";
 import { fitText } from "../lib/fit";
 import { useLayout } from "../lib/layout";
@@ -26,9 +32,17 @@ export const SceneValue: React.FC<SceneValueProps> = ({ title, duration }) => {
   const { fps } = useVideoConfig();
   const layout = useLayout();
   const t = timings.value;
-  const motion = useSceneMotion({ duration, enter: "fade", exit: "fade", amplitude: layout.parallax });
+  const motion = useSceneMotion({
+    duration,
+    enter: "fade",
+    exit: "fade",
+    amplitude: layout.parallax,
+  });
 
-  const segments = useMemo(() => splitAfterCommas(frenchTypography(title)), [title]);
+  const segments = useMemo(
+    () => splitAfterCommas(frenchTypography(title)),
+    [title],
+  );
 
   // Taille commune : chaque segment doit tenir sur une ligne ; à défaut,
   // on autorise deux lignes par segment (texte modifié plus long).
@@ -48,7 +62,9 @@ export const SceneValue: React.FC<SceneValueProps> = ({ title, duration }) => {
         }),
       );
     const singleLine = fit(1);
-    const results = singleLine.every((result) => result.fits) ? singleLine : fit(2);
+    const results = singleLine.every((result) => result.fits)
+      ? singleLine
+      : fit(2);
     return Math.min(...results.map((result) => result.fontSize));
   }, [segments, layout.value]);
 
@@ -83,7 +99,7 @@ export const SceneValue: React.FC<SceneValueProps> = ({ title, duration }) => {
         {segments.map((segment, index) => {
           const start = t.linesIn + index * t.lineStagger;
           const enter = springAt(frame, fps, start, springs.snappy, 30);
-          const fade = springAt(frame, fps, start, springs.smooth, 20);
+          const fade = springAt(frame, fps, start, springs.smooth, 12);
           const depth = 1 + index * 0.35;
           return (
             <div

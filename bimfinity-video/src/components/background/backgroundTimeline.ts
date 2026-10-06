@@ -17,7 +17,10 @@ export type BackgroundState = {
   drift: number;
 };
 
-export const getBackgroundState = (frame: number, fps: number): BackgroundState => {
+export const getBackgroundState = (
+  frame: number,
+  fps: number,
+): BackgroundState => {
   const { scenes } = timings;
 
   // Scène 1 : le shader s'allume dans le noir.
@@ -30,10 +33,23 @@ export const getBackgroundState = (frame: number, fps: number): BackgroundState 
     [0, 1],
     { ...clamp, easing: Easing.in(Easing.quad) },
   );
-  const buildUpRelease = springAt(frame, fps, scenes.reveal.from, springs.smooth, 20);
+  const buildUpRelease = springAt(
+    frame,
+    fps,
+    scenes.reveal.from,
+    springs.smooth,
+    20,
+  );
 
   // Scène 4 : flash de bloom sur la révélation, puis palier soutenu.
-  const revealFlash = pulseEnvelope(frame, fps, scenes.reveal.from - 2, 8, 40, 0.38);
+  const revealFlash = pulseEnvelope(
+    frame,
+    fps,
+    scenes.reveal.from - 2,
+    8,
+    40,
+    0.38,
+  );
 
   // Scènes 5 et 6 : retour au calme.
   const calm = springAt(frame, fps, scenes.value.from, springs.smooth, 30);
@@ -56,7 +72,9 @@ export const getBackgroundState = (frame: number, fps: number): BackgroundState 
   ];
   const drift = boundaries.reduce(
     (sum, boundary, index) =>
-      sum + (index % 2 === 0 ? 0.035 : -0.028) * springAt(frame, fps, boundary - 4, springs.smooth, 34),
+      sum +
+      (index % 2 === 0 ? 0.035 : -0.028) *
+        springAt(frame, fps, boundary - 4, springs.smooth, 34),
     0,
   );
 

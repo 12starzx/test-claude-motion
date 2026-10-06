@@ -31,7 +31,10 @@ const fileExists = async (file: string): Promise<boolean> => {
       return false;
     }
     // Serveur sans HEAD : on tente un GET minimal.
-    const get = await fetch(url, { headers: { Range: "bytes=0-0" }, cache: "no-store" });
+    const get = await fetch(url, {
+      headers: { Range: "bytes=0-0" },
+      cache: "no-store",
+    });
     return get.ok;
   } catch {
     return false;
@@ -59,9 +62,13 @@ export const AssetGate: React.FC<{
 }> = ({ optionalFiles, children }) => {
   const { delayRender, continueRender } = useDelayRender();
   const [handle] = useState(() =>
-    delayRender("BIMfinity : chargement des polices et des fichiers optionnels"),
+    delayRender(
+      "BIMfinity : chargement des polices et des fichiers optionnels",
+    ),
   );
-  const [availability, setAvailability] = useState<AssetAvailability | null>(null);
+  const [availability, setAvailability] = useState<AssetAvailability | null>(
+    null,
+  );
   const filesKey = optionalFiles.join("|");
 
   useEffect(() => {
@@ -69,7 +76,10 @@ export const AssetGate: React.FC<{
     Promise.all([
       waitForFonts().catch((error: unknown) => {
         // Les polices de secours prennent le relais : le rendu continue.
-        console.warn("[BIMfinity] Polices non chargées, police de secours utilisée.", error);
+        console.warn(
+          "[BIMfinity] Polices non chargées, police de secours utilisée.",
+          error,
+        );
       }),
       probeFiles(filesKey ? filesKey.split("|") : []),
     ]).then(([, result]) => {
@@ -87,5 +97,9 @@ export const AssetGate: React.FC<{
     return null;
   }
 
-  return <AssetContext.Provider value={availability}>{children}</AssetContext.Provider>;
+  return (
+    <AssetContext.Provider value={availability}>
+      {children}
+    </AssetContext.Provider>
+  );
 };

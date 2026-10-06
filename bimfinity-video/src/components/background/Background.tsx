@@ -2,10 +2,13 @@
  * Fond complet : mesh gradient (shader ou fallback CSS) + grain + vignettage.
  *
  * Robustesse : le rendu ne doit jamais échouer à cause du fond.
- * 1. Pré-vol : avant de monter le canvas, on vérifie que WebGL existe ET que
- *    le fragment shader compile sur cette machine. Sinon → fallback CSS.
- * 2. Filet de sécurité : une ErrorBoundary bascule aussi en CSS si le canvas
- *    lève une erreur au montage.
+ * 1. Pré-vol (décisif) : avant de monter le canvas, on vérifie que WebGL 2
+ *    existe ET que le fragment shader compile sur cette machine. Sinon, le
+ *    fallback CSS est utilisé et le canvas n'est jamais monté.
+ * 2. Filet de sécurité : une ErrorBoundary affiche le fallback CSS si le canvas
+ *    lève une erreur après sa création. Elle ne suffirait pas seule : un échec
+ *    de création du contexte laisserait un delayRender de @remotion/three en
+ *    suspens, d'où le pré-vol.
  */
 import { Component } from "react";
 import type { ErrorInfo, ReactNode } from "react";
@@ -27,11 +30,13 @@ const shaderCompilesHere = (): boolean => {
     return preflightResult;
   }
   try {
+    // three (r186) n'utilise que WebGL 2 : on exige donc un contexte WebGL 2,
+    // avec les mêmes attributs que le canvas du fond.
     const canvas = document.createElement("canvas");
-    const gl = (canvas.getContext("webgl2") ?? canvas.getContext("webgl")) as
-      | WebGLRenderingContext
-      | WebGL2RenderingContext
-      | null;
+    const gl = canvas.getContext("webgl2", {
+      antialias: false,
+      alpha: false,
+    }) as WebGL2RenderingContext | null;
     if (!gl) {
       preflightResult = false;
       return false;
@@ -45,7 +50,10 @@ const shaderCompilesHere = (): boolean => {
     gl.compileShader(shader);
     const ok = Boolean(gl.getShaderParameter(shader, gl.COMPILE_STATUS));
     if (!ok) {
-      console.warn("[BIMfinity] Shader non compilé, fallback CSS :", gl.getShaderInfoLog(shader));
+      console.warn(
+        "[BIMfinity] Shader non compilé, fallback CSS :",
+        gl.getShaderInfoLog(shader),
+      );
     }
     gl.deleteShader(shader);
     gl.getExtension("WEBGL_lose_context")?.loseContext();
@@ -70,7 +78,11 @@ class BackgroundErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.warn("[BIMfinity] Shader indisponible, fallback CSS.", error, info.componentStack);
+    console.warn(
+      "[BIMfinity] Shader indisponible, fallback CSS.",
+      error,
+      info.componentStack,
+    );
   }
 
   render() {

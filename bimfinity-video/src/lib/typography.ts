@@ -11,7 +11,7 @@ export const NNBSP = "\u202F";
  * Applique les règles typographiques françaises à un texte saisi « au clavier » :
  * - espace fine insécable avant ; ! ?
  * - espace insécable avant : (hors URL et heures)
- * - espaces insécables à l'intérieur des guillemets « »
+ * - guillemets droits "…" convertis en « … », avec espaces insécables
  * - apostrophe typographique ’
  * - points de suspension …
  * - le séparateur « · » reste accroché au mot qui le précède
@@ -22,6 +22,7 @@ export const frenchTypography = (input: string): string =>
   input
     .replace(/\.\.\./g, "\u2026")
     .replace(/'/g, "\u2019")
+    .replace(/"([^"\n]+)"/g, "«$1»")
     .replace(/([^\s;!?:])[ \u00A0\u202F]*([;!?])/g, `$1${NNBSP}$2`)
     .replace(/([^\s;!?:])[ \u00A0\u202F]*:(?=\s|$)/g, `$1${NBSP}:`)
     .replace(/«[ \u00A0\u202F]*/g, `«${NBSP}`)

@@ -5,3 +5,7 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Vidéos rendues à la racine du projet (commande du brief) et bundle Remotion.
+/*.mp4
+build

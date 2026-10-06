@@ -5,7 +5,10 @@
  * apparaît. La même table pilote l'affichage ET les « ticks » sonores : la
  * synchronisation image / son est donc exacte par construction.
  */
+import { useMemo } from "react";
 import { random } from "remotion";
+import { timings } from "../theme";
+import { frenchTypography } from "./typography";
 
 /**
  * @param text   Texte à taper (typographie déjà appliquée).
@@ -28,7 +31,7 @@ export const buildTypingSchedule = (
     if (character === "," || character === ";") {
       delay += 5;
     }
-    if (character === " " || character === "\u00A0" || character === "\u202F") {
+    if (isBlank(character)) {
       delay += 0.4;
     }
     cursor += delay;
@@ -51,3 +54,18 @@ export const typedCountAt = (schedule: number[], frame: number): number => {
   }
   return count;
 };
+
+/** Table de frappe de la requête (frames locales à la scène 2), mémoïsée. */
+export const useQueryTypingSchedule = (query: string): number[] =>
+  useMemo(
+    () =>
+      buildTypingSchedule(
+        frenchTypography(query),
+        timings.query.typingStart,
+        timings.query.typingEnd,
+      ),
+    [query],
+  );
+
+/** Vrai pour les espaces (sécables ou non) : pas de tick sonore sur un blanc. */
+export const isBlank = (character: string): boolean => /\s/u.test(character);

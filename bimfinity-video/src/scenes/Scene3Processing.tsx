@@ -9,7 +9,13 @@
  */
 import { measureText } from "@remotion/layout-utils";
 import { useMemo } from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Easing,
+  interpolate,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import {
   CopilotConsole,
   initialConsoleState,
@@ -22,7 +28,14 @@ import { useLayout } from "../lib/layout";
 import { clamp, mix, springAt } from "../lib/motion";
 import { frenchTypography } from "../lib/typography";
 import type { FormatLayout } from "../theme";
-import { colors, fontWeights, fonts, springs, timings, withAlpha } from "../theme";
+import {
+  colors,
+  fontWeights,
+  fonts,
+  springs,
+  timings,
+  withAlpha,
+} from "../theme";
 
 export type SceneProcessingProps = {
   label: string;
@@ -36,16 +49,76 @@ type ChipBox = { label: string; x: number; y: number; width: number };
 
 const CHIP_DOT = 10;
 const CHIP_DOT_GAP = 12;
+/** Les flux visent la barre à 42 % de l'écart au centre : ils convergent. */
+const CONVERGENCE = 0.42;
+/** Marge autour du couloir d'un flux, qu'aucune puce ne doit occuper. */
+const CORRIDOR_MARGIN = 18;
+
+type Measured = { label: string; width: number };
+type Interval = [number, number];
+
+const flowTargetX = (x: number, center: number): number =>
+  center + (x - center) * CONVERGENCE;
+
+const overlaps = (a: Interval, b: Interval): boolean =>
+  a[0] < b[1] && b[0] < a[1];
 
 /**
- * Place les puces en rangées centrées (mesure réelle des libellés : aucune
- * puce ne peut en chevaucher une autre ni sortir du cadre). En 16:9, la
- * rangée dessine un léger arc au-dessus de la console.
+ * Place un groupe de puces depuis un bord (gauche ou droite) en sautant les
+ * couloirs des flux déjà tracés. Renvoie null si le groupe déborde au-delà
+ * du centre.
+ */
+const packFromEdge = (
+  chips: Measured[],
+  corridors: Interval[],
+  edge: number,
+  center: number,
+  gap: number,
+  direction: 1 | -1,
+): { chip: Measured; x: number }[] | null => {
+  const placed: { chip: Measured; x: number }[] = [];
+  let cursor = edge;
+  const ordered = direction === 1 ? chips : [...chips].reverse();
+  for (const chip of ordered) {
+    let start = direction === 1 ? cursor : cursor - chip.width;
+    let moved = true;
+    while (moved) {
+      moved = false;
+      for (const [a, b] of corridors) {
+        const box: Interval = [start, start + chip.width];
+        if (overlaps(box, [a - CORRIDOR_MARGIN, b + CORRIDOR_MARGIN])) {
+          start =
+            direction === 1
+              ? b + CORRIDOR_MARGIN
+              : a - CORRIDOR_MARGIN - chip.width;
+          moved = true;
+        }
+      }
+    }
+    const crossesCenter =
+      direction === 1 ? start + chip.width > center : start < center;
+    if (crossesCenter) {
+      return null;
+    }
+    placed.push({ chip, x: start + chip.width / 2 });
+    cursor = direction === 1 ? start + chip.width + gap : start - gap;
+  }
+  return direction === 1 ? placed : placed.reverse();
+};
+
+/**
+ * Place les puces sans chevauchement ni débordement (largeurs réellement
+ * mesurées). La première rangée est centrée (en léger arc en 16:9) ; les
+ * rangées suivantes s'écartent sur les côtés pour ne jamais se trouver sur
+ * le trajet des flux des rangées supérieures. À défaut de place, la rangée
+ * est simplement centrée.
  */
 const layoutChips = (labels: string[], layout: FormatLayout): ChipBox[] => {
   const p = layout.processing;
-  const maxRowWidth = layout.width - layout.safe.x * 2;
-  const measured = labels.map((label) => {
+  const left = layout.safe.x;
+  const right = layout.width - layout.safe.x;
+  const center = layout.width / 2;
+  const measured: Measured[] = labels.map((label) => {
     const text = frenchTypography(label);
     const textWidth = measureText({
       text,
@@ -54,31 +127,73 @@ const layoutChips = (labels: string[], layout: FormatLayout): ChipBox[] => {
       fontSize: p.chipFontSize,
       letterSpacing: "0.01em",
     }).width;
-    return { label: text, width: Math.ceil(textWidth + p.chipPadX * 2 + CHIP_DOT + CHIP_DOT_GAP) };
+    return {
+      label: text,
+      width: Math.ceil(textWidth + p.chipPadX * 2 + CHIP_DOT + CHIP_DOT_GAP),
+    };
   });
 
   // Rangées gloutonnes, bornées en nombre de puces et en largeur.
-  const rows: (typeof measured)[] = [];
+  const rows: Measured[][] = [];
   for (const chip of measured) {
     const row = rows[rows.length - 1];
     const rowWidth = row
       ? row.reduce((sum, item) => sum + item.width, 0) + p.chipGap * row.length
       : 0;
-    if (!row || row.length >= p.maxChipsPerRow || rowWidth + chip.width > maxRowWidth) {
+    if (
+      !row ||
+      row.length >= p.maxChipsPerRow ||
+      rowWidth + chip.width > right - left
+    ) {
       rows.push([chip]);
     } else {
       row.push(chip);
     }
   }
 
-  const center = layout.width / 2;
-  return rows.flatMap((row, rowIndex) => {
-    const total = row.reduce((sum, item) => sum + item.width, 0) + p.chipGap * (row.length - 1);
+  const centered = (row: Measured[]) => {
+    const total =
+      row.reduce((sum, item) => sum + item.width, 0) +
+      p.chipGap * (row.length - 1);
     let cursor = center - total / 2;
     return row.map((chip) => {
       const x = cursor + chip.width / 2;
       cursor += chip.width + p.chipGap;
-      const spread = total > 0 ? (x - center) / (total / 2) : 0;
+      return { chip, x };
+    });
+  };
+
+  const corridors: Interval[] = [];
+  return rows.flatMap((row, rowIndex) => {
+    let placed: { chip: Measured; x: number }[] | null = null;
+    if (rowIndex > 0) {
+      const split = Math.ceil(row.length / 2);
+      const leftSide = packFromEdge(
+        row.slice(0, split),
+        corridors,
+        left,
+        center,
+        p.chipGap,
+        1,
+      );
+      const rightSide = packFromEdge(
+        row.slice(split),
+        corridors,
+        right,
+        center,
+        p.chipGap,
+        -1,
+      );
+      placed = leftSide && rightSide ? [...leftSide, ...rightSide] : null;
+    }
+    placed = placed ?? centered(row);
+
+    const span = Math.max(
+      ...placed.map(({ chip, x }) => Math.abs(x - center) + chip.width / 2),
+      1,
+    );
+    const boxes = placed.map(({ chip, x }) => {
+      const spread = (x - center) / span;
       return {
         label: chip.label,
         width: chip.width,
@@ -86,6 +201,11 @@ const layoutChips = (labels: string[], layout: FormatLayout): ChipBox[] => {
         y: p.chipsTopY + rowIndex * p.rowGap + p.arcDepth * spread * spread,
       };
     });
+    boxes.forEach((box) => {
+      const target = flowTargetX(box.x, center);
+      corridors.push([Math.min(box.x, target), Math.max(box.x, target)]);
+    });
+    return boxes;
   });
 };
 
@@ -93,8 +213,16 @@ const layoutChips = (labels: string[], layout: FormatLayout): ChipBox[] => {
 const bezier = (a: Point, b: Point, c: Point, d: Point, t: number): Point => {
   const u = 1 - t;
   return {
-    x: u * u * u * a.x + 3 * u * u * t * b.x + 3 * u * t * t * c.x + t * t * t * d.x,
-    y: u * u * u * a.y + 3 * u * u * t * b.y + 3 * u * t * t * c.y + t * t * t * d.y,
+    x:
+      u * u * u * a.x +
+      3 * u * u * t * b.x +
+      3 * u * t * t * c.x +
+      t * t * t * d.x,
+    y:
+      u * u * u * a.y +
+      3 * u * u * t * b.y +
+      3 * u * t * t * c.y +
+      t * t * t * d.y,
   };
 };
 
@@ -113,7 +241,11 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
 
   /* ---------- Console : descend légèrement et passe en traitement ---------- */
   const move = springAt(frame, fps, 0, springs.smooth, 30);
-  const consoleY = mix(layout.console.centerY, layout.console.processingCenterY, move);
+  const consoleY = mix(
+    layout.console.centerY,
+    layout.console.processingCenterY,
+    move,
+  );
   const processing = springAt(frame, fps, 2, springs.smooth, 22);
 
   const state: ConsoleState = {
@@ -132,10 +264,21 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
   const chips = useMemo(() => layoutChips(sources, layout), [sources, layout]);
   const converge = springAt(frame, fps, t.convergeAt, springs.smooth, 26);
   const barTop = consoleY - geometry.barHeight / 2 + 4;
+  const center = layout.width / 2;
+
+  /** Position d'une puce : elle glisse vers la barre pendant la convergence. */
+  const chipPosition = (chip: ChipBox): Point => ({
+    x: mix(chip.x, flowTargetX(chip.x, center), converge * 0.9),
+    y: mix(chip.y, barTop, converge * 0.9),
+  });
 
   /* ---------- Sous-titre ---------- */
   const words = useMemo(
-    () => subtitle.split("·").map((word) => frenchTypography(word.trim())).filter(Boolean),
+    () =>
+      subtitle
+        .split("·")
+        .map((word) => frenchTypography(word.trim()))
+        .filter(Boolean),
     [subtitle],
   );
   const subtitleFit = useFitText({
@@ -144,7 +287,7 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
     fontWeight: fontWeights.heading,
     letterSpacingEm: 0.01,
     maxWidth: layout.width - layout.safe.x * 2,
-    maxLines: 1,
+    maxLines: layout.name === "portrait" ? 2 : 1,
     maxFontSize: layout.processing.subtitleMaxFontSize,
     minFontSize: layout.processing.subtitleMinFontSize,
   });
@@ -166,16 +309,19 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
         </defs>
         {chips.map((chip, index) => {
           const chipIn = t.chipsIn + index * t.chipStagger;
-          const draw = springAt(frame, fps, chipIn + t.flowDelay, springs.smooth, 26);
-          const chipPos = {
-            x: mix(chip.x, mix(layout.width / 2, chip.x, 0.42), converge * 0.9),
-            y: mix(chip.y, barTop, converge * 0.9),
+          const draw = springAt(
+            frame,
+            fps,
+            chipIn + t.flowDelay,
+            springs.smooth,
+            26,
+          );
+          const chipPos = chipPosition(chip);
+          const start: Point = {
+            x: chipPos.x,
+            y: chipPos.y + layout.processing.chipHeight / 2,
           };
-          const start: Point = { x: chipPos.x, y: chipPos.y + layout.processing.chipHeight / 2 };
-          const end: Point = {
-            x: layout.width / 2 + (chip.x - layout.width / 2) * 0.42,
-            y: barTop,
-          };
+          const end: Point = { x: flowTargetX(chip.x, center), y: barTop };
           const reach = (end.y - start.y) * 0.55;
           const c1: Point = { x: start.x, y: start.y + reach };
           const c2: Point = { x: end.x, y: end.y - reach };
@@ -207,14 +353,25 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
               />
               {/* Particules lumineuses */}
               {[0, 1, 2].map((k) => {
-                const cycle = ((frame - chipIn) / 34 + k / 3 + index * 0.13) % 1;
+                const cycle =
+                  ((frame - chipIn) / 34 + k / 3 + index * 0.13) % 1;
                 const travel = Easing.in(Easing.quad)(Math.max(0, cycle));
                 const point = bezier(start, c1, c2, end, travel);
                 const fade = Math.sin(Math.PI * Math.max(0, cycle));
                 return (
                   <g key={k} opacity={draw * fade}>
-                    <circle cx={point.x} cy={point.y} r={10} fill={withAlpha(colors.glow, 0.22)} />
-                    <circle cx={point.x} cy={point.y} r={3.4} fill={colors.text} />
+                    <circle
+                      cx={point.x}
+                      cy={point.y}
+                      r={10}
+                      fill={withAlpha(colors.glow, 0.22)}
+                    />
+                    <circle
+                      cx={point.x}
+                      cy={point.y}
+                      r={3.4}
+                      fill={colors.text}
+                    />
                   </g>
                 );
               })}
@@ -228,8 +385,7 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
         const chipIn = t.chipsIn + index * t.chipStagger;
         const enter = springAt(frame, fps, chipIn, springs.snappy, 22);
         const fade = springAt(frame, fps, chipIn, springs.smooth, 18);
-        const x = mix(chip.x, mix(layout.width / 2, chip.x, 0.42), converge * 0.9);
-        const y = mix(chip.y, barTop, converge * 0.9);
+        const { x, y } = chipPosition(chip);
         const scale = (0.86 + 0.14 * enter) * (1 - 0.45 * converge);
         const p = layout.processing;
         return (
@@ -275,7 +431,12 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
       })}
 
       {/* Console */}
-      <CopilotConsole label={label} query={query} state={state} globalFrame={globalFrame} />
+      <CopilotConsole
+        label={label}
+        query={query}
+        state={state}
+        globalFrame={globalFrame}
+      />
 
       {/* Sous-titre lumineux, mot à mot */}
       <div
@@ -283,22 +444,32 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
           position: "absolute",
           left: layout.safe.x,
           right: layout.safe.x,
-          top: consoleY + layout.processing.subtitleOffsetY - subtitleFit.fontSize * 0.6,
+          top:
+            consoleY +
+            layout.processing.subtitleOffsetY -
+            subtitleFit.fontSize * 0.6,
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "baseline",
-          gap: "0.45em",
+          columnGap: "0.45em",
+          rowGap: "0.1em",
           fontFamily: fonts.heading,
           fontWeight: fontWeights.heading,
           fontSize: subtitleFit.fontSize,
           letterSpacing: "0.01em",
           lineHeight: 1.2,
-          whiteSpace: "nowrap",
           transform: `translateY(${-subtitleExit * 26}px)`,
         }}
       >
         {words.map((word, index) => {
-          const appear = springAt(frame, fps, t.subtitleIn + index * t.wordStagger, springs.smooth, 20);
+          const appear = springAt(
+            frame,
+            fps,
+            t.subtitleIn + index * t.wordStagger,
+            springs.smooth,
+            20,
+          );
           const glowPulse = interpolate(
             Math.sin((globalFrame + index * 9) * 0.12),
             [-1, 1],
@@ -308,10 +479,22 @@ export const SceneProcessing: React.FC<SceneProcessingProps> = ({
           return (
             <span
               key={word + index}
-              style={{ display: "flex", alignItems: "baseline", gap: "0.45em" }}
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: "0.45em",
+                whiteSpace: "nowrap",
+              }}
             >
               {index > 0 ? (
-                <span style={{ color: colors.glow, opacity: appear * (1 - subtitleExit) }}>·</span>
+                <span
+                  style={{
+                    color: colors.glow,
+                    opacity: appear * (1 - subtitleExit),
+                  }}
+                >
+                  ·
+                </span>
               ) : null}
               <span
                 style={{

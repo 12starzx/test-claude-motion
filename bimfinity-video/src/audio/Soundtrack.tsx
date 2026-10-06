@@ -13,8 +13,8 @@ import { Audio } from "@remotion/media";
 import { interpolate, random, Sequence, staticFile } from "remotion";
 import { useAssetAvailable } from "../lib/assets";
 import { clamp } from "../lib/motion";
+import { isBlank, useQueryTypingSchedule } from "../lib/typing";
 import { frenchTypography } from "../lib/typography";
-import { useQueryTypingSchedule } from "../scenes/Scene2Query";
 import { timings } from "../theme";
 import { soundFiles, soundLevels, soundTiming } from "./soundDesign";
 
@@ -42,7 +42,10 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
   // Ticks UI : carte principale puis chaque carte secondaire.
   const cardFrames = [
     reveal.mainCardIn,
-    ...Array.from({ length: benefitCount }, (_, i) => reveal.benefitsIn + i * reveal.benefitStagger),
+    ...Array.from(
+      { length: benefitCount },
+      (_, i) => reveal.benefitsIn + i * reveal.benefitStagger,
+    ),
   ];
 
   return (
@@ -51,10 +54,17 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
         <Audio
           src={staticFile(soundFiles.ambient)}
           loop
+          // Fondus calculés sur la timeline globale, même si le fichier boucle.
+          loopVolumeCurveBehavior="extend"
           volume={(f) =>
             interpolate(
               f,
-              [0, soundTiming.ambientFadeIn, total - soundTiming.ambientFadeOut, total],
+              [
+                0,
+                soundTiming.ambientFadeIn,
+                total - soundTiming.ambientFadeOut,
+                total,
+              ],
               [0, soundLevels.ambient, soundLevels.ambient, 0],
               clamp,
             )
@@ -64,7 +74,7 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
 
       {has.typeTick
         ? schedule.map((at, index) =>
-            characters[index] === " " ? null : (
+            isBlank(characters[index]) ? null : (
               <Sequence
                 key={`tick-${index}`}
                 name={`Tick « ${characters[index]} »`}
@@ -74,7 +84,10 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
               >
                 <Audio
                   src={staticFile(soundFiles.typeTick)}
-                  volume={soundLevels.typeTick * (0.7 + 0.3 * random(`tick-volume-${index}`))}
+                  volume={
+                    soundLevels.typeTick *
+                    (0.7 + 0.3 * random(`tick-volume-${index}`))
+                  }
                   playbackRate={0.94 + 0.12 * random(`tick-rate-${index}`)}
                 />
               </Sequence>
@@ -83,13 +96,22 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
         : null}
 
       {has.riser ? (
-        <Sequence name="Riser" from={scenes.processing.from} durationInFrames={scenes.processing.duration} layout="none">
+        <Sequence
+          name="Riser"
+          from={scenes.processing.from}
+          durationInFrames={scenes.processing.duration}
+          layout="none"
+        >
           <Audio
             src={staticFile(soundFiles.riser)}
             volume={(f) =>
               interpolate(
                 f,
-                [0, scenes.processing.duration - soundTiming.riserFadeOut, scenes.processing.duration],
+                [
+                  0,
+                  scenes.processing.duration - soundTiming.riserFadeOut,
+                  scenes.processing.duration,
+                ],
                 [soundLevels.riser * 0.35, soundLevels.riser, 0],
                 clamp,
               )
@@ -105,12 +127,20 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
           durationInFrames={45}
           layout="none"
         >
-          <Audio src={staticFile(soundFiles.whoosh)} volume={soundLevels.whoosh} />
+          <Audio
+            src={staticFile(soundFiles.whoosh)}
+            volume={soundLevels.whoosh}
+          />
         </Sequence>
       ) : null}
 
       {has.boom ? (
-        <Sequence name="Boom" from={scenes.reveal.from} durationInFrames={120} layout="none">
+        <Sequence
+          name="Boom"
+          from={scenes.reveal.from}
+          durationInFrames={120}
+          layout="none"
+        >
           <Audio src={staticFile(soundFiles.boom)} volume={soundLevels.boom} />
         </Sequence>
       ) : null}
@@ -124,14 +154,25 @@ export const Soundtrack: React.FC<{ query: string; benefitCount: number }> = ({
               durationInFrames={10}
               layout="none"
             >
-              <Audio src={staticFile(soundFiles.uiTick)} volume={soundLevels.uiTick} />
+              <Audio
+                src={staticFile(soundFiles.uiTick)}
+                volume={soundLevels.uiTick}
+              />
             </Sequence>
           ))
         : null}
 
       {has.resolve ? (
-        <Sequence name="Résolution" from={scenes.outro.from} durationInFrames={scenes.outro.duration} layout="none">
-          <Audio src={staticFile(soundFiles.resolve)} volume={soundLevels.resolve} />
+        <Sequence
+          name="Résolution"
+          from={scenes.outro.from}
+          durationInFrames={scenes.outro.duration}
+          layout="none"
+        >
+          <Audio
+            src={staticFile(soundFiles.resolve)}
+            volume={soundLevels.resolve}
+          />
         </Sequence>
       ) : null}
     </>

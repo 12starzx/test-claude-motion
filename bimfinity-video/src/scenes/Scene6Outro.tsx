@@ -12,7 +12,14 @@ import { useFitText } from "../lib/fit";
 import { useLayout } from "../lib/layout";
 import { springAt, useSceneMotion } from "../lib/motion";
 import { frenchTypography } from "../lib/typography";
-import { colors, fontWeights, fonts, springs, timings, withAlpha } from "../theme";
+import {
+  colors,
+  fontWeights,
+  fonts,
+  springs,
+  timings,
+  withAlpha,
+} from "../theme";
 
 export type SceneOutroProps = {
   brandName: string;
@@ -38,7 +45,12 @@ export const SceneOutro: React.FC<SceneOutroProps> = ({
   const layout = useLayout();
   const o = layout.outro;
   const t = timings.outro;
-  const motion = useSceneMotion({ duration, enter: "fade", exit: "cut", amplitude: layout.parallax });
+  const motion = useSceneMotion({
+    duration,
+    enter: "fade",
+    exit: "cut",
+    amplitude: layout.parallax,
+  });
 
   const taglineFit = useFitText({
     text: frenchTypography(tagline),
@@ -61,8 +73,19 @@ export const SceneOutro: React.FC<SceneOutroProps> = ({
     minFontSize: Math.round(o.baselineFontSize * 0.7),
   });
 
+  const poweredByFit = useFitText({
+    text: frenchTypography(poweredBy),
+    fontFamily: fonts.body,
+    fontWeight: fontWeights.bodyMedium,
+    letterSpacingEm: 0.08,
+    maxWidth: layout.width - layout.safe.x * 2,
+    maxLines: 1,
+    maxFontSize: o.poweredByFontSize,
+    minFontSize: Math.round(o.poweredByFontSize * 0.7),
+  });
+
   const logoEnter = springAt(frame, fps, t.logoIn, springs.punch, 40);
-  const logoFade = springAt(frame, fps, t.logoIn, springs.smooth, 20);
+  const logoFade = springAt(frame, fps, t.logoIn, springs.smooth, 12);
   const taglineIn = springAt(frame, fps, t.taglineIn, springs.smooth, 24);
   const baselineIn = springAt(frame, fps, t.baselineIn, springs.smooth, 24);
   const poweredIn = springAt(frame, fps, t.poweredByIn, springs.smooth, 26);
@@ -166,7 +189,7 @@ export const SceneOutro: React.FC<SceneOutroProps> = ({
           textAlign: "center",
           fontFamily: fonts.body,
           fontWeight: fontWeights.bodyMedium,
-          fontSize: o.poweredByFontSize,
+          fontSize: poweredByFit.fontSize,
           letterSpacing: "0.08em",
           color: colors.textSubtle,
           whiteSpace: "nowrap",

@@ -29,6 +29,11 @@ type GlassCardProps = {
   radius?: number;
   /** Décalage de phase de la bordure animée (pour désynchroniser les cartes). */
   phase?: number;
+  /**
+   * Horloge de la bordure animée. Par défaut, la frame de la séquence ; la
+   * console passe la frame globale pour rester identique d'une scène à l'autre.
+   */
+  clockFrame?: number;
 };
 
 export const GlassCard: React.FC<GlassCardProps> = ({
@@ -38,9 +43,10 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   glow = 0.5,
   radius = glass.radius,
   phase = 0,
+  clockFrame,
 }) => {
   const frame = useCurrentFrame();
-  const angle = (frame * 0.9 + phase * 90) % 360;
+  const angle = ((clockFrame ?? frame) * 0.9 + phase * 90) % 360;
 
   return (
     <div

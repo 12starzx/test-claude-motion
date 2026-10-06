@@ -54,8 +54,15 @@ export const RevealChart: React.FC<{
   const barWidth = (width - phaseGap - gap * (SHAPE.length - 2)) / SHAPE.length;
 
   const bars = SHAPE.map((value, index) => {
-    const x = index * (barWidth + gap) + (index >= PHASE_SIZE ? phaseGap - gap : 0);
-    const grow = springAt(frame, fps, barsIn + index * barStagger, springs.snappy, 26);
+    const x =
+      index * (barWidth + gap) + (index >= PHASE_SIZE ? phaseGap - gap : 0);
+    const grow = springAt(
+      frame,
+      fps,
+      barsIn + index * barStagger,
+      springs.snappy,
+      26,
+    );
     const fullHeight = usable * value;
     return { x, fullHeight, grow, phase: index < PHASE_SIZE ? 1 : 2 };
   });
@@ -85,6 +92,15 @@ export const RevealChart: React.FC<{
           <stop offset="0%" stopColor={colors.glow} />
           <stop offset="100%" stopColor={colors.accent} />
         </linearGradient>
+        {/* L'aire se découvre au rythme du tracé de la courbe. */}
+        <clipPath id="bim-area-clip">
+          <rect
+            x={0}
+            y={0}
+            width={points[0].x + draw * (last.x - points[0].x)}
+            height={height}
+          />
+        </clipPath>
         <linearGradient id="bim-area" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={colors.glow} stopOpacity={0.22} />
           <stop offset="100%" stopColor={colors.glow} stopOpacity={0} />
@@ -103,7 +119,13 @@ export const RevealChart: React.FC<{
           strokeDasharray="4 8"
         />
       ))}
-      <line x1={0} x2={width} y1={bottom} y2={bottom} stroke="rgba(255,255,255,0.14)" />
+      <line
+        x1={0}
+        x2={width}
+        y1={bottom}
+        y2={bottom}
+        stroke="rgba(255,255,255,0.14)"
+      />
 
       {/* Séparation entre les deux phases */}
       <line
@@ -113,7 +135,13 @@ export const RevealChart: React.FC<{
         y2={bottom}
         stroke={withAlpha(colors.accent, 0.28)}
         strokeDasharray="3 7"
-        opacity={springAt(frame, fps, barsIn + PHASE_SIZE * barStagger, springs.smooth, 20)}
+        opacity={springAt(
+          frame,
+          fps,
+          barsIn + PHASE_SIZE * barStagger,
+          springs.smooth,
+          20,
+        )}
       />
 
       {/* Barres */}
@@ -137,7 +165,8 @@ export const RevealChart: React.FC<{
       <path
         d={`${curve} L ${last.x} ${bottom} L ${points[0].x} ${bottom} Z`}
         fill="url(#bim-area)"
-        opacity={draw}
+        clipPath="url(#bim-area-clip)"
+        opacity={Math.min(1, draw * 2)}
       />
       {/* Halo de la courbe */}
       <path
@@ -165,7 +194,12 @@ export const RevealChart: React.FC<{
       />
       {/* Point d'arrivée */}
       <g opacity={springAt(frame, fps, curveIn + 34, springs.smooth, 16)}>
-        <circle cx={last.x} cy={last.y} r={16 * headPulse} fill={withAlpha(colors.glow, 0.22)} />
+        <circle
+          cx={last.x}
+          cy={last.y}
+          r={16 * headPulse}
+          fill={withAlpha(colors.glow, 0.22)}
+        />
         <circle cx={last.x} cy={last.y} r={6} fill={colors.text} />
       </g>
     </svg>

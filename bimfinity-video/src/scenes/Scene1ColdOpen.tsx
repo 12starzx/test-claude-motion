@@ -19,7 +19,10 @@ export type SceneColdOpenProps = {
   query: string;
 };
 
-export const SceneColdOpen: React.FC<SceneColdOpenProps> = ({ label, query }) => {
+export const SceneColdOpen: React.FC<SceneColdOpenProps> = ({
+  label,
+  query,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const layout = useLayout();
@@ -39,7 +42,12 @@ export const SceneColdOpen: React.FC<SceneColdOpenProps> = ({ label, query }) =>
 
   return (
     <AbsoluteFill>
-      <CopilotConsole label={label} query={query} state={state} globalFrame={globalFrame} />
+      <CopilotConsole
+        label={label}
+        query={query}
+        state={state}
+        globalFrame={globalFrame}
+      />
     </AbsoluteFill>
   );
 };

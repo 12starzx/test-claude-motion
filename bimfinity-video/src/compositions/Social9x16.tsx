@@ -5,7 +5,11 @@
  * Rendu : npx remotion render Social-9x16 bimfinity-9x16.mp4
  */
 import { Composition } from "remotion";
-import { bimfinitySchema, defaultBimfinityProps } from "../schema";
+import {
+  bimfinitySchema,
+  defaultBimfinityProps,
+  validateBimfinityProps,
+} from "../schema";
 import { layouts, timings } from "../theme";
 import { BimfinityVideo } from "./BimfinityVideo";
 
@@ -15,6 +19,7 @@ export const Social9x16: React.FC = () => (
     component={BimfinityVideo}
     schema={bimfinitySchema}
     defaultProps={defaultBimfinityProps}
+    calculateMetadata={validateBimfinityProps}
     width={layouts.portrait.width}
     height={layouts.portrait.height}
     fps={timings.fps}

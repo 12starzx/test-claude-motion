@@ -14,7 +14,9 @@ export const useLayout = (): FormatLayout => {
 };
 
 /** Scène de référence, centrée et mise à l'échelle dans la composition. */
-export const Stage: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const Stage: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const { width, height } = useVideoConfig();
   const layout = useLayout();
   const scale = Math.min(width / layout.width, height / layout.height);

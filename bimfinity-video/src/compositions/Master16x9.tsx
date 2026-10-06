@@ -3,7 +3,11 @@
  * Rendu : npx remotion render Master-16x9 bimfinity-16x9.mp4
  */
 import { Composition } from "remotion";
-import { bimfinitySchema, defaultBimfinityProps } from "../schema";
+import {
+  bimfinitySchema,
+  defaultBimfinityProps,
+  validateBimfinityProps,
+} from "../schema";
 import { layouts, timings } from "../theme";
 import { BimfinityVideo } from "./BimfinityVideo";
 
@@ -13,6 +17,7 @@ export const Master16x9: React.FC = () => (
     component={BimfinityVideo}
     schema={bimfinitySchema}
     defaultProps={defaultBimfinityProps}
+    calculateMetadata={validateBimfinityProps}
     width={layouts.landscape.width}
     height={layouts.landscape.height}
     fps={timings.fps}

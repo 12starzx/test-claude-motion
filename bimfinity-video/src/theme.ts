@@ -1,9 +1,10 @@
 /**
- * Thème BIMfinity : source unique de vérité pour les couleurs, la typographie,
- * le rythme (timings), les ressorts d'animation et la mise en page des deux formats.
+ * Thème BIMfinity : les couleurs, la typographie, le rythme (timings), les
+ * ressorts d'animation et la mise en page des deux formats.
  *
  * Pour modifier l'identité visuelle ou le montage, c'est ici qu'il faut agir :
- * aucune valeur de couleur, de durée ou de position n'est codée en dur ailleurs.
+ * les valeurs de marque et de montage sont centralisées dans ce fichier ; les
+ * scènes n'y ajoutent que des réglages fins propres à chaque animation.
  */
 import type { SpringConfig } from "remotion";
 import { bodyFontFamily, headingFontFamily } from "./fonts";
@@ -25,8 +26,6 @@ export const colors = {
   text: "#F4F6FB",
   /** Accents clairs. */
   accent: "#8FB4FF",
-  /** Texte secondaire. */
-  textMuted: "rgba(244, 246, 251, 0.64)",
   /** Texte discret (mentions). */
   textSubtle: "rgba(244, 246, 251, 0.46)",
 } as const;
@@ -64,7 +63,6 @@ export const fontWeights = {
   headingStrong: 700,
   body: 400,
   bodyMedium: 500,
-  bodyStrong: 600,
 } as const;
 
 /** Rendu du mot clé de chaque titre (balisé *ainsi* dans les textes). */
@@ -113,7 +111,6 @@ export const background = {
 /* -------------------------------------------------------------------------- */
 
 export const FPS = 30;
-export const DURATION_IN_FRAMES = 960;
 
 export type SceneId =
   | "coldOpen"
@@ -125,48 +122,81 @@ export type SceneId =
 
 export type SceneTiming = { from: number; duration: number };
 
+/**
+ * Durée de chaque scène, dans l'ordre du film. Les débuts de scène et la
+ * durée totale en sont déduits : allonger une scène décale automatiquement
+ * les suivantes (et la durée de la vidéo).
+ */
+const SCENE_DURATIONS: [SceneId, number][] = [
+  ["coldOpen", 120], //   0 à  4 s
+  ["query", 150], //      4 à  9 s
+  ["processing", 120], // 9 à 13 s
+  ["reveal", 300], //    13 à 23 s
+  ["value", 120], //     23 à 27 s
+  ["outro", 150], //     27 à 32 s
+];
+
+const buildScenes = (): Record<SceneId, SceneTiming> => {
+  let from = 0;
+  const entries = SCENE_DURATIONS.map(([id, duration]) => {
+    const timing = { from, duration };
+    from += duration;
+    return [id, timing] as const;
+  });
+  return Object.fromEntries(entries) as Record<SceneId, SceneTiming>;
+};
+
+/** Durée totale : 960 frames (32 s) avec les durées ci-dessus. */
+export const DURATION_IN_FRAMES = SCENE_DURATIONS.reduce(
+  (sum, [, d]) => sum + d,
+  0,
+);
+
+/** Décalages d'apparition entre éléments d'une liste (4 à 6 frames). */
+export const stagger = { tight: 4, base: 5, loose: 6 } as const;
+
 export const timings = {
   fps: FPS,
   durationInFrames: DURATION_IN_FRAMES,
-  /** Chevauchement des transitions fondu + parallaxe (~100 ms). */
+  /** Chevauchement des transitions fondu + parallaxe (3 frames, ~100 ms). */
   overlap: 3,
   /** Durée des sorties de scène (fondu + parallaxe). */
-  exit: 12,
-  /** Durée des entrées de scène. */
+  exit: 10,
+  /** Durée de la parallaxe d'entrée des scènes. */
   enter: 18,
 
-  scenes: {
-    coldOpen: { from: 0, duration: 120 }, //   0 à  4 s
-    query: { from: 120, duration: 150 }, //    4 à  9 s
-    processing: { from: 270, duration: 120 }, // 9 à 13 s
-    reveal: { from: 390, duration: 300 }, //  13 à 23 s
-    value: { from: 690, duration: 120 }, //   23 à 27 s
-    outro: { from: 810, duration: 150 }, //   27 à 32 s
-  } satisfies Record<SceneId, SceneTiming>,
+  scenes: buildScenes(),
 
   /* Chorégraphies internes, en frames locales à chaque scène. */
   coldOpen: { consoleIn: 16, labelIn: 28 },
   query: { typingStart: 8, typingEnd: 100, submitAt: 114 },
   processing: {
     chipsIn: 8,
-    chipStagger: 5,
+    chipStagger: stagger.base,
     flowDelay: 4,
     subtitleIn: 30,
-    wordStagger: 6,
+    wordStagger: stagger.loose,
     convergeAt: 88,
   },
   reveal: {
+    /** Flash, transformation de la console, coche de validation. */
+    flashAttack: 4,
+    processingOff: 4,
+    doneIn: 10,
+    labelIn: 14,
     mainCardIn: 8,
     titleIn: 14,
     chartIn: 24,
-    barStagger: 4,
+    barStagger: stagger.tight,
     curveIn: 36,
     benefitsIn: 30,
-    benefitStagger: 5,
+    benefitStagger: stagger.base,
+    /** Début de la lente poussée de caméra. */
+    pushFrom: 60,
     shineAt: 150,
   },
-  value: { linesIn: 1, lineStagger: 6 },
-  outro: { logoIn: 1, taglineIn: 12, baselineIn: 22, poweredByIn: 36 },
+  value: { linesIn: 0, lineStagger: stagger.loose },
+  outro: { logoIn: 0, taglineIn: 10, baselineIn: 20, poweredByIn: 34 },
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -180,12 +210,7 @@ export const springs = {
   snappy: { damping: 18, stiffness: 170, mass: 0.7 },
   /** "Punch" d'échelle de la révélation. */
   punch: { damping: 11, stiffness: 150, mass: 0.85 },
-  /** Mouvements lents (dérives, caméras). */
-  gentle: { damping: 30, stiffness: 60, mass: 1 },
 } satisfies Record<string, Partial<SpringConfig>>;
-
-/** Stagger par élément (4 à 6 frames). */
-export const stagger = { tight: 4, base: 5, loose: 6 } as const;
 
 /* -------------------------------------------------------------------------- */
 /*  Mise en page des deux formats                                             */
@@ -195,7 +220,11 @@ export type FormatLayout = {
   name: "landscape" | "portrait";
   width: number;
   height: number;
-  /** Marges de sécurité (titre-safe ; en 9:16, zones d'interface des réseaux). */
+  /**
+   * Marges de sécurité. `x` est appliquée par les scènes ; `top` et `bottom`
+   * documentent les zones d'interface des réseaux (9:16) et ont servi à régler
+   * les positions verticales ci-dessous : les ajuster ensemble.
+   */
   safe: { x: number; top: number; bottom: number };
   /** Amplitude des parallaxes (px). */
   parallax: number;
@@ -381,7 +410,8 @@ export const layouts: Record<FormatLayout["name"], FormatLayout> = {
     },
     reveal: {
       contentTop: 486,
-      contentBottom: 1590,
+      // 1578 : avec la poussée de caméra (x 1,02), les cartes restent au-dessus de y = 1590.
+      contentBottom: 1578,
       direction: "column",
       gap: 24,
       mainCard: {

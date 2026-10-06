@@ -94,7 +94,9 @@ export const fitText = (options: FitTextOptions): FitTextResult => {
     fontSize -= 1
   ) {
     const lines = wrapLines(plain, fontSize, maxWidth, options);
-    const width = Math.max(...lines.map((line) => widthOf(line, fontSize, options)));
+    const width = Math.max(
+      ...lines.map((line) => widthOf(line, fontSize, options)),
+    );
     const heightOk =
       options.maxHeight === undefined ||
       lines.length * fontSize * lineHeight <= options.maxHeight;
@@ -105,7 +107,9 @@ export const fitText = (options: FitTextOptions): FitTextResult => {
   }
 
   if (last === null) {
-    throw new Error("fitText : minFontSize doit être inférieur ou égal à maxFontSize.");
+    throw new Error(
+      "fitText : minFontSize doit être inférieur ou égal à maxFontSize.",
+    );
   }
   console.warn(
     `[BIMfinity] Texte trop long pour son cadre, même à ${last.fontSize}px : « ${plain} ». ` +

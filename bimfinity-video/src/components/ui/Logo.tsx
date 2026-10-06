@@ -8,6 +8,7 @@
  */
 import { Img, staticFile } from "remotion";
 import { LOGO_FILE, useAssetAvailable } from "../../lib/assets";
+import { useFitText } from "../../lib/fit";
 import { colors, fontWeights, fonts, withAlpha } from "../../theme";
 
 type LogoProps = {
@@ -19,23 +20,43 @@ type LogoProps = {
   maxWidth: number;
 };
 
-const BrandName: React.FC<{ name: string; size: number }> = ({ name, size }) => (
-  <span
-    style={{
-      fontFamily: fonts.heading,
-      fontWeight: fontWeights.headingStrong,
-      fontSize: size,
-      letterSpacing: "-0.03em",
-      color: colors.text,
-      lineHeight: 1,
-      whiteSpace: "nowrap",
-    }}
-  >
-    {name}
-  </span>
-);
+/** Nom de marque, réduit si nécessaire pour tenir dans la largeur disponible. */
+const BrandName: React.FC<{ name: string; size: number; maxWidth: number }> = ({
+  name,
+  size,
+  maxWidth,
+}) => {
+  const fit = useFitText({
+    text: name,
+    fontFamily: fonts.heading,
+    fontWeight: fontWeights.headingStrong,
+    letterSpacingEm: -0.03,
+    maxWidth,
+    maxLines: 1,
+    maxFontSize: size,
+    minFontSize: Math.round(size * 0.5),
+  });
+  return (
+    <span
+      style={{
+        fontFamily: fonts.heading,
+        fontWeight: fontWeights.headingStrong,
+        fontSize: fit.fontSize,
+        letterSpacing: "-0.03em",
+        color: colors.text,
+        lineHeight: 1,
+        whiteSpace: "nowrap",
+      }}
+    >
+      {name}
+    </span>
+  );
+};
 
-const PlaceholderMark: React.FC<{ size: number; initial: string }> = ({ size, initial }) => (
+const PlaceholderMark: React.FC<{ size: number; initial: string }> = ({
+  size,
+  initial,
+}) => (
   <div
     style={{
       width: size,
@@ -57,9 +78,15 @@ const PlaceholderMark: React.FC<{ size: number; initial: string }> = ({ size, in
   </div>
 );
 
-export const Logo: React.FC<LogoProps> = ({ height, brandName, logoIncludesName, maxWidth }) => {
+export const Logo: React.FC<LogoProps> = ({
+  height,
+  brandName,
+  logoIncludesName,
+  maxWidth,
+}) => {
   const hasLogo = useAssetAvailable(LOGO_FILE);
   const gap = height * 0.28;
+  const markSize = height * 0.86;
 
   if (hasLogo) {
     return (
@@ -67,17 +94,32 @@ export const Logo: React.FC<LogoProps> = ({ height, brandName, logoIncludesName,
         <Img
           src={staticFile(LOGO_FILE)}
           alt={brandName}
-          style={{ height, width: "auto", maxWidth, objectFit: "contain" }}
+          style={{
+            height,
+            width: "auto",
+            maxWidth: logoIncludesName ? maxWidth : maxWidth * 0.4 - gap,
+            objectFit: "contain",
+          }}
         />
-        {logoIncludesName ? null : <BrandName name={brandName} size={height * 0.62} />}
+        {logoIncludesName ? null : (
+          <BrandName
+            name={brandName}
+            size={height * 0.62}
+            maxWidth={maxWidth * 0.6}
+          />
+        )}
       </div>
     );
   }
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap, maxWidth }}>
-      <PlaceholderMark size={height * 0.86} initial={brandName.charAt(0)} />
-      <BrandName name={brandName} size={height * 0.62} />
+      <PlaceholderMark size={markSize} initial={brandName.charAt(0)} />
+      <BrandName
+        name={brandName}
+        size={height * 0.62}
+        maxWidth={maxWidth - markSize - gap}
+      />
     </div>
   );
 };

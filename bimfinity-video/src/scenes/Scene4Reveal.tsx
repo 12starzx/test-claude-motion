@@ -8,7 +8,13 @@
  *   - trois cartes secondaires (bénéfices), chacune avec son icône dessinée.
  */
 import { useMemo } from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Easing,
+  interpolate,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import {
   CopilotConsole,
   initialConsoleState,
@@ -20,10 +26,23 @@ import { BenefitIconGlyph } from "../components/ui/Icons";
 import { RevealChart } from "../components/ui/RevealChart";
 import { fitText, useFitText } from "../lib/fit";
 import { useLayout } from "../lib/layout";
-import { clamp, mix, pulseEnvelope, springAt, useSceneMotion } from "../lib/motion";
+import {
+  clamp,
+  mix,
+  pulseEnvelope,
+  springAt,
+  useSceneMotion,
+} from "../lib/motion";
 import { frenchTypography } from "../lib/typography";
 import type { BenefitIcon } from "../schema";
-import { colors, fontWeights, fonts, springs, timings, withAlpha } from "../theme";
+import {
+  colors,
+  fontWeights,
+  fonts,
+  springs,
+  timings,
+  withAlpha,
+} from "../theme";
 
 export type SceneRevealProps = {
   label: string;
@@ -35,6 +54,8 @@ export type SceneRevealProps = {
 };
 
 const TITLE_LINE_HEIGHT = 1.12;
+/** Espace entre l'icône et le texte d'une carte secondaire. */
+const ICON_TEXT_GAP = 24;
 const BENEFIT_LINE_HEIGHT = 1.18;
 
 /** Reflet lumineux qui traverse une carte. */
@@ -57,8 +78,7 @@ const Shine: React.FC<{ progress: number }> = ({ progress }) => (
         width: "28%",
         left: `${mix(-40, 120, progress)}%`,
         transform: "skewX(-18deg)",
-        background:
-          "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(143,180,255,0.10) 50%, rgba(255,255,255,0) 100%)",
+        background: `linear-gradient(90deg, transparent 0%, ${withAlpha(colors.accent, 0.1)} 50%, transparent 100%)`,
       }}
     />
   </div>
@@ -77,7 +97,12 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
   const t = timings.reveal;
   const r = layout.reveal;
   const globalFrame = frame + timings.scenes.reveal.from;
-  const motion = useSceneMotion({ duration, enter: "cut", exit: "fade", amplitude: layout.parallax });
+  const motion = useSceneMotion({
+    duration,
+    enter: "cut",
+    exit: "fade",
+    amplitude: layout.parallax,
+  });
 
   /* ---------- La console se transforme en en-tête ---------- */
   const morph = springAt(frame, fps, 0, springs.snappy, 34);
@@ -86,15 +111,19 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
     typedCount: Array.from(frenchTypography(query)).length,
     submitted: 1,
     ring: 1,
-    pulse: pulseEnvelope(frame, fps, 0, 4, 24),
-    processing: 1 - springAt(frame, fps, 4, springs.smooth, 20),
-    done: springAt(frame, fps, 10, springs.smooth, 22),
+    pulse: pulseEnvelope(frame, fps, 0, t.flashAttack, 24),
+    processing: 1 - springAt(frame, fps, t.processingOff, springs.smooth, 20),
+    done: springAt(frame, fps, t.doneIn, springs.smooth, 22),
     centerY:
-      mix(layout.console.processingCenterY, layout.console.headerCenterY, morph) +
-      motion.parallaxY(0.5),
+      mix(
+        layout.console.processingCenterY,
+        layout.console.headerCenterY,
+        morph,
+      ) + motion.parallaxY(0.5),
     scale: mix(1, layout.console.headerScale, morph),
     appear: motion.opacity,
-    labelOpacity: springAt(frame, fps, 14, springs.smooth, 22) * motion.opacity,
+    labelOpacity:
+      springAt(frame, fps, t.labelIn, springs.smooth, 22) * motion.opacity,
   };
 
   /* ---------- Flash de révélation ---------- */
@@ -105,7 +134,9 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
   const contentHeight = r.contentBottom - r.contentTop;
   const isRow = r.direction === "row";
   const mainWidth = isRow ? r.mainCard.width : contentWidth;
-  const benefitWidth = isRow ? contentWidth - r.mainCard.width - r.gap : contentWidth;
+  const benefitWidth = isRow
+    ? contentWidth - r.mainCard.width - r.gap
+    : contentWidth;
   const benefitHeight = isRow
     ? (contentHeight - r.gap * (benefits.length - 1)) / benefits.length
     : r.benefitCard.height;
@@ -124,7 +155,8 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
     minFontSize: r.mainCard.titleMinFontSize,
     lineHeight: TITLE_LINE_HEIGHT,
   });
-  const titleHeight = titleFit.lines.length * titleFit.fontSize * TITLE_LINE_HEIGHT;
+  const titleHeight =
+    titleFit.lines.length * titleFit.fontSize * TITLE_LINE_HEIGHT;
   const chartGap = isRow ? 44 : 36;
   const chartHeight = Math.max(
     120,
@@ -132,7 +164,8 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
   );
 
   const iconBox = r.benefitCard.iconSize + 20;
-  const benefitTextWidth = benefitWidth - r.benefitCard.padding * 2 - iconBox - 24;
+  const benefitTextWidth =
+    benefitWidth - r.benefitCard.padding * 2 - iconBox - ICON_TEXT_GAP;
   // Une seule taille pour les trois cartes : alignement typographique.
   const benefitTexts = benefits.map((benefit) => benefit.text).join("\n");
   const benefitFontSize = useMemo(
@@ -162,7 +195,7 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
   const mainFade = springAt(frame, fps, t.mainCardIn, springs.smooth, 18);
   const titleIn = springAt(frame, fps, t.titleIn, springs.smooth, 24);
   const chartFade = springAt(frame, fps, t.chartIn - 4, springs.smooth, 16);
-  const push = interpolate(frame, [60, duration], [0, 1], {
+  const push = interpolate(frame, [t.pushFrom, duration], [0, 1], {
     ...clamp,
     easing: Easing.inOut(Easing.sin),
   });
@@ -180,7 +213,12 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
       />
 
       {/* Contenu révélé, avec une légère poussée de caméra */}
-      <AbsoluteFill style={{ transform: `scale(${1 + 0.02 * push})`, transformOrigin: "50% 55%" }}>
+      <AbsoluteFill
+        style={{
+          transform: `scale(${1 + 0.02 * push})`,
+          transformOrigin: "50% 55%",
+        }}
+      >
         <div
           style={{
             position: "absolute",
@@ -208,7 +246,8 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
               gap: chartGap,
               overflow: "hidden",
               transform: `translateY(${(1 - mainEnter) * 50 + motion.parallaxY(1)}px) scale(${0.9 + 0.1 * mainEnter})`,
-              filter: mainFade < 1 ? `blur(${(1 - mainFade) * 12}px)` : undefined,
+              filter:
+                mainFade < 1 ? `blur(${(1 - mainFade) * 12}px)` : undefined,
             }}
           >
             <div
@@ -226,7 +265,14 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
             >
               <HighlightedText text={recommendation} glow={keywordGlow} />
             </div>
-            <div style={{ flex: 1, minHeight: 0, display: "flex", alignItems: "flex-end" }}>
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                display: "flex",
+                alignItems: "flex-end",
+              }}
+            >
               <RevealChart
                 width={mainWidth - r.mainCard.padding * 2}
                 height={chartHeight}
@@ -261,8 +307,20 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
               const enter = springAt(frame, fps, start, springs.punch, 36);
               const fade = springAt(frame, fps, start, springs.smooth, 16);
               const draw = springAt(frame, fps, start + 6, springs.smooth, 30);
-              const underline = springAt(frame, fps, start + 12, springs.smooth, 34);
-              const shine = springAt(frame, fps, t.shineAt + 10 + index * t.benefitStagger * 2, springs.smooth, 44);
+              const underline = springAt(
+                frame,
+                fps,
+                start + 12,
+                springs.smooth,
+                34,
+              );
+              const shine = springAt(
+                frame,
+                fps,
+                t.shineAt + 10 + index * t.benefitStagger * 2,
+                springs.smooth,
+                44,
+              );
               const depth = 1.15 + index * 0.12;
               return (
                 <GlassCard
@@ -276,7 +334,7 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
                     boxSizing: "border-box",
                     display: "flex",
                     alignItems: "center",
-                    gap: 24,
+                    gap: ICON_TEXT_GAP,
                     overflow: "hidden",
                     transform: `translate(${isRow ? (1 - enter) * 60 : 0}px, ${(isRow ? 0 : (1 - enter) * 50) + motion.parallaxY(depth)}px) scale(${0.92 + 0.08 * enter})`,
                     filter: fade < 1 ? `blur(${(1 - fade) * 10}px)` : undefined,
@@ -296,7 +354,11 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
                       boxShadow: `0 0 24px ${withAlpha(colors.primary, 0.25 * draw)}`,
                     }}
                   >
-                    <BenefitIconGlyph icon={benefit.icon} size={r.benefitCard.iconSize} progress={draw} />
+                    <BenefitIconGlyph
+                      icon={benefit.icon}
+                      size={r.benefitCard.iconSize}
+                      progress={draw}
+                    />
                   </div>
                   <div
                     style={{
@@ -310,7 +372,7 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
                       minWidth: 0,
                     }}
                   >
-                    {frenchTypography(benefit.text)}
+                    <HighlightedText text={benefit.text} glow={0.35} />
                   </div>
                   {/* Trait de validation qui se remplit (aucune valeur affichée) */}
                   <div
@@ -325,7 +387,9 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
                       opacity: 0.85,
                     }}
                   />
-                  <Shine progress={shine > 0.001 && shine < 0.999 ? shine : 0} />
+                  <Shine
+                    progress={shine > 0.001 && shine < 0.999 ? shine : 0}
+                  />
                 </GlassCard>
               );
             })}
@@ -334,7 +398,12 @@ export const SceneReveal: React.FC<SceneRevealProps> = ({
       </AbsoluteFill>
 
       {/* Console devenue en-tête (au-dessus des cartes) */}
-      <CopilotConsole label={label} query={query} state={consoleState} globalFrame={globalFrame} />
+      <CopilotConsole
+        label={label}
+        query={query}
+        state={consoleState}
+        globalFrame={globalFrame}
+      />
     </AbsoluteFill>
   );
 };

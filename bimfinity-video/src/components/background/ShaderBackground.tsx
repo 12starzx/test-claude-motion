@@ -28,13 +28,10 @@ const MeshGradientPlane: React.FC<MeshGradientProps> = ({
   width,
   height,
 }) => {
-  const uniforms = useMemo(
+  // Uniforms constants (créés une fois).
+  const staticUniforms = useMemo(
     () => ({
-      uTime: { value: 0 },
       uResolution: { value: [width, height] },
-      uIntensity: { value: 0 },
-      uBloom: { value: 0 },
-      uDrift: { value: 0 },
       uFocusDarken: { value: background.focusDarken },
       uBase: { value: hexToVec3(colors.background) },
       uDeep: { value: hexToVec3(colors.deep) },
@@ -44,12 +41,16 @@ const MeshGradientPlane: React.FC<MeshGradientProps> = ({
     [width, height],
   );
 
-  // Mise à jour synchrone pendant le rendu : les valeurs sont en place avant
-  // que @remotion/three ne déclenche le dessin de la frame.
-  uniforms.uTime.value = time;
-  uniforms.uIntensity.value = intensity;
-  uniforms.uBloom.value = bloom;
-  uniforms.uDrift.value = drift;
+  // Un NOUVEL objet à chaque image : React Three Fiber ne recopie les uniforms
+  // dans le matériau que lorsque l'identité de la prop change. Muter un objet
+  // mémoïsé figerait le fond sur sa première image lors du rendu vidéo.
+  const uniforms = {
+    ...staticUniforms,
+    uTime: { value: time },
+    uIntensity: { value: intensity },
+    uBloom: { value: bloom },
+    uDrift: { value: drift },
+  };
 
   return (
     <mesh frustumCulled={false}>
@@ -87,9 +88,17 @@ export const ShaderBackground: React.FC<BackgroundState> = (state) => {
           dpr={1}
           flat
           linear
-          gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+          gl={{
+            antialias: false,
+            alpha: false,
+            powerPreference: "high-performance",
+          }}
         >
-          <MeshGradientPlane {...state} width={innerWidth} height={innerHeight} />
+          <MeshGradientPlane
+            {...state}
+            width={innerWidth}
+            height={innerHeight}
+          />
         </ThreeCanvas>
       </div>
     </AbsoluteFill>

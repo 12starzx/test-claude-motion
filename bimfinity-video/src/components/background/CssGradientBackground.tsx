@@ -20,11 +20,19 @@ export const CssGradientBackground: React.FC<BackgroundState> = ({
   // Positions des pôles (en %), en orbite lente comme dans le shader.
   const p1 = { x: 18 + 7 * Math.sin(t * 0.19), y: 24 + 6 * Math.cos(t * 0.23) };
   const p2 = { x: 82 + 6 * Math.cos(t * 0.17), y: 74 + 7 * Math.sin(t * 0.21) };
-  const p3 = { x: 56 + 10 * Math.sin(t * 0.13 + 1.3), y: 12 + 5 * Math.cos(t * 0.29) };
-  const p4 = { x: 34 + 8 * Math.cos(t * 0.11 + 2.1), y: 88 + 4 * Math.sin(t * 0.25) };
+  const p3 = {
+    x: 56 + 10 * Math.sin(t * 0.13 + 1.3),
+    y: 12 + 5 * Math.cos(t * 0.29),
+  };
+  const p4 = {
+    x: 34 + 8 * Math.cos(t * 0.11 + 2.1),
+    y: 88 + 4 * Math.sin(t * 0.25),
+  };
 
   return (
-    <AbsoluteFill style={{ backgroundColor: colors.background, overflow: "hidden" }}>
+    <AbsoluteFill
+      style={{ backgroundColor: colors.background, overflow: "hidden" }}
+    >
       <AbsoluteFill
         style={{
           opacity: intensity,

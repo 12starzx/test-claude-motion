@@ -2,7 +2,13 @@
  * Primitives d'animation : ressorts, enveloppes et transitions de scène.
  * Toutes les entrées passent par spring() (jamais d'interpolation linéaire).
  */
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  Easing,
+  interpolate,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import type { SpringConfig } from "remotion";
 import { springs, timings } from "../theme";
 
@@ -52,10 +58,6 @@ export type SceneEdge = "cut" | "fade";
 export type SceneMotion = {
   /** Visibilité globale de la scène (fondu de sortie). */
   opacity: number;
-  /** Progression de l'entrée (0 → 1). */
-  enter: number;
-  /** Progression de la sortie (0 → 1). */
-  exit: number;
   /**
    * Décalage vertical de parallaxe pour un calque de profondeur donnée :
    * plus `depth` est grand, plus le calque bouge (premier plan).
@@ -66,7 +68,8 @@ export type SceneMotion = {
 /**
  * Transition « fondu + parallaxe » d'une scène.
  * - "fade" : parallaxe d'entrée par ressort sur `timings.enter` frames ;
- *   sortie (fondu + parallaxe) sur les `timings.exit` dernières frames.
+ *   sortie (fondu + parallaxe) sur les `timings.exit` dernières frames,
+ *   qui chevauchent l'entrée de la scène suivante (`timings.overlap`).
  * - "cut"  : continuité (la console reste en place d'une scène à l'autre).
  */
 export const useSceneMotion = ({
@@ -87,9 +90,15 @@ export const useSceneMotion = ({
     enter === "fade"
       ? springAt(frame, fps, 0, springs.smooth, timings.enter)
       : 1;
+  // Sortie (pas une entrée) : accélération progressive qui s'achève pile au
+  // raccord, pour que la scène sortante soit encore visible pendant les
+  // frames de chevauchement avec la scène entrante.
   const exitProgress =
     exit === "fade"
-      ? springAt(frame, fps, duration - timings.exit, springs.smooth, timings.exit)
+      ? interpolate(frame, [duration - timings.exit, duration], [0, 1], {
+          ...clamp,
+          easing: Easing.in(Easing.quad),
+        })
       : 0;
 
   return {
@@ -97,10 +106,9 @@ export const useSceneMotion = ({
     // n'ajoute pas de fondu d'entrée global, qui creuserait un « trou » noir
     // au raccord. Elle porte en revanche le fondu de sortie.
     opacity: 1 - exitProgress,
-    enter: enterProgress,
-    exit: exitProgress,
     parallaxY: (depth: number) =>
-      (1 - enterProgress) * amplitude * depth - exitProgress * amplitude * 0.8 * depth,
+      (1 - enterProgress) * amplitude * depth -
+      exitProgress * amplitude * 0.8 * depth,
   };
 };
 

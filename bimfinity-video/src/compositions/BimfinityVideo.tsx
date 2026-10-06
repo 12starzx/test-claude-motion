@@ -37,15 +37,33 @@ export const BimfinityVideo: React.FC<BimfinityProps> = (props) => {
         <Stage>
           <Background />
 
-          <Sequence name="Scène 1 · Cold open" from={scenes.coldOpen.from} durationInFrames={scenes.coldOpen.duration}>
-            <SceneColdOpen label={props.console.label} query={props.console.query} />
+          <Sequence
+            name="Scène 1 · Cold open"
+            from={scenes.coldOpen.from}
+            durationInFrames={scenes.coldOpen.duration}
+          >
+            <SceneColdOpen
+              label={props.console.label}
+              query={props.console.query}
+            />
           </Sequence>
 
-          <Sequence name="Scène 2 · La requête" from={scenes.query.from} durationInFrames={scenes.query.duration}>
-            <SceneQuery label={props.console.label} query={props.console.query} />
+          <Sequence
+            name="Scène 2 · La requête"
+            from={scenes.query.from}
+            durationInFrames={scenes.query.duration}
+          >
+            <SceneQuery
+              label={props.console.label}
+              query={props.console.query}
+            />
           </Sequence>
 
-          <Sequence name="Scène 3 · Le traitement" from={scenes.processing.from} durationInFrames={scenes.processing.duration}>
+          <Sequence
+            name="Scène 3 · Le traitement"
+            from={scenes.processing.from}
+            durationInFrames={scenes.processing.duration}
+          >
             <SceneProcessing
               label={props.console.label}
               query={props.console.query}
@@ -54,7 +72,11 @@ export const BimfinityVideo: React.FC<BimfinityProps> = (props) => {
             />
           </Sequence>
 
-          <Sequence name="Scène 4 · La révélation" from={scenes.reveal.from} durationInFrames={scenes.reveal.duration}>
+          <Sequence
+            name="Scène 4 · La révélation"
+            from={scenes.reveal.from}
+            durationInFrames={scenes.reveal.duration}
+          >
             <SceneReveal
               label={props.console.label}
               query={props.console.query}
@@ -67,15 +89,18 @@ export const BimfinityVideo: React.FC<BimfinityProps> = (props) => {
           <Sequence
             name="Scène 5 · La valeur"
             from={valueFrom}
-            durationInFrames={scenes.outro.from - valueFrom}
+            durationInFrames={scenes.value.duration + overlap}
           >
-            <SceneValue title={props.value.title} duration={scenes.outro.from - valueFrom} />
+            <SceneValue
+              title={props.value.title}
+              duration={scenes.value.duration + overlap}
+            />
           </Sequence>
 
           <Sequence
             name="Scène 6 · Outro"
             from={outroFrom}
-            durationInFrames={timings.durationInFrames - outroFrom}
+            durationInFrames={scenes.outro.duration + overlap}
             premountFor={30}
           >
             <SceneOutro
@@ -84,12 +109,15 @@ export const BimfinityVideo: React.FC<BimfinityProps> = (props) => {
               tagline={props.outro.tagline}
               baseline={props.outro.baseline}
               poweredBy={props.outro.poweredBy}
-              duration={timings.durationInFrames - outroFrom}
+              duration={scenes.outro.duration + overlap}
             />
           </Sequence>
         </Stage>
 
-        <Soundtrack query={props.console.query} benefitCount={props.reveal.benefits.length} />
+        <Soundtrack
+          query={props.console.query}
+          benefitCount={props.reveal.benefits.length}
+        />
       </AssetGate>
     </AbsoluteFill>
   );
