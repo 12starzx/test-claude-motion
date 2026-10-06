@@ -119,10 +119,12 @@ export const validateBimfinityProps: CalculateMetadataFunction<
 > = ({ props }) => {
   const result = bimfinitySchema.safeParse(props);
   if (!result.success) {
+    // Message sur une seule ligne : la CLI n'affiche que la première ligne
+    // d'une erreur levée dans le navigateur.
     const issues = result.error.issues
-      .map((issue) => `- ${issue.path.join(".")} : ${issue.message}`)
-      .join("\n");
-    throw new Error(`Textes refusés par le schéma BIMfinity :\n${issues}`);
+      .map((issue) => `${issue.path.join(".")} : ${issue.message}`)
+      .join(" | ");
+    throw new Error(`Textes refusés par le schéma BIMfinity : ${issues}`);
   }
   return {};
 };

@@ -27,7 +27,7 @@ export const colors = {
   /** Accents clairs. */
   accent: "#8FB4FF",
   /** Texte discret (mentions). */
-  textSubtle: "rgba(244, 246, 251, 0.46)",
+  textSubtle: "rgba(244, 246, 251, 0.58)",
 } as const;
 
 /** Convertit une couleur hexadécimale (#RRGGBB) en rgba(). */
@@ -67,10 +67,13 @@ export const fontWeights = {
 
 /** Rendu du mot clé de chaque titre (balisé *ainsi* dans les textes). */
 export const keyword = {
-  /** Dégradé du mot clé : bleu primaire vers accent clair. */
-  gradient: `linear-gradient(100deg, ${colors.primary} 0%, ${colors.glow} 45%, ${colors.accent} 100%)`,
-  /** Lueur autour du mot clé. */
-  glow: withAlpha(colors.primary, 0.55),
+  /**
+   * Dégradé du mot clé : bleu glow vers accent clair. Il démarre au glow
+   * (#4D83FF) plutôt qu'au primaire : contraste suffisant sur fond sombre.
+   */
+  gradient: `linear-gradient(100deg, ${colors.glow} 0%, ${colors.glow} 35%, ${colors.accent} 100%)`,
+  /** Lueur autour du mot clé (discrète, pour ne pas éclaircir le fond du texte). */
+  glow: withAlpha(colors.primary, 0.38),
 } as const;
 
 /* -------------------------------------------------------------------------- */

@@ -6,10 +6,10 @@ croise ses sources et révèle une décision claire.
 
 Deux compositions partagent exactement les mêmes scènes :
 
-| Composition   | Format      | Cadence | Durée                 |
-| ------------- | ----------- | ------- | --------------------- |
-| `Master-16x9` | 1920 x 1080 | 30 i/s  | 960 images (32 s)     |
-| `Social-9x16` | 1080 x 1920 | 30 i/s  | 960 images (32 s)     |
+| Composition   | Format      | Cadence | Durée             |
+| ------------- | ----------- | ------- | ----------------- |
+| `Master-16x9` | 1920 x 1080 | 30 i/s  | 960 images (32 s) |
+| `Social-9x16` | 1080 x 1920 | 30 i/s  | 960 images (32 s) |
 
 ## Démarrage
 
@@ -131,15 +131,15 @@ dans les props : le nom sera composé à côté.
 
 Les fichiers sont lus dans `public/audio` :
 
-| Fichier          | Rôle                                         | Calage                          |
-| ---------------- | -------------------------------------------- | ------------------------------- |
-| `ambient.mp3`    | nappe ambiante tech                          | toute la durée, fondu in / out  |
-| `type-tick.wav`  | tick de frappe                               | chaque caractère (scène 2)      |
-| `riser.mp3`      | montée                                       | scène 3 (9 à 13 s)              |
-| `whoosh.wav`     | souffle de révélation                        | culmine à 13 s                  |
-| `boom.wav`       | impact grave                                 | 13 s                            |
-| `ui-tick.wav`    | tick d'interface                             | apparition de chaque carte      |
-| `resolve.mp3`    | résolution douce                             | 27 s                            |
+| Fichier         | Rôle                  | Calage                         |
+| --------------- | --------------------- | ------------------------------ |
+| `ambient.mp3`   | nappe ambiante tech   | toute la durée, fondu in / out |
+| `type-tick.wav` | tick de frappe        | chaque caractère (scène 2)     |
+| `riser.mp3`     | montée                | scène 3 (9 à 13 s)             |
+| `whoosh.wav`    | souffle de révélation | culmine à 13 s                 |
+| `boom.wav`      | impact grave          | 13 s                           |
+| `ui-tick.wav`   | tick d'interface      | apparition de chaque carte     |
+| `resolve.mp3`   | résolution douce      | 27 s                           |
 
 Les fichiers livrés sont des **placeholders synthétisés** par
 `npm run audio:placeholders` (aucun échantillon externe, donc libres de droits). Pour
@@ -183,8 +183,8 @@ erreurs survenant après la création du canvas.
 - **Outro** : la ligne du storyboard « BIMfinity — Le copilote de décision du
   tertiaire. » contient un tiret cadratin, exclu par les critères d'acceptation. Elle
   est composée en bloc-marque : logo (et nom) au-dessus, « Le copilote de décision du
-  tertiaire. » en dessous. Variante possible sur une ligne : « BIMfinity, le copilote
-  de *décision* du tertiaire. »
+  tertiaire. » en dessous. Variante possible sur une ligne :
+  `BIMfinity, le copilote de *décision* du tertiaire.`
 - **Mots clés en bleu** : « rénover en deux phases », « Décider », « décision », et
   sur les cartes secondaires les résultats « sécurisée », « maîtrisé », « défendue ».
 - **Graphique** : purement illustratif, sans axe gradué ni valeur.

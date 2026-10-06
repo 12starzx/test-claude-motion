@@ -37,6 +37,6 @@
     "audio:placeholders": "node scripts/generate-placeholder-audio.mjs",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "format": "prettier --write src scripts"
+    "format": "prettier --write src scripts README.md"
   }
 }

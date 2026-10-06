@@ -109,13 +109,16 @@ void main() {
   float deepAmount = smoothstep(0.1, 0.8, mass);
   vec3 color = mix(uBase, uDeep, deepAmount * 0.82);
 
-  // Cœurs plus resserrés en bleu primaire.
+  // Pic de la révélation : n'agit qu'au-delà du palier de bloom soutenu.
+  float flash = clamp((uBloom - 0.5) * 2.0, 0.0, 1.0);
+
+  // Cœurs plus resserrés en bleu primaire, ravivés par le flash.
   float core = smoothstep(0.28, 0.95, (w2 * 1.15 + w1 * 0.3) * (0.25 + field));
-  color = mix(color, uPrimary, core * 0.5);
+  color = mix(color, uPrimary, core * (0.5 + 0.35 * flash));
 
   // Filaments lumineux le long des plis du champ.
   float filaments = smoothstep(0.58, 0.92, field + 0.22 * length(r - q));
-  color += uGlow * filaments * (0.07 + 0.16 * uBloom) * (w1 + w2 + w3 + 0.25);
+  color += uGlow * filaments * (0.07 + 0.16 * uBloom + 0.3 * flash) * (w1 + w2 + w3 + 0.25);
 
   // Halo central (bloom) : discret au repos, intense à la révélation.
   float halo = pole(p, vec2(0.0, 0.02), 1.6);
@@ -126,7 +129,7 @@ void main() {
   color *= 1.0 - uFocusDarken * focusMask * (1.0 - 0.35 * uBloom);
 
   // Plafond de luminance : jamais de zone trop claire sous le texte.
-  color = min(color, vec3(0.30, 0.42, 0.78));
+  color = min(color, vec3(0.30, 0.42, 0.78 + 0.17 * flash));
 
   // Allumage depuis le noir.
   color = mix(uBase * 0.55, color, uIntensity);
