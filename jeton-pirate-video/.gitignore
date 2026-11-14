@@ -9,3 +9,6 @@ out
 # Vidéos rendues à la racine du projet (commande du brief) et bundle Remotion.
 /*.mp4
 build
+
+# Morceau fourni par l'utilisateur (droits de son auteur) : non versionné.
+public/audio/musique.mp3

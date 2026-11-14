@@ -121,6 +121,30 @@ connectée. Même celui qui ne répondait pas. Un coffre brille au bord de l'eau
 disparaît… sauf pour ceux qui n'ont pas abandonné.
 ```
 
+## Musique
+
+La version finale utilise un morceau phonk fourni par l'utilisateur. Il n'est pas versionné
+(ses droits appartiennent à son auteur) : sans lui, la vidéo utilise la nappe de synthèse
+décrite plus bas.
+
+`scripts/build-music.mjs` monte le morceau sur le récit, en deux segments calés sur ses
+repères mesurés (premier drop, accalmie, second drop) :
+
+- premier drop sur « DISPARAÎT. », accalmie sous « Il y en a un qui ne répondra pas » ;
+- montée puis second drop sur « 137 500 COFFRES. » ;
+- silence sous « Le jeton, NON. » et « les jours partent plus vite » ;
+- reprise de l'accalmie sous le compte à rebours, montée sur « Le 4 décembre… Un coffre
+  brille », drop final sur « LE JETON EST LÀ. ».
+
+La musique est compressée par la voix (sidechain) : environ 4 à 5 dB sous la voix quand
+elle parle, pleine puissance entre les phrases et sur les drops.
+
+```console
+node scripts/build-music.mjs morceau.mp4 public/audio/voix-off.mp3 public/audio/musique.mp3
+```
+
+À l'export, le son est normalisé à -14 LUFS (crête vraie -1 dB), le niveau visé par TikTok.
+
 ## Bande-son
 
 `npm run audio` synthétise toute la bande-son (aucun échantillon externe, donc libre de

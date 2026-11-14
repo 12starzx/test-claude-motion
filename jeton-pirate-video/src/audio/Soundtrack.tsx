@@ -7,6 +7,9 @@
  *   de scène, scintillements du jeton, coffres, téléphone, horloge.
  * - Voix off (voix-off.mp3) : montée à 0 s si le fichier existe ; la nappe
  *   est alors baissée pour laisser la voix devant.
+ * - Musique (musique.mp3, facultative) : morceau monté sur le récit et déjà
+ *   compressé par la voix (scripts/build-music.mjs). Elle remplace alors la
+ *   nappe de synthèse, et les bruitages passent en retrait.
  */
 import { Audio } from "@remotion/media";
 import { Sequence, staticFile } from "remotion";
@@ -15,6 +18,7 @@ import { cueAt, cuePartAt, cues, toFrames } from "../timeline";
 
 export const soundFiles = {
   voice: "audio/voix-off.mp3",
+  music: "audio/musique.mp3",
   bed: "audio/bed.mp3",
   boom: "audio/boom.wav",
   whoosh: "audio/whoosh.wav",
@@ -148,10 +152,14 @@ const hits = (sceneStarts: number[]): Hit[] => [
   { sound: "tick", at: cuePartAt("minutes", 1), volume: 0.4, name: "Minuteur" },
 ];
 
-/** Mixage : avec une voix off, musique et bruitages passent en retrait. */
+/**
+ * Mixage. Les niveaux laissent de la marge : le volume final est normalisé
+ * à l'export (-14 LUFS, standard des réseaux sociaux).
+ */
 const MIX = {
-  withVoice: { voice: 0.95, bed: 0.4, effects: 0.7 },
-  withoutVoice: { voice: 0, bed: 0.85, effects: 1 },
+  withMusic: { voice: 0.8, music: 0.8, bed: 0, effects: 0.45 },
+  withVoice: { voice: 0.95, music: 0, bed: 0.4, effects: 0.7 },
+  withoutVoice: { voice: 0, music: 0, bed: 0.85, effects: 1 },
 } as const;
 
 const OneShot: React.FC<{ hit: Hit; gain: number }> = ({ hit, gain }) => {
@@ -178,10 +186,18 @@ export const Soundtrack: React.FC<{ sceneStarts: number[] }> = ({
 }) => {
   const hasVoice = useAssetAvailable(soundFiles.voice);
   const hasBed = useAssetAvailable(soundFiles.bed);
-  const mix = hasVoice ? MIX.withVoice : MIX.withoutVoice;
+  const hasMusic = useAssetAvailable(soundFiles.music);
+  const mix = hasVoice
+    ? hasMusic
+      ? MIX.withMusic
+      : MIX.withVoice
+    : MIX.withoutVoice;
   return (
     <>
-      {hasBed ? (
+      {hasMusic && mix.music > 0 ? (
+        <Audio src={staticFile(soundFiles.music)} volume={mix.music} />
+      ) : null}
+      {hasBed && mix.bed > 0 ? (
         <Audio src={staticFile(soundFiles.bed)} volume={mix.bed} />
       ) : null}
       {hasVoice ? (
