@@ -68,11 +68,11 @@ const AtDesk: React.FC<{
 /* ------------------------------------------------------------------ */
 
 export const SceneDinner: React.FC = () => {
-  const { t, at } = useSceneTime();
+  const { t, at, atPart } = useSceneTime();
   const floor = 1440;
   const call = pop(t, at("mere"), 200);
   const plate = pop(t, at("manger"));
-  const timerStart = at("minutes") + 0.3;
+  const timerStart = atPart("minutes", 1);
   const timer = pop(t, timerStart, 200);
   const remaining = Math.max(
     0,
@@ -313,7 +313,7 @@ export const ScenePlanner: React.FC = () => {
 /* ------------------------------------------------------------------ */
 
 export const SceneExam: React.FC = () => {
-  const { t, at } = useSceneTime();
+  const { t, at, atPart } = useSceneTime();
   const floor = 1480;
   const loopIn = inOut(t, at("bac"), at("non") + 0.1, 0.3, 0.25);
   const loopAngle = (t - at("bac")) * 220;
@@ -322,7 +322,7 @@ export const SceneExam: React.FC = () => {
     years.length - 1,
     Math.max(0, Math.floor((t - at("chaqueAnnee")) / 0.32)),
   );
-  const crack = at("non") + 0.5;
+  const crack = atPart("non", 1);
   const tokenIn = pop(t, at("non") + 0.05);
   const dissolve = progress(t, crack, 0.35);
   const flip = progress(t, at("reviser") + 0.3, 0.5);

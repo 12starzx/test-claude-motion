@@ -1,12 +1,12 @@
 # « Le jeton pirate » · version nuit marine
 
-Vidéo verticale de 71 s en motion design, produite avec Remotion (React + TypeScript).
+Vidéo verticale de 82 s en motion design, produite avec Remotion (React + TypeScript).
 Elle reprend la narration et le rythme de la vidéo de référence, avec des décors redessinés
 et une nouvelle palette : bleu nuit, faisceaux de lune, héros cyan, jeton orange doré.
 
 | Composition   | Format      | Cadence | Durée               |
 | ------------- | ----------- | ------- | ------------------- |
-| `JetonPirate` | 1080 x 1920 | 30 i/s  | 2 130 images (71 s) |
+| `JetonPirate` | 1080 x 1920 | 30 i/s  | 2 460 images (82 s) |
 
 ## Démarrage
 
@@ -64,14 +64,27 @@ relancez `npm run audio` pour recaler la nappe musicale.
 
 ## Ajouter la voix off
 
-La composition monte automatiquement `public/audio/voix-off.mp3` s'il existe, et baisse
-alors la musique pour laisser la voix devant. Pour caler la vidéo sur cette voix :
+La voix off actuelle (ElevenLabs, voix « Sid », modèle `eleven_v4`) est dans
+`public/audio/voix-off.mp3`, et le conducteur est calé dessus. La composition monte ce
+fichier automatiquement s'il existe, et baisse alors musique et bruitages pour laisser la
+voix devant.
 
-1. Générer la voix à partir du texte ci-dessous et l'enregistrer sous
-   `public/audio/voix-off.mp3`.
-2. Obtenir sa transcription horodatée mot à mot (ElevenLabs Scribe, par exemple) au
-   format JSON.
-3. Recaler le conducteur, puis la musique :
+Pour remplacer la voix :
+
+1. Générer la nouvelle voix à partir du texte ci-dessous et l'enregistrer sous
+   `public/audio/voix-off.mp3`. Si le texte change, mettre aussi à jour `voix-off.txt`
+   (même texte, sans les balises entre crochets).
+2. Dater chaque mot. Deux possibilités :
+   - une transcription horodatée mot à mot (ElevenLabs Scribe, par exemple), au format
+     JSON ;
+   - à défaut, l'estimation locale, qui s'appuie sur les pauses de la voix et le nombre de
+     syllabes de chaque phrase :
+
+     ```console
+     node scripts/align-voice.mjs public/audio/voix-off.mp3 voix-off.txt transcription.json
+     ```
+
+3. Recaler le conducteur, puis la musique, puis rendre :
 
    ```console
    node scripts/retime-from-transcript.mjs transcription.json
@@ -79,8 +92,10 @@ alors la musique pour laisser la voix devant. Pour caler la vidéo sur cette voi
    npm run render
    ```
 
-Le script retrouve chaque réplique dans la transcription et signale celles qu'il n'a pas
-trouvées (elles sont alors placées par interpolation).
+Le recalage retrouve chaque réplique dans la transcription, date les nombres prononcés en
+toutes lettres, et signale les répliques introuvables (placées alors par interpolation).
+Les scènes et les bruitages suivent automatiquement, car ils lisent leurs instants dans le
+conducteur.
 
 ### Texte de la voix off
 

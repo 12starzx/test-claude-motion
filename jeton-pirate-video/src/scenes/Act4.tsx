@@ -372,10 +372,10 @@ export const SceneFinalDay: React.FC = () => {
 /* ------------------------------------------------------------------ */
 
 export const SceneFinale: React.FC = () => {
-  const { t, at } = useSceneTime();
+  const { t, atPart } = useSceneTime();
   const ground = 1480;
   const xs = [250, 430, 650, 830];
-  const cheer = pop(t, at("pasAbandonne") + 0.35, 150);
+  const cheer = pop(t, atPart("pasAbandonne", 1), 150);
   return (
     <Stage>
       <Moon x={860} y={720} r={38} />

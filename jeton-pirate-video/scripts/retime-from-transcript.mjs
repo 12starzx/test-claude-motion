@@ -51,6 +51,29 @@ const tokens = (text) =>
 
 const isNumber = (tok) => /^\d+$/.test(tok);
 
+/** Mots d'un nombre prononcé en toutes lettres (« cent trente-sept mille »). */
+const NUMBER_WORDS = new Set(
+  "zero deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize vingt trente quarante cinquante soixante cent cents mille".split(
+    " ",
+  ),
+);
+
+/**
+ * Début réel d'un nombre qui précède le mot `index` : on remonte tant que
+ * la transcription contient des chiffres ou des mots de nombre.
+ */
+const numberStart = (index) => {
+  let k = index;
+  while (
+    k > 0 &&
+    index - k < 8 &&
+    (isNumber(spoken[k - 1].tok) || NUMBER_WORDS.has(spoken[k - 1].tok))
+  ) {
+    k -= 1;
+  }
+  return k < index ? spoken[k].start : null;
+};
+
 /* Transcription ------------------------------------------------------ */
 
 const raw = JSON.parse(readFileSync(file, "utf8"));
@@ -114,16 +137,22 @@ for (const cue of cues) {
   }
   // Les nombres qui précèdent le premier mot sont prononcés avant lui.
   const skippedNumbers = all.slice(0, firstWord).length;
-  const start = spoken[found].start - skippedNumbers * NUMBER_GROUP;
+  const start =
+    skippedNumbers > 0
+      ? (numberStart(found) ??
+        spoken[found].start - skippedNumbers * NUMBER_GROUP)
+      : spoken[found].start;
   cue.newAt = Math.max(0, start - LEAD);
   // Délai de chaque ligne : instant de son premier mot reconnu.
   let j = found;
   cue.parts.forEach((part, pi) => {
     const first = part.toks.find((tok) => !isNumber(tok));
     if (pi === 0 || !first) return;
+    const leadingNumbers = isNumber(part.toks[0]);
     for (let k = j; k < Math.min(spoken.length, j + 25); k++) {
       if (spoken[k].tok === first) {
-        part.newDelay = Math.max(0, spoken[k].start - LEAD - cue.newAt);
+        const begin = (leadingNumbers && numberStart(k)) || spoken[k].start;
+        part.newDelay = Math.max(0, begin - LEAD - cue.newAt);
         j = k;
         break;
       }
@@ -164,15 +193,21 @@ cues.forEach((cue, i) => {
 /* Écriture ----------------------------------------------------------- */
 
 const round = (v) => Math.round(v * 100) / 100;
+const lastSpoken = spoken[spoken.length - 1].end;
+const total = Math.ceil((lastSpoken + 3) * 2) / 2;
 let body = source.slice(listStart, listEnd);
 cues.forEach((cue, i) => {
   const nextAt = cues[i + 1]?.newAt ?? Infinity;
   let block = cue.raw.replace(/at: [\d.]+/, `at: ${round(cue.newAt)}`);
   if (cue.end !== null) {
-    const end = Math.min(
-      nextAt - 0.05,
-      (cue.lastWordEnd ?? cue.newAt + (cue.end - cue.at)) + 0.45,
-    );
+    // La dernière réplique reste à l'écran jusqu'au fondu final.
+    const end =
+      i === cues.length - 1
+        ? total - 1
+        : Math.min(
+            nextAt - 0.05,
+            (cue.lastWordEnd ?? cue.newAt + (cue.end - cue.at)) + 0.45,
+          );
     block = block.replace(/end: [\d.]+/, `end: ${round(end)}`);
   }
   cue.parts.forEach((part) => {
@@ -188,8 +223,6 @@ cues.forEach((cue, i) => {
   body = body.replace(cue.raw, block);
 });
 
-const lastSpoken = spoken[spoken.length - 1].end;
-const total = Math.ceil((lastSpoken + 3) * 2) / 2;
 source = source.slice(0, listStart) + body + source.slice(listEnd);
 source = source.replace(/TOTAL_SECONDS = [\d.]+/, `TOTAL_SECONDS = ${total}`);
 writeFileSync(TIMELINE, source);

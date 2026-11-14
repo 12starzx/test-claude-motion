@@ -125,9 +125,9 @@ const Arm: React.FC<{ from: [number, number]; to: [number, number] }> = ({
 );
 
 export const SceneController: React.FC = () => {
-  const { t, at } = useSceneTime();
+  const { t, at, atPart } = useSceneTime();
   const grab = pop(t, at("reprends"), 120);
-  const order = at("ordre") + 0.4;
+  const order = atPart("ordre", 1);
   const lift = pop(t, order, 200);
   const cx = 540;
   const cy = 1150 - lift * 40;

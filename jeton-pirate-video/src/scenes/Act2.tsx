@@ -104,10 +104,10 @@ export const SceneWeeks: React.FC = () => {
 /* ------------------------------------------------------------------ */
 
 export const SceneService: React.FC = () => {
-  const { t, at } = useSceneTime();
+  const { t, at, atPart } = useSceneTime();
   const floor = 1400;
   const crossed = progress(t, at("joues") + 0.35, 0.35);
-  const duty = at("service") + 0.45;
+  const duty = atPart("service", 1);
   const on = pop(t, duty, 200);
   const sweep = (t - duty) * 260;
   const heroPose = blendPose(

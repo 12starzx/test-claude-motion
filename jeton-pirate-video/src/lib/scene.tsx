@@ -4,7 +4,7 @@
  */
 import { createContext, useContext } from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { cueAt } from "../timeline";
+import { cueAt, cuePartAt } from "../timeline";
 import { VIDEO } from "../theme";
 import { clamp01, easeOut } from "./anim";
 
@@ -24,6 +24,8 @@ export const useSceneTime = () => {
     duration,
     /** Instant local (s) d'une réplique du conducteur. */
     at: (id: string) => cueAt(id) - start,
+    /** Instant local (s) d'une ligne d'une réplique (ex. le mot-choc). */
+    atPart: (id: string, index: number) => cuePartAt(id, index) - start,
   };
 };
 

@@ -11,7 +11,7 @@
 import { Audio } from "@remotion/media";
 import { Sequence, staticFile } from "remotion";
 import { useAssetAvailable } from "../lib/assets";
-import { cueAt, cues, toFrames } from "../timeline";
+import { cueAt, cuePartAt, cues, toFrames } from "../timeline";
 
 export const soundFiles = {
   voice: "audio/voix-off.mp3",
@@ -87,7 +87,7 @@ const hits = (sceneStarts: number[]): Hit[] => [
   },
   {
     sound: "shatter",
-    at: cueAt("non") + 0.5,
+    at: cuePartAt("non", 1),
     volume: 0.6,
     name: "Jeton : brisé",
   },
@@ -99,7 +99,7 @@ const hits = (sceneStarts: number[]): Hit[] => [
   },
   {
     sound: "sparkle",
-    at: cueAt("pasAbandonne") + 0.05,
+    at: cuePartAt("pasAbandonne", 1),
     volume: 0.6,
     name: "Jetons de l'équipe",
   },
@@ -145,10 +145,16 @@ const hits = (sceneStarts: number[]): Hit[] => [
     volume: 0.25,
     name: `Horloge ${i + 1}`,
   })),
-  { sound: "tick", at: cueAt("minutes") + 0.3, volume: 0.4, name: "Minuteur" },
+  { sound: "tick", at: cuePartAt("minutes", 1), volume: 0.4, name: "Minuteur" },
 ];
 
-const OneShot: React.FC<{ hit: Hit }> = ({ hit }) => {
+/** Mixage : avec une voix off, musique et bruitages passent en retrait. */
+const MIX = {
+  withVoice: { voice: 0.95, bed: 0.4, effects: 0.7 },
+  withoutVoice: { voice: 0, bed: 0.85, effects: 1 },
+} as const;
+
+const OneShot: React.FC<{ hit: Hit; gain: number }> = ({ hit, gain }) => {
   const available = useAssetAvailable(soundFiles[hit.sound]);
   if (!available || hit.at < 0) {
     return null;
@@ -159,7 +165,10 @@ const OneShot: React.FC<{ hit: Hit }> = ({ hit }) => {
       name={hit.name}
       durationInFrames={toFrames(3)}
     >
-      <Audio src={staticFile(soundFiles[hit.sound])} volume={hit.volume} />
+      <Audio
+        src={staticFile(soundFiles[hit.sound])}
+        volume={hit.volume * gain}
+      />
     </Sequence>
   );
 };
@@ -169,19 +178,17 @@ export const Soundtrack: React.FC<{ sceneStarts: number[] }> = ({
 }) => {
   const hasVoice = useAssetAvailable(soundFiles.voice);
   const hasBed = useAssetAvailable(soundFiles.bed);
+  const mix = hasVoice ? MIX.withVoice : MIX.withoutVoice;
   return (
     <>
       {hasBed ? (
-        <Audio
-          src={staticFile(soundFiles.bed)}
-          volume={hasVoice ? 0.45 : 0.85}
-        />
+        <Audio src={staticFile(soundFiles.bed)} volume={mix.bed} />
       ) : null}
       {hasVoice ? (
-        <Audio src={staticFile(soundFiles.voice)} volume={1} />
+        <Audio src={staticFile(soundFiles.voice)} volume={mix.voice} />
       ) : null}
       {hits(sceneStarts).map((hit) => (
-        <OneShot key={`${hit.name}-${hit.at}`} hit={hit} />
+        <OneShot key={`${hit.name}-${hit.at}`} hit={hit} gain={mix.effects} />
       ))}
     </>
   );
