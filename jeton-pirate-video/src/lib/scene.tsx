@@ -1,0 +1,76 @@
+/**
+ * Cadre commun des scènes : temps local, transitions d'entrée et de sortie,
+ * lente poussée de caméra.
+ */
+import { createContext, useContext } from "react";
+import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { cueAt } from "../timeline";
+import { VIDEO } from "../theme";
+import { clamp01, easeOut } from "./anim";
+
+type SceneInfo = { start: number; duration: number };
+
+const SceneContext = createContext<SceneInfo>({ start: 0, duration: 1 });
+
+export const SceneProvider = SceneContext.Provider;
+
+/** Temps local (s) et accès aux répliques, relatifs au début de la scène. */
+export const useSceneTime = () => {
+  const frame = useCurrentFrame();
+  const { start, duration } = useContext(SceneContext);
+  const t = frame / VIDEO.fps;
+  return {
+    t,
+    duration,
+    /** Instant local (s) d'une réplique du conducteur. */
+    at: (id: string) => cueAt(id) - start,
+  };
+};
+
+/** Durée des fondus enchaînés entre scènes (s). */
+export const TRANSITION = 0.2;
+
+/**
+ * Enveloppe visuelle d'une scène : entrée en léger zoom arrière avec flou,
+ * sortie en fondu, poussée de caméra continue.
+ */
+export const SceneShell: React.FC<{
+  children: React.ReactNode;
+  /** Amplitude de la poussée de caméra sur toute la scène. */
+  push?: number;
+  /** Point de fuite de la poussée (en % du cadre). */
+  origin?: string;
+}> = ({ children, push = 0.035, origin = "50% 55%" }) => {
+  const { t, duration } = useSceneTime();
+  const enter = easeOut(clamp01(t / TRANSITION));
+  const exit = clamp01((t - (duration - TRANSITION)) / TRANSITION);
+  const opacity = enter * (1 - exit);
+  const scale = 1.04 - 0.04 * enter + push * (t / Math.max(duration, 1));
+  const blur = (1 - enter) * 10 + exit * 6;
+  return (
+    <AbsoluteFill
+      style={{
+        opacity,
+        transform: `scale(${scale})`,
+        transformOrigin: origin,
+        filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
+      }}
+    >
+      {children}
+    </AbsoluteFill>
+  );
+};
+
+/** Calque SVG plein cadre (1080 x 1920). */
+export const Stage: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
+  <svg
+    width={VIDEO.width}
+    height={VIDEO.height}
+    viewBox={`0 0 ${VIDEO.width} ${VIDEO.height}`}
+    style={{ position: "absolute", inset: 0, overflow: "visible" }}
+  >
+    {children}
+  </svg>
+);

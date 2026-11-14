@@ -1,0 +1,33 @@
+{
+  "name": "jeton-pirate-video",
+  "version": "1.0.0",
+  "description": "« Le jeton pirate » : vidéo verticale 9:16 en motion design (Remotion)",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.533",
+    "@remotion/google-fonts": "4.0.533",
+    "@remotion/media": "4.0.533",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.533"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.533",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "render": "remotion render JetonPirate out/jeton-pirate-9x16.mp4",
+    "still": "remotion still JetonPirate out/still.png",
+    "audio": "node scripts/generate-sound-design.mjs",
+    "lint": "eslint src && tsc",
+    "format": "prettier --write src scripts README.md"
+  }
+}
