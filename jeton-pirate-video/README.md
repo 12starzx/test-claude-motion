@@ -123,24 +123,29 @@ disparaît… sauf pour ceux qui n'ont pas abandonné.
 
 ## Musique
 
-La version finale utilise un morceau phonk fourni par l'utilisateur. Il n'est pas versionné
-(ses droits appartiennent à son auteur) : sans lui, la vidéo utilise la nappe de synthèse
-décrite plus bas.
+La version finale utilise un morceau phonk fourni par l'utilisateur (@nowfunk). Il n'est
+pas versionné (ses droits appartiennent à son auteur) : sans lui, la vidéo utilise la nappe
+de synthèse décrite plus bas.
 
-`scripts/build-music.mjs` monte le morceau sur le récit, en deux segments calés sur ses
-repères mesurés (premier drop, accalmie, second drop) :
+`scripts/build-music.mjs` monte le morceau en quatre segments, pour que ses temps forts
+tombent sur les phrases fortes de la voix (écart maximal 0,15 s) :
 
-- premier drop sur « DISPARAÎT. », accalmie sous « Il y en a un qui ne répondra pas » ;
-- montée puis second drop sur « 137 500 COFFRES. » ;
-- silence sous « Le jeton, NON. » et « les jours partent plus vite » ;
-- reprise de l'accalmie sous le compte à rebours, montée sur « Le 4 décembre… Un coffre
-  brille », drop final sur « LE JETON EST LÀ. ».
+| Voix                   | Musique              |
+| ---------------------- | -------------------- |
+| « DISPARAÎT. »         | drop                 |
+| « EN SERVICE. »        | frappe finale        |
+| « Tu te couches »      | retour au calme      |
+| « 137 500 COFFRES. »   | drop                 |
+| « Deux semaines. »     | frappe, puis silence |
+| « LE JETON EST LÀ. »   | drop                 |
+| dernier « ABANDONNÉ. » | frappe finale        |
 
-La musique est compressée par la voix (sidechain) : environ 4 à 5 dB sous la voix quand
-elle parle, pleine puissance entre les phrases et sur les drops.
+La musique est compressée par la voix (sidechain) : 4 à 6 dB sous la voix quand elle
+parle, pleine puissance entre les phrases. Un second plan (`moutses`) est conservé pour
+l'autre morceau testé.
 
 ```console
-node scripts/build-music.mjs morceau.mp4 public/audio/voix-off.mp3 public/audio/musique.mp3
+node scripts/build-music.mjs nowfunk morceau.mp4 public/audio/voix-off.mp3 public/audio/musique.mp3
 ```
 
 À l'export, le son est normalisé à -14 LUFS (crête vraie -1 dB), le niveau visé par TikTok.
