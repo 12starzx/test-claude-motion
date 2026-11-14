@@ -31,6 +31,18 @@ export const useSceneTime = () => {
 export const TRANSITION = 0.2;
 
 /**
+ * Caméra de la scène, appliquée À L'INTÉRIEUR du dessin SVG (voir Stage).
+ *
+ * Un zoom CSS sur un calque dont le contenu reste immobile laisse le
+ * navigateur recomposer des tuiles calculées à des échelles différentes
+ * (grille « dédoublée »). Une transformation SVG force au contraire un
+ * recalcul complet du dessin à chaque image.
+ */
+type Camera = { scale: number; ox: number; oy: number };
+
+const CameraContext = createContext<Camera>({ scale: 1, ox: 540, oy: 1056 });
+
+/**
  * Enveloppe visuelle d'une scène : entrée en léger zoom arrière avec flou,
  * sortie en fondu, poussée de caméra continue.
  */
@@ -38,9 +50,9 @@ export const SceneShell: React.FC<{
   children: React.ReactNode;
   /** Amplitude de la poussée de caméra sur toute la scène. */
   push?: number;
-  /** Point de fuite de la poussée (en % du cadre). */
-  origin?: string;
-}> = ({ children, push = 0.035, origin = "50% 55%" }) => {
+  /** Point de fuite de la poussée (px). */
+  origin?: [number, number];
+}> = ({ children, push = 0.035, origin = [540, 1056] }) => {
   const { t, duration } = useSceneTime();
   const enter = easeOut(clamp01(t / TRANSITION));
   const exit = clamp01((t - (duration - TRANSITION)) / TRANSITION);
@@ -48,29 +60,36 @@ export const SceneShell: React.FC<{
   const scale = 1.04 - 0.04 * enter + push * (t / Math.max(duration, 1));
   const blur = (1 - enter) * 10 + exit * 6;
   return (
-    <AbsoluteFill
-      style={{
-        opacity,
-        transform: `scale(${scale})`,
-        transformOrigin: origin,
-        filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
-      }}
-    >
-      {children}
-    </AbsoluteFill>
+    <CameraContext.Provider value={{ scale, ox: origin[0], oy: origin[1] }}>
+      <AbsoluteFill
+        style={{
+          opacity,
+          filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
+        }}
+      >
+        {children}
+      </AbsoluteFill>
+    </CameraContext.Provider>
   );
 };
 
-/** Calque SVG plein cadre (1080 x 1920). */
+/** Calque SVG plein cadre (1080 x 1920), cadré par la caméra de la scène. */
 export const Stage: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => (
-  <svg
-    width={VIDEO.width}
-    height={VIDEO.height}
-    viewBox={`0 0 ${VIDEO.width} ${VIDEO.height}`}
-    style={{ position: "absolute", inset: 0, overflow: "visible" }}
-  >
-    {children}
-  </svg>
-);
+}) => {
+  const { scale, ox, oy } = useContext(CameraContext);
+  return (
+    <svg
+      width={VIDEO.width}
+      height={VIDEO.height}
+      viewBox={`0 0 ${VIDEO.width} ${VIDEO.height}`}
+      style={{ position: "absolute", inset: 0, overflow: "visible" }}
+    >
+      <g
+        transform={`translate(${ox} ${oy}) scale(${scale}) translate(${-ox} ${-oy})`}
+      >
+        {children}
+      </g>
+    </svg>
+  );
+};
