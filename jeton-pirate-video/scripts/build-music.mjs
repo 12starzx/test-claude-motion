@@ -174,22 +174,22 @@ const plans = {
     ];
   },
   /**
-   * Vidéo 5 (« le blocus ») avec le morceau @nowfunk : intro sous « Il est
-   * tard », drop sur « UN BLOCUS. », retour au calme sous « Oui, demain tu
-   * seras fatigué », drop sur « RAPPELLE TON ÉQUIPE. », frappe finale sur
-   * « C'EST UN BLOCUS. », puis silence pour la chute.
+   * Vidéo 5 (« le blocus ») avec le morceau @nowfunk : intro sous l'enjeu,
+   * drop sur « FAIS UN BLOCUS. », retour au calme quand la journée passe
+   * (« Midi : rien »), drop sur « IL EST LÀ. », frappe finale sur
+   * « LE BLOCUS. ».
    */
   nowfunk5: () => {
     const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
-    const oa = at("blocus", 1) - T.drop;
-    const ob = at("rappelle") - T.drop;
-    const beats = Math.round((at("cestBlocus") - T.hit - ob) / T.beat);
+    const oa = at("blocus") - T.drop;
+    const ob = at("estLa", 1) - T.drop;
+    const beats = Math.round((at("sauf", 1) - T.hit - ob) / T.beat);
     const od = ob + beats * T.beat;
-    const bStart = at("fatigue"); // retour au calme
-    const dStart = at("partie"); // raccord pendant le plateau
+    const bStart = at("midi"); // la journée qui passe : retour au calme
+    const dStart = at("dec5Fin"); // raccord pendant le plateau
     return [
       seg(-oa, bStart - oa + 0.4, oa, 0.03, 0.4),
-      seg(Math.max(0, bStart - ob), dStart - ob + 0.25, ob, 0.4, 0.25),
+      seg(bStart - ob, dStart - ob + 0.25, ob, 0.4, 0.25),
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },

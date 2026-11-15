@@ -1,751 +1,821 @@
 /**
- * Scènes de la vidéo 5 (« le blocus ») : dimanche soir, la chambre, le
- * blocus pour le jeton, lundi matin.
+ * Scènes de la vidéo 5 (« le blocus ») : le jeton disparaît, le lycée bloqué,
+ * la journée de chasse à la maison, 23 h 59, le jeton.
  */
 import { bodyFont, impactFont } from "../fonts";
-import { easeInOut, mix, pop, progress, shake, wave } from "../lib/anim";
+import { inOut, mix, pop, progress, shake, wave } from "../lib/anim";
 import { Stage, useSceneTime } from "../lib/scene";
 import { palette } from "../theme";
 import {
   Figure,
   LEG,
-  SIT,
   STAND,
   Token,
   blendPose,
   walkPose,
 } from "../components/art/Characters";
-import { Beam, Burst, Dust, Pool } from "../components/art/Environment";
+import type { Pose } from "../components/art/Characters";
 import {
-  Bed,
-  Blanket,
+  Beam,
+  Burst,
+  Dust,
+  Moon,
+  Pool,
+  Sea,
+} from "../components/art/Environment";
+import {
   CalendarCard,
-  Chair,
   Chest,
   Clock,
   Controller,
-  Desk,
   Monitor,
-  Porthole,
+  SpeechBubble,
   SquadCard,
 } from "../components/art/Props";
 import { SQUAD, SQUAD_X } from "../scenes/Act1";
-import { Floor } from "../scenes/common";
-import { GameScreen, Locker } from "../v2/props";
+import { Beach, Floor } from "../scenes/common";
+import { VoiceWave } from "../v2/props";
 
-/** Croix rouge. */
-const Cross: React.FC<{ x: number; y: number; s?: number; p?: number }> = ({
-  x,
-  y,
-  s = 1,
-  p = 1,
-}) => (
-  <g transform={`translate(${x} ${y}) scale(${s})`} opacity={p}>
-    <path
-      d={`M-40,-40 L${-40 + 80 * p},${-40 + 80 * p} M40,-40 L${40 - 80 * p},${-40 + 80 * p}`}
-      stroke="#ff6b5a"
-      strokeWidth={12}
-      strokeLinecap="round"
-      filter="url(#glow)"
-    />
-  </g>
-);
+const base = {
+  stroke: palette.line,
+  strokeWidth: 5,
+  fill: palette.ink,
+  strokeLinejoin: "round" as const,
+  strokeLinecap: "round" as const,
+};
 
-/** Pancarte de porte « BLOCUS » (style « ne pas déranger »). */
-const DoorHanger: React.FC<{
+/** Banderole tendue « LE JETON ». */
+const Banner: React.FC<{
   x: number;
   y: number;
-  s?: number;
-  lit?: number;
-  swing?: number;
-}> = ({ x, y, s = 1, lit = 0, swing = 0 }) => (
-  <g transform={`translate(${x} ${y}) rotate(${swing}) scale(${s})`}>
-    <rect
-      x={-80}
-      y={0}
-      width={160}
-      height={260}
-      rx={22}
-      fill={palette.ink}
-      stroke={lit > 0.5 ? palette.goldLight : palette.line}
-      strokeWidth={6}
-      filter="url(#glow)"
-    />
-    <circle
-      cx={0}
-      cy={50}
-      r={28}
-      fill={palette.night}
+  w?: number;
+  p: number;
+  text?: string;
+  t: number;
+}> = ({ x, y, w = 620, p, text = "LE JETON", t }) => (
+  <g
+    transform={`translate(${x} ${y}) scale(${p} 1)`}
+    opacity={Math.min(1, p * 1.5)}
+  >
+    <path
+      d={`M${-w / 2},-50 Q0,${-40 + wave(t, 1.6) * 8} ${w / 2},-50 L${w / 2},50 Q0,${60 + wave(t, 1.6) * 8} ${-w / 2},50 Z`}
+      fill="#f4efe0"
       stroke={palette.line}
-      strokeWidth={5}
+      strokeWidth={4}
     />
     <text
-      y={150}
+      y={22}
       textAnchor="middle"
       fontFamily={impactFont}
       fontWeight={900}
-      fontSize={36}
-      fill={lit > 0.5 ? palette.goldLight : palette.line}
-      transform="rotate(-90 0 150)"
+      fontSize={64}
+      fill="#c8321e"
+      letterSpacing={4}
     >
-      BLOCUS
+      {text}
     </text>
-    {lit > 0 ? (
-      <rect
-        x={-80}
-        y={0}
-        width={160}
-        height={260}
-        rx={22}
-        fill="url(#goldHalo)"
-        opacity={lit * 0.6}
-      />
-    ) : null}
   </g>
 );
 
-/* 2. « Et t'as toujours pas eu LE JETON PIRATE. » (lundi matin, au réveil) */
-export const V5Scroll: React.FC = () => {
-  const { t, atPart } = useSceneTime();
-  const floor = 1460;
-  const miss = progress(t, atPart("toujoursPas", 1), 0.4);
-  const scroll = (t * 140) % 120;
+/** Portail du lycée (barreaux). */
+const Gate: React.FC<{ x: number; y: number; lock: number }> = ({
+  x,
+  y,
+  lock,
+}) => (
+  <g transform={`translate(${x} ${y})`}>
+    <rect x={-380} y={-520} width={60} height={520} {...base} />
+    <rect x={320} y={-520} width={60} height={520} {...base} />
+    <text
+      x={0}
+      y={-560}
+      textAnchor="middle"
+      fontFamily={impactFont}
+      fontWeight={900}
+      fontSize={54}
+      letterSpacing={10}
+      fill={palette.line}
+    >
+      LYCÉE
+    </text>
+    {Array.from({ length: 11 }, (_, i) => (
+      <line
+        key={i}
+        x1={-300 + i * 60}
+        y1={-430}
+        x2={-300 + i * 60}
+        y2={0}
+        stroke={palette.line}
+        strokeWidth={8}
+      />
+    ))}
+    <line
+      x1={-320}
+      y1={-430}
+      x2={320}
+      y2={-430}
+      stroke={palette.line}
+      strokeWidth={10}
+    />
+    <line
+      x1={-320}
+      y1={-60}
+      x2={320}
+      y2={-60}
+      stroke={palette.line}
+      strokeWidth={10}
+    />
+    {/* Cadenas */}
+    <g transform={`translate(0 -230) scale(${lock})`} opacity={lock}>
+      <path
+        d="M-30,-20 C-30,-70 30,-70 30,-20"
+        fill="none"
+        stroke={palette.goldLight}
+        strokeWidth={10}
+      />
+      <rect
+        x={-46}
+        y={-24}
+        width={92}
+        height={74}
+        rx={12}
+        fill={palette.gold}
+        stroke={palette.goldLight}
+        strokeWidth={4}
+        filter="url(#glow)"
+      />
+      <circle cy={8} r={8} fill={palette.ink} />
+    </g>
+  </g>
+);
+
+/** Petite maison. */
+const House: React.FC<{ x: number; y: number }> = ({ x, y }) => (
+  <g transform={`translate(${x} ${y})`}>
+    <rect
+      x={-170}
+      y={-260}
+      width={340}
+      height={260}
+      {...base}
+      filter="url(#glow)"
+    />
+    <path d="M-200,-250 L0,-420 L200,-250 Z" {...base} />
+    <rect
+      x={-40}
+      y={-130}
+      width={80}
+      height={130}
+      rx={6}
+      fill={palette.inkLight}
+      stroke={palette.line}
+      strokeWidth={4}
+    />
+    <rect
+      x={70}
+      y={-200}
+      width={70}
+      height={60}
+      fill={palette.goldLight}
+      opacity={0.75}
+    />
+    <rect
+      x={-140}
+      y={-200}
+      width={70}
+      height={60}
+      fill={palette.goldLight}
+      opacity={0.75}
+    />
+  </g>
+);
+
+/* 1. « Le 5 décembre, le jeton pirate DISPARAÎT. Et toi… LES MAINS VIDES. » */
+export const V5Stake: React.FC = () => {
+  const { t, at, atPart } = useSceneTime();
+  const gone = atPart("dec5", 2);
+  const fade = 1 - progress(t, gone, 0.4);
+  const empty = pop(t, atPart("etToi", 2));
+  const ground = 1460;
   return (
     <Stage>
-      <Porthole x={250} y={860} r={95} night={0} />
-      <Beam x={620} bottom={700} opacity={0.5} />
-      <Floor y={floor} t={t} />
-      <Bed x={600} y={floor} w={520} facing={-1} />
+      <Moon x={860} y={740} r={36} />
+      <Sea t={t} horizon={1230} moonX={860} />
+      <Beam x={540} bottom={800} opacity={0.85} />
+      <Beach y={ground - 6} t={t} />
+      <CalendarCard
+        x={540}
+        y={1020}
+        day={5}
+        w={230}
+        opacity={1 - progress(t, at("etToi"), 0.4)}
+      />
+      <Token
+        x={540}
+        y={820 + wave(t, 2.2) * 8}
+        r={110 * pop(t, 0.05)}
+        spin={t * 14}
+        rays={0.7 * fade}
+        glow={fade}
+        opacity={fade}
+      />
+      <Burst
+        x={540}
+        y={820}
+        elapsed={t - gone}
+        count={110}
+        spread={320}
+        rise={260}
+        duration={1.1}
+        seed="v5gone"
+      />
+      {/* Les mains vides */}
       <Figure
-        x={700}
-        y={floor - 128}
-        rotate={90}
+        x={540}
+        y={ground - LEG}
         hero
-        pose={{ ...STAND, armL: [150, 170], armR: [150, 170] }}
-        scale={1.05}
+        pose={blendPose(
+          STAND,
+          { ...STAND, armL: [-70, -120], armR: [70, 120], nod: 14 },
+          empty,
+        )}
+        opacity={progress(t, at("etToi"), 0.3)}
       />
-      <Blanket
-        x={590}
-        y={floor - 108}
-        w={300}
-        facing={1}
-        breathe={wave(t, 2.6)}
-      />
-      {/* Téléphone tenu au-dessus du visage, écran qui défile */}
-      <g transform="translate(790 1170)">
-        <circle r={150} fill="url(#poolFill)" opacity={0.9} />
-        <rect
-          x={-60}
-          y={-110}
-          width={120}
-          height={220}
-          rx={18}
-          fill={palette.ink}
-          stroke={palette.line}
-          strokeWidth={5}
-          filter="url(#glow)"
-        />
-        <g opacity={1 - miss}>
-          {[0, 1, 2].map((i) => (
-            <rect
-              key={i}
-              x={-44}
-              y={-92 + ((i * 60 + scroll) % 180)}
-              width={88}
-              height={44}
-              rx={6}
-              fill="#c9d6ff"
-              opacity={0.35}
-            />
-          ))}
-        </g>
-        {miss > 0 ? (
-          <g opacity={miss}>
-            <Token x={0} y={-10} r={36} glow={0.2} rays={0} opacity={0.45} />
-            <Cross x={0} y={-10} s={0.7} p={miss} />
-          </g>
-        ) : null}
-      </g>
-      <text
-        x={250}
-        y={1030}
-        textAnchor="middle"
-        fontFamily={impactFont}
-        fontWeight={800}
-        fontSize={44}
-        fill={palette.lineSoft}
-        opacity={pop(t, 0.1)}
-      >
-        7:02
-      </text>
     </Stage>
   );
 };
 
-/* 1. « C'est lundi. T'AS COURS. » --------------------------------------- */
-export const V5Monday: React.FC = () => {
+/* 2. « Demain, t'as cours ? FAIS UN BLOCUS. Revendication : LE JETON. Lycée bloqué, pas de cours. » */
+export const V5Gate: React.FC = () => {
   const { t, at } = useSceneTime();
-  const ring = at("cours");
-  const jolt = t > ring && t < ring + 0.6 ? shake(t, 8, 3) : 0;
+  const ground = 1520;
+  const banner = progress(t, at("revendication") + 0.4, 0.4);
+  const lock = pop(t, at("bloque"), 200);
+  const slam = at("blocus");
+  const jolt = t > slam && t < slam + 0.3 ? shake(t, 8, 7) : 0;
   return (
     <Stage>
-      <Beam x={540} bottom={800} opacity={0.6} />
-      <Floor y={1460} t={t} />
-      <g transform={`translate(${330 + jolt} 1080)`}>
-        <Clock x={0} y={0} r={160} hour={210} minute={0} />
+      <Beam x={540} bottom={1000} opacity={0.7} />
+      <Floor y={ground} t={t} />
+      <g transform={`translate(${jolt} 0)`}>
+        <Gate x={540} y={ground} lock={lock} />
+        <Banner x={540} y={ground - 300} p={banner} t={t} />
+      </g>
+      {[200, 330, 750, 880].map((x, i) => (
+        <Figure
+          key={x}
+          x={x}
+          y={ground + 60 - LEG * 0.8}
+          scale={0.8}
+          hero={i === 1}
+          pose={{
+            ...STAND,
+            armR: [150 + wave(t, 0.6, i) * 10, 170],
+            armL: [-20, -10],
+          }}
+          opacity={pop(t, slam + i * 0.08)}
+        />
+      ))}
+    </Stage>
+  );
+};
+
+/* 3. « Tu rentres chez toi, tu lances une partie. » ---------------------- */
+export const V5Home: React.FC = () => {
+  const { t, atPart } = useSceneTime();
+  const ground = 1460;
+  const play = atPart("maison", 1);
+  const heroX = mix(
+    140,
+    560,
+    progress(t, 0, play, (v) => v),
+  );
+  const on = pop(t, play + 0.1);
+  return (
+    <Stage>
+      <Beam x={780} bottom={700} opacity={0.6} />
+      <Floor y={ground} t={t} />
+      <House x={790} y={ground} />
+      <Figure
+        x={heroX}
+        y={ground - LEG}
+        hero
+        pose={
+          t < play
+            ? walkPose(t * 1.7, 24)
+            : { ...STAND, armR: [60, 90], armL: [-60, -90] }
+        }
+      />
+      <g transform={`translate(${heroX} 1260)`} opacity={on}>
+        <Controller x={0} y={0} scale={0.22} lit={on} />
+      </g>
+      {on > 0 ? (
+        <circle
+          cx={heroX}
+          cy={1260}
+          r={160}
+          fill="url(#goldHalo)"
+          opacity={on * 0.6}
+        />
+      ) : null}
+    </Stage>
+  );
+};
+
+/* 4. « Ta mère demande pourquoi t'es déjà là ? « REVENDICATIONS. » » ---- */
+export const V5Mother: React.FC = () => {
+  const { t, at } = useSceneTime();
+  const ground = 1480;
+  const ask = pop(t, 0.3);
+  const sign = pop(t, at("revendications"), 200);
+  return (
+    <Stage>
+      <Beam x={300} bottom={600} opacity={0.6} />
+      <Floor y={ground} t={t} />
+      {/* Porte ouverte, la mère dans l'encadrement */}
+      <rect
+        x={150}
+        y={900}
+        width={300}
+        height={580}
+        fill="#f2d9a6"
+        opacity={0.18}
+      />
+      <rect
+        x={150}
+        y={900}
+        width={300}
+        height={580}
+        fill="none"
+        stroke={palette.line}
+        strokeWidth={6}
+      />
+      <Figure
+        x={300}
+        y={ground - LEG * 1.05}
+        scale={1.05}
+        facing={1}
+        pose={{ ...STAND, armL: [-40, -100], armR: [40, 100], nod: -6 }}
+        color={palette.mate}
+      />
+      <SpeechBubble
+        x={320}
+        y={760}
+        w={180}
+        h={130}
+        tailX={300}
+        tailY={870}
+        opacity={ask}
+      >
         <text
-          y={230}
+          x={320}
+          y={790}
           textAnchor="middle"
           fontFamily={impactFont}
-          fontWeight={800}
-          fontSize={40}
+          fontWeight={900}
+          fontSize={90}
           fill={palette.line}
         >
-          RÉVEIL 7:00
+          ?
+        </text>
+      </SpeechBubble>
+      {/* Le héros brandit sa pancarte */}
+      <Figure
+        x={760}
+        y={ground - LEG}
+        hero
+        facing={-1}
+        pose={blendPose(
+          STAND,
+          { ...STAND, armR: [160, 175], armL: [-160, -175] },
+          sign,
+        )}
+      />
+      {sign > 0 ? (
+        <g
+          transform={`translate(760 ${1080 - sign * 20}) rotate(${wave(t, 0.8) * 4}) scale(${sign})`}
+        >
+          <line
+            x1={0}
+            y1={60}
+            x2={0}
+            y2={210}
+            stroke={palette.line}
+            strokeWidth={8}
+          />
+          <rect
+            x={-170}
+            y={-60}
+            width={340}
+            height={120}
+            rx={10}
+            fill="#f4efe0"
+            stroke={palette.line}
+            strokeWidth={4}
+          />
+          <text
+            y={14}
+            textAnchor="middle"
+            fontFamily={impactFont}
+            fontWeight={900}
+            fontSize={34}
+            fill="#c8321e"
+          >
+            REVENDICATIONS
+          </text>
+        </g>
+      ) : null}
+    </Stage>
+  );
+};
+
+/* 5. « Ton petit frère veut la télé ? Une partie contre UNE VAISSELLE. » */
+export const V5Brother: React.FC = () => {
+  const { t, atPart } = useSceneTime();
+  const ground = 1480;
+  const deal = pop(t, atPart("vaisselle", 1));
+  return (
+    <Stage>
+      <Beam x={540} bottom={900} opacity={0.6} />
+      <Floor y={ground} t={t} />
+      <Monitor x={540} y={ground - 40} w={420} h={260} glow={0.7} />
+      <Figure
+        x={290}
+        y={ground - LEG * 0.7}
+        scale={0.7}
+        pose={{ ...STAND, armR: [110, 120], nod: -10 }}
+        color={palette.mate}
+      />
+      <Figure
+        x={800}
+        y={ground - LEG}
+        hero
+        facing={-1}
+        pose={blendPose(STAND, { ...STAND, armR: [80, 100] }, deal)}
+      />
+      {/* La pile d'assiettes */}
+      <g
+        transform={`translate(540 ${1000 - deal * 20}) scale(${deal})`}
+        opacity={deal}
+      >
+        {[0, 1, 2, 3, 4].map((i) => (
+          <ellipse
+            key={i}
+            cx={0}
+            cy={-i * 22}
+            rx={110}
+            ry={22}
+            fill="#e8eeff"
+            stroke={palette.ink}
+            strokeWidth={3}
+          />
+        ))}
+        <rect
+          x={80}
+          y={-150}
+          width={70}
+          height={44}
+          rx={10}
+          fill="#ffd34d"
+          stroke={palette.ink}
+          strokeWidth={3}
+        />
+        <text
+          y={110}
+          textAnchor="middle"
+          fontFamily={bodyFont}
+          fontWeight={600}
+          fontSize={34}
+          fill={palette.line}
+        >
+          ton tour
         </text>
       </g>
-      <CalendarCard
-        x={760}
-        y={1000}
-        day="16"
-        month="LUNDI"
-        w={260}
-        opacity={pop(t, 0.1)}
-        rotate={4}
+    </Stage>
+  );
+};
+
+/* 6. « Des devoirs ? Tu les feras LE 6. » -------------------------------- */
+export const V5Homework: React.FC = () => {
+  const { t, atPart } = useSceneTime();
+  const push = progress(t, atPart("le6", 1) - 0.1, 0.5);
+  return (
+    <Stage>
+      <Beam x={540} bottom={900} opacity={0.6} />
+      <Floor y={1500} t={t} />
+      <g
+        transform={`translate(${mix(480, 300, push)} 1100) rotate(${mix(-4, -16, push)})`}
+      >
+        {[0, 1, 2].map((i) => (
+          <rect
+            key={i}
+            x={-150 + i * 10}
+            y={-200 - i * 12}
+            width={300}
+            height={400}
+            rx={10}
+            fill={palette.inkLight}
+            stroke={palette.line}
+            strokeWidth={4}
+          />
+        ))}
+        <text
+          x={20}
+          y={-110}
+          textAnchor="middle"
+          fontFamily={impactFont}
+          fontWeight={900}
+          fontSize={50}
+          fill={palette.line}
+        >
+          DEVOIRS
+        </text>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <line
+            key={i}
+            x1={-100}
+            y1={-40 + i * 50}
+            x2={150}
+            y2={-40 + i * 50}
+            stroke={palette.lineFaint}
+            strokeWidth={4}
+          />
+        ))}
+      </g>
+      <g
+        transform={`translate(760 1080) scale(${pop(t, atPart("le6", 1))}) rotate(6)`}
+      >
+        <CalendarCard x={0} y={0} day={6} w={240} highlight />
+      </g>
+    </Stage>
+  );
+};
+
+/* 7. « Ton équipe ? Elle aussi a fait LE BLOCUS. EN VOCAL… TOUTE L'ÉQUIPE L'A. » */
+export const V5Team: React.FC = () => {
+  const { t, at, atPart } = useSceneTime();
+  const cardY = 1100;
+  const tags = (i: number) => pop(t, atPart("aussi", 1) + i * 0.1);
+  const talk = progress(t, at("vocal"), 0.3);
+  const share = atPart("toute", 1);
+  return (
+    <Stage>
+      <Beam x={540} bottom={1000} opacity={0.7} />
+      <line
+        x1={60}
+        y1={1420}
+        x2={1020}
+        y2={1420}
+        stroke={palette.lineFaint}
+        strokeWidth={3}
       />
-      {/* Cartable */}
-      <g transform={`translate(760 1420) scale(${pop(t, ring)})`}>
+      {SQUAD.map((m, i) => {
+        const tok = progress(t, share + i * 0.08, 0.35);
+        return (
+          <g key={m.name}>
+            <SquadCard
+              x={SQUAD_X[i]}
+              y={cardY}
+              name={m.name}
+              hero={m.hero}
+              online={1}
+              gold={tok}
+              t={t}
+            />
+            <g
+              transform={`translate(${SQUAD_X[i]} ${cardY - 190}) rotate(-8) scale(${tags(i)})`}
+              opacity={tags(i)}
+            >
+              <rect
+                x={-80}
+                y={-24}
+                width={160}
+                height={48}
+                rx={8}
+                fill="#f4efe0"
+                stroke={palette.line}
+                strokeWidth={3}
+              />
+              <text
+                y={11}
+                textAnchor="middle"
+                fontFamily={impactFont}
+                fontWeight={900}
+                fontSize={26}
+                fill="#c8321e"
+              >
+                BLOCUS
+              </text>
+            </g>
+            <VoiceWave
+              x={SQUAD_X[i]}
+              y={1330}
+              t={t}
+              level={talk * (0.4 + 0.6 * Math.abs(Math.sin(t * 1.4 + i * 2)))}
+              seed={i * 3}
+              color={m.hero ? palette.hero : palette.mate}
+            />
+            {tok > 0 ? (
+              <Token
+                x={SQUAD_X[i]}
+                y={840}
+                r={46 * tok}
+                spin={t * 25}
+                rays={0.4 * tok}
+              />
+            ) : null}
+          </g>
+        );
+      })}
+    </Stage>
+  );
+};
+
+/* 8. « Midi : RIEN. Seize heures : RIEN. Vingt-deux heures : ENCORE RIEN. » */
+export const V5Day: React.FC = () => {
+  const { t, at, atPart } = useSceneTime();
+  const ground = 1520;
+  const steps = [
+    { at: at("midi"), part: atPart("midi", 1), hour: 0 },
+    { at: at("seize"), part: atPart("seize", 1), hour: 120 },
+    { at: at("vingtDeux"), part: atPart("vingtDeux", 1), hour: 300 },
+  ];
+  const idx = Math.max(0, steps.filter((s) => t >= s.at).length - 1);
+  const step = steps[idx];
+  const prev = steps[Math.max(0, idx - 1)];
+  const hour = mix(prev.hour, step.hour, progress(t, step.at, 0.5));
+  const open = Math.max(
+    ...steps.map((s, i) =>
+      inOut(t, s.part - 0.15, (steps[i + 1]?.at ?? 99) - 0.05, 0.15, 0.2),
+    ),
+  );
+  const dark = progress(t, at("vingtDeux"), 0.6);
+  return (
+    <Stage>
+      <rect
+        x={0}
+        y={0}
+        width={1080}
+        height={1920}
+        fill="#ffd9a0"
+        opacity={0.08 * (1 - dark)}
+      />
+      <Beam x={540} bottom={900} opacity={0.6} />
+      <Floor y={ground} t={t} />
+      <Clock x={540} y={960} r={190} hour={hour} minute={0} />
+      <Pool x={540} y={ground} rx={300} ry={46} />
+      <Chest x={540} y={ground} w={320} open={open} />
+      {steps.map((s, i) => (
+        <Burst
+          key={i}
+          x={540}
+          y={ground - 200}
+          elapsed={t - s.part}
+          count={30}
+          spread={150}
+          rise={100}
+          duration={0.8}
+          seed={`v5day${i}`}
+          color="#9aa8cc"
+        />
+      ))}
+    </Stage>
+  );
+};
+
+/* 9. « 23:59. Un dernier coffre… et IL EST LÀ. » ------------------------ */
+export const V5Last: React.FC = () => {
+  const { t, at, atPart } = useSceneTime();
+  const ground = 1520;
+  const reveal = atPart("estLa", 1);
+  const crack = progress(t, at("dernier") + 0.4, 0.8);
+  const rise = progress(t, reveal, 0.6);
+  const pulse = 0.35 + 0.2 * wave(t, 1.1);
+  return (
+    <Stage>
+      <Beam x={540} bottom={900} opacity={0.5} />
+      <Floor y={ground} t={t} />
+      <g
+        transform={`translate(540 ${880 - rise * 120}) scale(${1 - rise * 0.4})`}
+        opacity={1 - rise * 0.6}
+      >
         <rect
-          x={-110}
-          y={-150}
-          width={220}
-          height={150}
+          x={-200}
+          y={-80}
+          width={400}
+          height={160}
           rx={30}
           fill={palette.ink}
           stroke={palette.line}
           strokeWidth={6}
           filter="url(#glow)"
         />
-        <path
-          d="M-50,-150 C-50,-200 50,-200 50,-150"
-          fill="none"
-          stroke={palette.line}
-          strokeWidth={8}
-        />
-        <rect
-          x={-60}
-          y={-90}
-          width={120}
-          height={50}
-          rx={10}
-          fill="none"
-          stroke={palette.lineSoft}
-          strokeWidth={4}
-        />
-      </g>
-    </Stage>
-  );
-};
-
-/* 3. « Alors écoute-moi bien : ce soir, tu fais UN BLOCUS. » ------------ */
-export const V5Blocus: React.FC = () => {
-  const { t, atPart } = useSceneTime();
-  const slam = atPart("blocus", 1);
-  const lit = progress(t, slam, 0.3);
-  const swing =
-    t > slam ? Math.sin((t - slam) * 9) * 14 * Math.exp(-(t - slam) * 2.5) : 0;
-  return (
-    <Stage>
-      <Beam x={540} bottom={800} opacity={0.5 + lit * 0.4} />
-      <Floor y={1500} t={t} />
-      {/* Porte de la chambre */}
-      <rect
-        x={360}
-        y={760}
-        width={360}
-        height={740}
-        rx={12}
-        fill={palette.ink}
-        stroke={palette.line}
-        strokeWidth={6}
-        filter="url(#glow)"
-      />
-      <rect
-        x={390}
-        y={800}
-        width={300}
-        height={300}
-        rx={8}
-        fill="none"
-        stroke={palette.lineFaint}
-        strokeWidth={4}
-      />
-      <rect
-        x={390}
-        y={1140}
-        width={300}
-        height={320}
-        rx={8}
-        fill="none"
-        stroke={palette.lineFaint}
-        strokeWidth={4}
-      />
-      <circle cx={660} cy={1150} r={16} fill={palette.line} />
-      <line
-        x1={660}
-        y1={1150}
-        x2={660}
-        y2={1170}
-        stroke={palette.line}
-        strokeWidth={4}
-      />
-      <DoorHanger
-        x={660}
-        y={1160}
-        s={0.8 * pop(t, 0.2)}
-        lit={lit}
-        swing={swing}
-      />
-      <Burst
-        x={660}
-        y={1260}
-        elapsed={t - slam}
-        count={50}
-        spread={200}
-        rise={160}
-        duration={1}
-        seed="blocus"
-      />
-    </Stage>
-  );
-};
-
-/* 4. « Pas pour les maths. POUR LE JETON. » ----------------------------- */
-export const V5Maths: React.FC = () => {
-  const { t, at } = useSceneTime();
-  const floor = 1480;
-  const away = progress(t, 0.5, 0.5);
-  const forToken = pop(t, at("pourJeton"));
-  return (
-    <Stage>
-      <Beam x={560} bottom={800} opacity={0.6 + forToken * 0.3} />
-      <Floor y={floor} t={t} />
-      <Desk x={560} y={floor} w={520} h={170} />
-      <Chair x={250} y={floor} />
-      {/* Cahier de maths qui glisse hors du bureau */}
-      <g
-        transform={`translate(${mix(470, 120, away)} ${floor - 190}) rotate(${-away * 30})`}
-        opacity={1 - away * 0.8}
-      >
-        <rect
-          x={-110}
-          y={-30}
-          width={220}
-          height={60}
-          rx={8}
-          fill={palette.inkLight}
-          stroke={palette.line}
-          strokeWidth={4}
-        />
         <text
-          y={12}
+          y={44}
           textAnchor="middle"
           fontFamily={impactFont}
           fontWeight={900}
-          fontSize={30}
-          fill={palette.line}
-        >
-          MATHS
-        </text>
-        <Cross x={0} y={0} s={0.6} p={away} />
-      </g>
-      <Controller x={640} y={floor - 230} scale={0.32} lit={forToken} />
-      {forToken > 0 ? (
-        <Token
-          x={640}
-          y={1000 + wave(t, 2) * 8}
-          r={90 * forToken}
-          spin={t * 20}
-          rays={0.6 * forToken}
-        />
-      ) : null}
-    </Stage>
-  );
-};
-
-/* 5. « Le 5 décembre, il disparaît. Il reste MOINS DE 3 SEMAINES. » ----- */
-export const V5Deadline: React.FC = () => {
-  const { t, atPart } = useSceneTime();
-  const fade = progress(t, atPart("dec5", 1), 0.6);
-  const grid = atPart("semaines", 1);
-  // Du lundi 16 novembre au samedi 5 décembre : 20 jours.
-  const days = 20;
-  return (
-    <Stage>
-      <Beam x={540} bottom={900} opacity={0.7} />
-      <Floor y={1560} t={t} />
-      <g transform="translate(540 870)">
-        <CalendarCard x={0} y={0} day={5} w={240} highlight />
-        <Token
-          x={0}
-          y={-220}
-          r={60}
-          spin={t * 20}
-          rays={0.3 * (1 - fade)}
-          glow={1 - fade}
-          opacity={1 - fade * 0.85}
-        />
-      </g>
-      {Array.from({ length: days }, (_, i) => {
-        const p = pop(t, grid + i * 0.03, 220);
-        const col = i % 7;
-        const row = Math.floor(i / 7);
-        return (
-          <g
-            key={i}
-            transform={`translate(${540 + (col - 3) * 112} ${1220 + row * 100}) scale(${0.6 + 0.4 * p})`}
-            opacity={p}
-          >
-            <rect
-              x={-42}
-              y={-38}
-              width={84}
-              height={76}
-              rx={14}
-              fill={palette.ink}
-              stroke={i === days - 1 ? palette.goldLight : palette.lineSoft}
-              strokeWidth={4}
-            />
-            <text
-              y={12}
-              textAnchor="middle"
-              fontFamily={bodyFont}
-              fontWeight={600}
-              fontSize={30}
-              fill={palette.line}
-            >
-              {((15 + i) % 30) + 1}
-            </text>
-          </g>
-        );
-      })}
-    </Stage>
-  );
-};
-
-/* 6. « Chaque soir où tu lâches, UNE CHANCE EN MOINS. » ------------------ */
-export const V5Chance: React.FC = () => {
-  const { t, at } = useSceneTime();
-  const floor = 1450;
-  const start = at("chance");
-  const xs = [140, 340, 540, 740, 940];
-  return (
-    <Stage>
-      <Beam x={540} bottom={1000} opacity={0.6} />
-      <Floor y={floor} t={t} />
-      {xs.map((x, i) => {
-        const gone = progress(t, start + i * 0.18, 0.3);
-        return (
-          <g key={x} opacity={1 - gone * 0.85}>
-            <Chest
-              x={x}
-              y={floor - gone * 30}
-              w={150}
-              light={0.4 * (1 - gone)}
-            />
-            {gone > 0 ? <Cross x={x} y={floor - 80} s={0.6} p={gone} /> : null}
-          </g>
-        );
-      })}
-    </Stage>
-  );
-};
-
-/* 7. « Oui, demain tu seras fatigué. Oui, ton prof va te regarder bizarrement. » */
-export const V5Class: React.FC = () => {
-  const { t, at } = useSceneTime();
-  const floor = 1470;
-  const look = pop(t, at("prof"));
-  const yawn = 0.5 + 0.5 * Math.sin(t * 2);
-  return (
-    <Stage>
-      <Beam x={700} bottom={700} opacity={0.5} />
-      <Floor y={floor} t={t} />
-      {/* Tableau */}
-      <rect
-        x={560}
-        y={780}
-        width={460}
-        height={300}
-        rx={14}
-        fill="#0f2a2a"
-        stroke={palette.line}
-        strokeWidth={6}
-      />
-      <text
-        x={790}
-        y={950}
-        textAnchor="middle"
-        fontFamily={bodyFont}
-        fontWeight={600}
-        fontSize={46}
-        fill={palette.lineSoft}
-      >
-        x² + 2x = ?
-      </text>
-      {/* Le prof qui le fixe */}
-      <Figure
-        x={820}
-        y={floor - LEG}
-        facing={-1}
-        pose={{ ...STAND, armR: [60, 90], nod: -4 }}
-        color={palette.mate}
-      />
-      {look > 0 ? (
-        <text
-          x={760}
-          y={1150}
-          textAnchor="middle"
-          fontFamily={impactFont}
-          fontWeight={900}
-          fontSize={70}
+          fontSize={120}
           fill={palette.goldLight}
-          opacity={look}
         >
-          ?!
+          23:59
         </text>
-      ) : null}
-      {/* Le héros affalé sur sa table */}
-      <Chair x={230} y={floor} />
-      <Desk x={380} y={floor} w={220} h={120} />
-      <Figure
-        x={250}
-        y={floor - 72}
-        hero
-        pose={{
-          ...SIT,
-          armL: [70, 100],
-          armR: [80, 110],
-          nod: 50 + yawn * 10,
-          lean: 30,
-        }}
+      </g>
+      <circle
+        cx={540}
+        cy={1300}
+        r={600}
+        fill="url(#goldHalo)"
+        opacity={rise * 0.7}
       />
-      {[0, 1, 2].map((i) => {
-        const p = (t * 0.6 + i / 3) % 1;
+      <Pool
+        x={540}
+        y={ground}
+        rx={320}
+        ry={50}
+        gold
+        opacity={pulse + crack * 0.5}
+      />
+      <Chest
+        x={540}
+        y={ground}
+        w={440}
+        open={Math.max(crack * 0.35, rise)}
+        light={pulse + crack + rise}
+      />
+      <Burst
+        x={540}
+        y={1300}
+        elapsed={t - reveal}
+        count={120}
+        spread={380}
+        rise={360}
+        duration={1.4}
+        seed="v5reveal"
+      />
+      {rise > 0 ? (
+        <Token
+          x={540}
+          y={mix(1330, 1010, rise)}
+          r={140}
+          spin={t * 18}
+          rays={0.9}
+          glow={1}
+        />
+      ) : null}
+    </Stage>
+  );
+};
+
+/* 10. « Le 5 décembre, le jeton disparaît… sauf pour ceux qui ont fait LE BLOCUS. » */
+export const V5Final: React.FC = () => {
+  const { t, atPart } = useSceneTime();
+  const ground = 1520;
+  const cheer = pop(t, atPart("sauf", 1), 150);
+  const xs = [250, 430, 650, 830];
+  return (
+    <Stage>
+      <Beam x={540} bottom={1100} opacity={0.85} />
+      <Floor y={ground} t={t} />
+      <Pool
+        x={540}
+        y={ground}
+        rx={460}
+        ry={60}
+        gold
+        opacity={0.5 + cheer * 0.4}
+      />
+      <Banner x={540} y={1250} w={560} p={1} t={t} text="BLOCUS" />
+      {xs.map((x, i) => {
+        const pose: Pose = blendPose(
+          { ...STAND, nod: -10 },
+          {
+            ...STAND,
+            armR: [160, 175],
+            armL: i === 1 ? [-160, -175] : [-20, -10],
+            nod: -14,
+          },
+          cheer,
+        );
         return (
-          <text
-            key={i}
-            x={300 + p * 60}
-            y={1200 - p * 150}
-            fontFamily={impactFont}
-            fontWeight={900}
-            fontSize={34 + p * 20}
-            fill={palette.lineSoft}
-            opacity={Math.sin(p * Math.PI)}
-          >
-            z
-          </text>
+          <g key={x}>
+            <Token
+              x={x}
+              y={920 + wave(t, 2, i * 0.4) * 10}
+              r={58 * pop(t, 0.05 + i * 0.1)}
+              spin={t * 20 + i * 20}
+              rays={0.4 + cheer * 0.4}
+            />
+            <Figure x={x} y={ground - LEG} hero={i === 1} pose={pose} />
+          </g>
         );
       })}
-    </Stage>
-  );
-};
-
-/* 8. « Dans 10 ans, personne ne se souviendra DE CE MARDI. » (le jeton, lui, reste au casier) */
-export const V5Locker: React.FC = () => {
-  const { t, at, atPart } = useSceneTime();
-  const floor = 1500;
-  const years = progress(t, 0.1, 1.2, (v) => v);
-  const year = Math.min(2036, 2026 + Math.floor(years * 10.999));
-  const forget = progress(t, at("personne") + 0.4, 1.2);
-  const open = progress(t, atPart("personne", 1), 0.4);
-  return (
-    <Stage>
-      <Beam x={760} bottom={600} opacity={0.6 + open * 0.3} />
-      <Floor y={floor} t={t} />
-      <text
-        x={300}
-        y={880}
-        textAnchor="middle"
-        fontFamily={impactFont}
-        fontWeight={900}
-        fontSize={110}
-        fill={year === 2036 ? palette.goldLight : palette.line}
-      >
-        {year}
-      </text>
-      <g
-        opacity={1 - forget}
-        transform={`translate(300 1180) rotate(${-forget * 25}) scale(${1 - forget * 0.3})`}
-      >
-        <CalendarCard x={0} y={0} day="17" month="MARDI" w={230} />
-      </g>
-      {forget > 0 && forget < 1 ? (
-        <Dust
-          t={t}
-          area={[200, 1080, 200, 200]}
-          count={20}
-          opacity={1 - forget}
-        />
-      ) : null}
-      <Locker x={760} y={floor} w={240} h={500} name="TOI" hero open={open}>
-        <Token x={0} y={-270} r={74} spin={t * 20} rays={0.6} glow={1} />
-      </Locker>
-    </Stage>
-  );
-};
-
-/* 9. « RÉVEILLE TON ÉQUIPE. ALLUME LA CONSOLE. OUVRE CHAQUE COFFRE. » ---- */
-export const V5Call: React.FC = () => {
-  const { t, at } = useSceneTime();
-  const wake = (i: number) => progress(t, i * 0.15, 0.2);
-  const consoleOn = pop(t, at("console"));
-  const chest = progress(t, at("coffre") + 0.1, 0.5);
-  return (
-    <Stage>
-      <Beam x={540} bottom={1000} opacity={0.7} />
-      <Floor y={1560} t={t} />
-      {SQUAD.map((m, i) => (
-        <SquadCard
-          key={m.name}
-          x={SQUAD_X[i]}
-          y={850}
-          w={150}
-          name={m.name}
-          hero={m.hero}
-          online={wake(i)}
-          dim={(1 - wake(i)) * 0.7}
-          t={t}
-        />
-      ))}
-      <g
-        transform={`translate(330 1290) scale(${consoleOn})`}
-        opacity={consoleOn}
-      >
-        <Monitor x={0} y={110} w={260} h={170} glow={0.8} label="ON" />
-      </g>
-      <g opacity={pop(t, at("coffre"))}>
-        <Chest x={790} y={1460} w={260} open={chest} light={chest} />
-        <Burst
-          x={790}
-          y={1300}
-          elapsed={t - at("coffre") - 0.2}
-          count={60}
-          spread={200}
-          rise={200}
-          duration={1}
-          seed="v5chest"
-        />
-      </g>
-    </Stage>
-  );
-};
-
-/* 10. « Ce soir, ce n'est pas une partie. C'EST UN BLOCUS. » ------------ */
-export const V5NotGame: React.FC = () => {
-  const { t, at } = useSceneTime();
-  const crossed = progress(t, 0.5, 0.5);
-  const sign = pop(t, at("cestBlocus"));
-  return (
-    <Stage>
-      <Beam x={540} bottom={1000} opacity={0.6 + sign * 0.3} />
-      <Floor y={1560} t={t} />
-      <g transform="translate(540 1000) scale(0.8)" opacity={1 - sign * 0.7}>
-        <GameScreen x={0} y={0} crossed={crossed} mission={0} />
-      </g>
-      {sign > 0 ? (
-        <g transform={`translate(540 1330) scale(${sign})`}>
-          <rect
-            x={-330}
-            y={-90}
-            width={660}
-            height={180}
-            rx={30}
-            fill={palette.ink}
-            stroke={palette.goldLight}
-            strokeWidth={8}
-            filter="url(#glowStrong)"
-          />
-          <text
-            y={36}
-            textAnchor="middle"
-            fontFamily={impactFont}
-            fontWeight={900}
-            fontSize={110}
-            letterSpacing={10}
-            fill={palette.gold}
-            filter="url(#glow)"
-          >
-            BLOCUS
-          </text>
-        </g>
-      ) : null}
-    </Stage>
-  );
-};
-
-/* 11. « Et demain, tu vas en cours quand même. Mais peut-être… AVEC LE JETON. » */
-export const V5Morning: React.FC = () => {
-  const { t, atPart } = useSceneTime();
-  const floor = 1480;
-  const withToken = pop(t, atPart("avecJeton", 1));
-  const heroX = mix(220, 640, progress(t, 0, 4, easeInOut));
-  return (
-    <Stage>
-      <Porthole x={860} y={840} r={100} night={1 - progress(t, 0, 1.2)} />
-      <Beam x={heroX} bottom={500} opacity={0.6 + withToken * 0.3} />
-      <Floor y={floor} t={t} />
-      <Pool
-        x={heroX}
-        y={floor}
-        rx={160}
-        ry={36}
-        gold={withToken > 0.3}
-        opacity={0.4 + withToken * 0.5}
-      />
-      <Figure
-        x={heroX}
-        y={floor - LEG}
-        hero
-        pose={
-          withToken > 0.5
-            ? blendPose(
-                walkPose(t * 1.5, 20),
-                { ...STAND, armR: [150, 170] },
-                withToken,
-              )
-            : walkPose(t * 1.5, 22)
-        }
-      />
-      {/* Cartable sur le dos */}
-      <rect
-        x={heroX - 48}
-        y={floor - LEG - 70}
-        width={34}
-        height={56}
-        rx={10}
-        fill={palette.ink}
-        stroke={palette.line}
-        strokeWidth={4}
-      />
-      {withToken > 0 ? (
-        <Token
-          x={heroX + 40}
-          y={1060 + wave(t, 2) * 8}
-          r={80 * withToken}
-          spin={t * 20}
-          rays={0.8 * withToken}
-        />
-      ) : null}
-      <Burst
-        x={heroX + 40}
-        y={1060}
-        elapsed={t - atPart("avecJeton", 1)}
-        count={70}
-        spread={220}
-        rise={200}
-        duration={1.2}
-        seed="morning"
+      <Dust
+        t={t}
+        area={[120, 700, 840, 700]}
+        color={palette.goldLight}
+        opacity={0.6 + cheer * 0.3}
+        count={60}
       />
     </Stage>
   );

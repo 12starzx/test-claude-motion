@@ -19,17 +19,16 @@ import { SceneProvider, SceneShell, TRANSITION } from "../lib/scene";
 import { TimelineProvider, toFrames } from "../lib/timelineTools";
 import { VIDEO } from "../theme";
 import {
-  V5Blocus,
-  V5Call,
-  V5Chance,
-  V5Class,
-  V5Deadline,
-  V5Locker,
-  V5Maths,
-  V5Monday,
-  V5Morning,
-  V5NotGame,
-  V5Scroll,
+  V5Brother,
+  V5Day,
+  V5Final,
+  V5Gate,
+  V5Home,
+  V5Homework,
+  V5Last,
+  V5Mother,
+  V5Stake,
+  V5Team,
 } from "./scenes";
 import { cues, timeline5 } from "./timeline";
 
@@ -40,21 +39,16 @@ export const tracksV5: Tracks = {
 };
 
 const SCENES: { name: string; from: string | null; Component: React.FC }[] = [
-  { name: "01 · T'as cours", from: null, Component: V5Monday },
-  {
-    name: "02 · Toujours pas le jeton",
-    from: "toujoursPas",
-    Component: V5Scroll,
-  },
-  { name: "03 · Un blocus", from: "ecoute", Component: V5Blocus },
-  { name: "04 · Pour le jeton", from: "maths", Component: V5Maths },
-  { name: "05 · Moins de 3 semaines", from: "dec5", Component: V5Deadline },
-  { name: "06 · Une chance en moins", from: "chaqueSoir", Component: V5Chance },
-  { name: "07 · Fatigué", from: "fatigue", Component: V5Class },
-  { name: "08 · De ce mardi", from: "dixAns", Component: V5Locker },
-  { name: "09 · L'appel", from: "rappelle", Component: V5Call },
-  { name: "10 · C'est un blocus", from: "partie", Component: V5NotGame },
-  { name: "11 · Lundi matin", from: "quandMeme", Component: V5Morning },
+  { name: "01 · Il disparaît", from: null, Component: V5Stake },
+  { name: "02 · Le blocus", from: "cours", Component: V5Gate },
+  { name: "03 · À la maison", from: "maison", Component: V5Home },
+  { name: "04 · Revendications", from: "mere", Component: V5Mother },
+  { name: "05 · La vaisselle", from: "frere", Component: V5Brother },
+  { name: "06 · Le 6", from: "devoirs", Component: V5Homework },
+  { name: "07 · L'équipe", from: "equipeQ", Component: V5Team },
+  { name: "08 · La journée", from: "midi", Component: V5Day },
+  { name: "09 · 23:59", from: "h2359", Component: V5Last },
+  { name: "10 · Le blocus paie", from: "dec5Fin", Component: V5Final },
 ];
 
 const LEAD = 0.06;
@@ -68,33 +62,55 @@ const { cueAt, cuePartAt } = timeline5;
 const hitsV5 = (starts: number[]): Hit[] => [
   ...impactHits(cues),
   ...transitionHits(starts),
-  { sound: "buzz", at: cueAt("cours"), volume: 0.45, name: "Réveil" },
-  { sound: "chest", at: cuePartAt("blocus", 1), volume: 0.5, name: "Porte" },
-  {
-    sound: "sparkle",
-    at: cueAt("pourJeton"),
-    volume: 0.5,
-    name: "Pour le jeton",
-  },
+  { sound: "sparkle", at: 0.05, volume: 0.45, name: "Jeton" },
   {
     sound: "shatter",
-    at: cuePartAt("dec5", 1),
-    volume: 0.45,
-    name: "Il disparaît",
-  },
-  {
-    sound: "sparkle",
-    at: cuePartAt("personne", 1),
-    volume: 0.5,
-    name: "Casier",
-  },
-  { sound: "buzz", at: cueAt("rappelle"), volume: 0.4, name: "Équipe" },
-  { sound: "chest", at: cueAt("coffre") + 0.1, volume: 0.6, name: "Coffre" },
-  {
-    sound: "sparkle",
-    at: cuePartAt("avecJeton", 1),
+    at: cuePartAt("dec5", 2),
     volume: 0.6,
-    name: "Avec le jeton",
+    name: "Disparaît",
+  },
+  { sound: "chest", at: cueAt("bloque") + 0.1, volume: 0.5, name: "Cadenas" },
+  {
+    sound: "tick",
+    at: cuePartAt("maison", 1) + 0.1,
+    volume: 0.4,
+    name: "Console",
+  },
+  {
+    sound: "chest",
+    at: cuePartAt("midi", 1) - 0.1,
+    volume: 0.45,
+    name: "Coffre midi",
+  },
+  {
+    sound: "chest",
+    at: cuePartAt("seize", 1) - 0.1,
+    volume: 0.45,
+    name: "Coffre 16 h",
+  },
+  {
+    sound: "chest",
+    at: cuePartAt("vingtDeux", 1) - 0.1,
+    volume: 0.45,
+    name: "Coffre 22 h",
+  },
+  {
+    sound: "chest",
+    at: cueAt("dernier") + 0.3,
+    volume: 0.6,
+    name: "Dernier coffre",
+  },
+  {
+    sound: "sparkle",
+    at: cuePartAt("estLa", 1),
+    volume: 0.6,
+    name: "Il est là",
+  },
+  {
+    sound: "sparkle",
+    at: cuePartAt("sauf", 1),
+    volume: 0.6,
+    name: "Le blocus paie",
   },
 ];
 
