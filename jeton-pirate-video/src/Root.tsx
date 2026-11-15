@@ -13,6 +13,8 @@ import { timeline3 } from "./v3/timeline";
 import { JetonVideo3 } from "./v3/Video3";
 import { timeline4 } from "./v4/timeline";
 import { JetonVideo4 } from "./v4/Video4";
+import { timeline5 } from "./v5/timeline";
+import { JetonVideo5 } from "./v5/Video5";
 
 export const RemotionRoot: React.FC = () => (
   <Folder name="Jeton-pirate">
@@ -47,6 +49,14 @@ export const RemotionRoot: React.FC = () => (
       height={VIDEO.height}
       fps={VIDEO.fps}
       durationInFrames={timeline4.totalFrames}
+    />
+    <Composition
+      id="JetonBlocus"
+      component={JetonVideo5}
+      width={VIDEO.width}
+      height={VIDEO.height}
+      fps={VIDEO.fps}
+      durationInFrames={timeline5.totalFrames}
     />
   </Folder>
 );

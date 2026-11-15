@@ -173,6 +173,26 @@ const plans = {
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },
+  /**
+   * Vidéo 5 (« le blocus ») avec le morceau @nowfunk : intro sous « Il est
+   * tard », drop sur « UN BLOCUS. », retour au calme sous « Oui, demain tu
+   * seras fatigué », drop sur « RÉVEILLE TON ÉQUIPE. », frappe finale sur
+   * « C'EST UN BLOCUS. », puis silence pour la chute.
+   */
+  nowfunk5: () => {
+    const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
+    const oa = at("blocus", 1) - T.drop;
+    const ob = at("reveille") - T.drop;
+    const beats = Math.round((at("cestBlocus") - T.hit - ob) / T.beat);
+    const od = ob + beats * T.beat;
+    const bStart = at("fatigue"); // retour au calme
+    const dStart = at("partie"); // raccord pendant le plateau
+    return [
+      seg(-oa, bStart - oa + 0.4, oa, 0.03, 0.4),
+      seg(Math.max(0, bStart - ob), dStart - ob + 0.25, ob, 0.4, 0.25),
+      seg(dStart - od, T.end, od, 0.25, 0.4),
+    ];
+  },
   /** @moutses : drops à 16,68 s et 46,88 s, accalmie à 30,03 s, fin à 67 s. */
   moutses: () => {
     const T = { drop1: 16.68, breakdown: 30.03, drop2: 46.88, end: 67.0 };
@@ -191,6 +211,7 @@ const GAIN = {
   nowfunk2: 0.85,
   nowfunk3: 0.85,
   nowfunk4: 0.85,
+  nowfunk5: 0.85,
   moutses: 0.5,
 };
 
