@@ -104,15 +104,15 @@ const DoorHanger: React.FC<{
   </g>
 );
 
-/* 1. « Il est tard. Tu scrolles. Et t'as toujours pas eu LE JETON PIRATE. » */
+/* 2. « Et t'as toujours pas eu LE JETON PIRATE. » (lundi matin, au réveil) */
 export const V5Scroll: React.FC = () => {
-  const { t, at, atPart } = useSceneTime();
+  const { t, atPart } = useSceneTime();
   const floor = 1460;
   const miss = progress(t, atPart("toujoursPas", 1), 0.4);
   const scroll = (t * 140) % 120;
   return (
     <Stage>
-      <Porthole x={250} y={860} r={95} night={1} />
+      <Porthole x={250} y={860} r={95} night={0} />
       <Beam x={620} bottom={700} opacity={0.5} />
       <Floor y={floor} t={t} />
       <Bed x={600} y={floor} w={520} facing={-1} />
@@ -174,15 +174,15 @@ export const V5Scroll: React.FC = () => {
         fontWeight={800}
         fontSize={44}
         fill={palette.lineSoft}
-        opacity={pop(t, at("tard"))}
+        opacity={pop(t, 0.1)}
       >
-        23:47
+        7:02
       </text>
     </Stage>
   );
 };
 
-/* 2. « Demain, c'est lundi. T'AS COURS. » -------------------------------- */
+/* 1. « C'est lundi. T'AS COURS. » --------------------------------------- */
 export const V5Monday: React.FC = () => {
   const { t, at } = useSceneTime();
   const ring = at("cours");
@@ -551,14 +551,14 @@ export const V5Class: React.FC = () => {
   );
 };
 
-/* 8. « Dans 10 ans, personne ne se souviendra de ce lundi. Le jeton… DANS TON CASIER. » */
+/* 8. « Dans 10 ans, personne ne se souviendra DE CE MARDI. » (le jeton, lui, reste au casier) */
 export const V5Locker: React.FC = () => {
   const { t, at, atPart } = useSceneTime();
   const floor = 1500;
   const years = progress(t, 0.1, 1.2, (v) => v);
   const year = Math.min(2036, 2026 + Math.floor(years * 10.999));
   const forget = progress(t, at("personne") + 0.4, 1.2);
-  const open = progress(t, atPart("casier", 1), 0.4);
+  const open = progress(t, atPart("personne", 1), 0.4);
   return (
     <Stage>
       <Beam x={760} bottom={600} opacity={0.6 + open * 0.3} />
@@ -578,7 +578,7 @@ export const V5Locker: React.FC = () => {
         opacity={1 - forget}
         transform={`translate(300 1180) rotate(${-forget * 25}) scale(${1 - forget * 0.3})`}
       >
-        <CalendarCard x={0} y={0} day="16" month="LUNDI" w={230} />
+        <CalendarCard x={0} y={0} day="17" month="MARDI" w={230} />
       </g>
       {forget > 0 && forget < 1 ? (
         <Dust

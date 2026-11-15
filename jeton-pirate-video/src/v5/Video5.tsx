@@ -40,15 +40,19 @@ export const tracksV5: Tracks = {
 };
 
 const SCENES: { name: string; from: string | null; Component: React.FC }[] = [
-  { name: "01 · Il est tard", from: null, Component: V5Scroll },
-  { name: "02 · T'as cours", from: "lundi", Component: V5Monday },
+  { name: "01 · T'as cours", from: null, Component: V5Monday },
+  {
+    name: "02 · Toujours pas le jeton",
+    from: "toujoursPas",
+    Component: V5Scroll,
+  },
   { name: "03 · Un blocus", from: "ecoute", Component: V5Blocus },
   { name: "04 · Pour le jeton", from: "maths", Component: V5Maths },
   { name: "05 · Moins de 3 semaines", from: "dec5", Component: V5Deadline },
   { name: "06 · Une chance en moins", from: "chaqueSoir", Component: V5Chance },
   { name: "07 · Fatigué", from: "fatigue", Component: V5Class },
-  { name: "08 · Dans ton casier", from: "dixAns", Component: V5Locker },
-  { name: "09 · L'appel", from: "reveille", Component: V5Call },
+  { name: "08 · De ce mardi", from: "dixAns", Component: V5Locker },
+  { name: "09 · L'appel", from: "rappelle", Component: V5Call },
   { name: "10 · C'est un blocus", from: "partie", Component: V5NotGame },
   { name: "11 · Lundi matin", from: "quandMeme", Component: V5Morning },
 ];
@@ -78,8 +82,13 @@ const hitsV5 = (starts: number[]): Hit[] => [
     volume: 0.45,
     name: "Il disparaît",
   },
-  { sound: "sparkle", at: cuePartAt("casier", 1), volume: 0.5, name: "Casier" },
-  { sound: "buzz", at: cueAt("reveille"), volume: 0.4, name: "Équipe" },
+  {
+    sound: "sparkle",
+    at: cuePartAt("personne", 1),
+    volume: 0.5,
+    name: "Casier",
+  },
+  { sound: "buzz", at: cueAt("rappelle"), volume: 0.4, name: "Équipe" },
   { sound: "chest", at: cueAt("coffre") + 0.1, volume: 0.6, name: "Coffre" },
   {
     sound: "sparkle",

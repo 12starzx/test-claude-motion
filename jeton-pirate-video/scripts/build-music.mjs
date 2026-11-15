@@ -176,13 +176,13 @@ const plans = {
   /**
    * Vidéo 5 (« le blocus ») avec le morceau @nowfunk : intro sous « Il est
    * tard », drop sur « UN BLOCUS. », retour au calme sous « Oui, demain tu
-   * seras fatigué », drop sur « RÉVEILLE TON ÉQUIPE. », frappe finale sur
+   * seras fatigué », drop sur « RAPPELLE TON ÉQUIPE. », frappe finale sur
    * « C'EST UN BLOCUS. », puis silence pour la chute.
    */
   nowfunk5: () => {
     const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
     const oa = at("blocus", 1) - T.drop;
-    const ob = at("reveille") - T.drop;
+    const ob = at("rappelle") - T.drop;
     const beats = Math.round((at("cestBlocus") - T.hit - ob) / T.beat);
     const od = ob + beats * T.beat;
     const bStart = at("fatigue"); // retour au calme
