@@ -181,6 +181,21 @@ Fichiers : `src/v3/` (conducteur, scènes, montage, composition `JetonPirate3`),
 `nowfunk3` : drops sur « CEUX QUI RESTENT. » et « IL EST LÀ. », frappe finale sur
 « LE GAGNENT. », silence pour « Toi, tu choisis quoi ? »).
 
+## Vidéo 4 : « GTA 6, treize ans »
+
+Treize ans d'attente depuis GTA 5, deux reports, et la leçon de persévérance
+(`voix-off-4.txt`, voix « Victoria »), 60,5 s. Ambiance coucher de soleil façon Vice City
+(`src/v4/props.tsx` : ciel, soleil à bandes, palmiers, néons) ; aucun logo ni personnage
+officiel. Composition `Gta6TreizeAns`, plan musical `nowfunk4`.
+
+Faits utilisés (vérifiés sur plusieurs sources, novembre 2026) : sortie le 19 novembre 2026
+sur PS5 et Xbox Series X|S ; reports de 2025 au 26 mai 2026 puis au 19 novembre 2026 ;
+trailer 1 (décembre 2023) : environ 90 millions de vues YouTube en 24 h ; trailer 2
+(mai 2025) : 475 millions de vues en 24 h toutes plateformes (chiffre annoncé par Rockstar).
+
+Le conducteur de cette vidéo a été calé à la main sur les pauses mesurées de la voix :
+au débit très irrégulier, l'estimation automatique se décalait d'une phrase.
+
 ## Bande-son
 
 `npm run audio` synthétise toute la bande-son (aucun échantillon externe, donc libre de

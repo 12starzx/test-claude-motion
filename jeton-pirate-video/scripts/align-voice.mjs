@@ -67,9 +67,35 @@ if (cursor < duration - 0.05) segments.push({ start: cursor, end: duration });
 
 /* Phrases et syllabes ------------------------------------------------- */
 
-const DIGITS = { 4: "quatre", 5: "cinq", 23: "vingt trois" };
+/** Nombre écrit en chiffres → mots français (pour compter ses syllabes). */
+const UNITS = "zéro un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize".split(" ");
+const TENS = { 2: "vingt", 3: "trente", 4: "quarante", 5: "cinquante", 6: "soixante", 8: "quatre-vingt" };
+const below100 = (n) => {
+  if (n <= 16) return UNITS[n];
+  if (n < 20) return `dix-${UNITS[n - 10]}`;
+  const t = Math.floor(n / 10);
+  const u = n % 10;
+  if (t === 7) return `soixante-${below100(10 + u)}`;
+  if (t === 9) return `quatre-vingt-${below100(10 + u)}`;
+  return u === 0 ? TENS[t] : `${TENS[t]}-${u === 1 && t !== 8 ? "et-un" : UNITS[u]}`;
+};
+const below1000 = (n) => {
+  const h = Math.floor(n / 100);
+  const r = n % 100;
+  const head = h === 0 ? "" : h === 1 ? "cent" : `${UNITS[h]} cent`;
+  return [head, r ? below100(r) : ""].filter(Boolean).join(" ");
+};
+const frenchNumber = (n) => {
+  if (n < 1000) return below1000(n) || "zéro";
+  const k = Math.floor(n / 1000);
+  const r = n % 1000;
+  return [k === 1 ? "mille" : `${below1000(k)} mille`, r ? below1000(r) : ""].filter(Boolean).join(" ");
+};
+
 const syllables = (word) => {
-  const w = (DIGITS[word] ?? word)
+  const w = (/^\d+$/.test(word.replace(/[^\d]/g, "")) && /\d/.test(word)
+    ? frenchNumber(Number(word.replace(/[^\d]/g, "")))
+    : word)
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")

@@ -149,6 +149,30 @@ const plans = {
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },
+  /**
+   * Vidéo 4 (« GTA 6 : treize ans ») avec le morceau @nowfunk : drop sur
+   * « TU ATTENDS TOUJOURS. », calme sous « Rockstar préfère attendre », drop
+   * sur « DEUX REPORTS. », silence pour « Et toi… », montée pendant la leçon,
+   * drop sur « JEUDI 19 NOVEMBRE. », frappe finale sur « QUELQUES JOURS. ».
+   */
+  nowfunk4: () => {
+    const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
+    const oa = at("attends") - T.drop;
+    const ob = at("deuxReports") - T.drop;
+    const oc = at("jeudi") - T.drop;
+    const beats = Math.round((at("jours", 1) - T.hit - oc) / T.beat);
+    const od = oc + beats * T.beat;
+    const bStart = at("rockstar");
+    const bEnd = at("etToi") - 0.1; // silence pour « Et toi… »
+    const cStart = at("lecon");
+    const dStart = at("jason"); // raccord pendant le plateau
+    return [
+      seg(-oa, bStart - oa + 0.4, oa, 0.03, 0.4),
+      seg(bStart - ob, bEnd - ob + 0.5, ob, 0.4, 0.5),
+      seg(cStart - oc, dStart - oc + 0.25, oc, 0.6, 0.25),
+      seg(dStart - od, T.end, od, 0.25, 0.4),
+    ];
+  },
   /** @moutses : drops à 16,68 s et 46,88 s, accalmie à 30,03 s, fin à 67 s. */
   moutses: () => {
     const T = { drop1: 16.68, breakdown: 30.03, drop2: 46.88, end: 67.0 };
@@ -162,7 +186,13 @@ const plans = {
 };
 
 /** Niveau d'entrée de chaque morceau (le n° 1 est mixé moins fort à l'origine). */
-const GAIN = { nowfunk: 0.85, nowfunk2: 0.85, nowfunk3: 0.85, moutses: 0.5 };
+const GAIN = {
+  nowfunk: 0.85,
+  nowfunk2: 0.85,
+  nowfunk3: 0.85,
+  nowfunk4: 0.85,
+  moutses: 0.5,
+};
 
 const plan = plans[planName];
 if (!plan) throw new Error(`Plan inconnu : ${planName}`);
