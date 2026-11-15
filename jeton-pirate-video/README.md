@@ -173,6 +173,14 @@ TIMELINE=src/v2/timeline.ts node scripts/build-music.mjs nowfunk2 morceau.mp4 pu
 npx remotion render JetonPirate2 out/jeton-pirate-2.mp4
 ```
 
+## Vidéo 3 : « ceux qui restent »
+
+Message de motivation à ceux qui ont abandonné (`voix-off-3.txt`, voix « Victoria »), 55 s.
+Fichiers : `src/v3/` (conducteur, scènes, montage, composition `JetonPirate3`),
+`public/audio/voix-off-3.mp3`, `public/audio/musique-3.mp3` (non versionnée, plan
+`nowfunk3` : drops sur « CEUX QUI RESTENT. » et « IL EST LÀ. », frappe finale sur
+« LE GAGNENT. », silence pour « Toi, tu choisis quoi ? »).
+
 ## Bande-son
 
 `npm run audio` synthétise toute la bande-son (aucun échantillon externe, donc libre de

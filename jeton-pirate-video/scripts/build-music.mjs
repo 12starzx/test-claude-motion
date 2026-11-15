@@ -128,6 +128,27 @@ const plans = {
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },
+  /**
+   * Vidéo 3 (« ceux qui restent ») avec le morceau @nowfunk : intro sous
+   * l'abandon, drop sur « CEUX QUI RESTENT. », silence sous le futur sombre,
+   * drop sur « IL EST LÀ. », frappe finale sur « LE GAGNENT. », puis silence
+   * pour la question finale.
+   */
+  nowfunk3: () => {
+    const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
+    const oa = at("restent", 1) - T.drop;
+    const ob = at("estLa", 1) - T.drop;
+    const beats = Math.round((at("gagnent", 1) - T.hit - ob) / T.beat);
+    const od = ob + beats * T.beat;
+    const aEnd = at("imagine"); // silence sous le futur sombre
+    const bStart = at("ouAlors");
+    const dStart = at("rappelle"); // raccord pendant le plateau
+    return [
+      seg(-oa, aEnd - oa + 0.6, oa, 0.03, 0.6),
+      seg(bStart - ob, dStart - ob + 0.25, ob, 0.6, 0.25),
+      seg(dStart - od, T.end, od, 0.25, 0.4),
+    ];
+  },
   /** @moutses : drops à 16,68 s et 46,88 s, accalmie à 30,03 s, fin à 67 s. */
   moutses: () => {
     const T = { drop1: 16.68, breakdown: 30.03, drop2: 46.88, end: 67.0 };
@@ -141,7 +162,7 @@ const plans = {
 };
 
 /** Niveau d'entrée de chaque morceau (le n° 1 est mixé moins fort à l'origine). */
-const GAIN = { nowfunk: 0.85, nowfunk2: 0.85, moutses: 0.5 };
+const GAIN = { nowfunk: 0.85, nowfunk2: 0.85, nowfunk3: 0.85, moutses: 0.5 };
 
 const plan = plans[planName];
 if (!plan) throw new Error(`Plan inconnu : ${planName}`);
