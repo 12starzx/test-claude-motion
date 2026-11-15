@@ -12,37 +12,11 @@
  * Dans un texte "body", les mots entre astérisques passent en italique
  * (ex. « C'est *peut-être lui* »).
  */
-import { VIDEO } from "./theme";
+import { body, createTimeline, impact, serif } from "./lib/timelineTools";
+import type { Cue } from "./lib/timelineTools";
 
-export type PartKind = "body" | "impact" | "serif";
-
-export type CuePart = {
-  text: string;
-  kind?: PartKind;
-  /** Décalage (s) entre le début de la réplique et l'apparition de la ligne. */
-  delay?: number;
-};
-
-export type Cue = {
-  id: string;
-  /** Apparition (s). */
-  at: number;
-  /** Disparition (s). Par défaut : apparition de la réplique suivante. */
-  end?: number;
-  parts: CuePart[];
-};
-
-const body = (text: string, delay = 0): CuePart => ({ text, delay });
-const impact = (text: string, delay = 0): CuePart => ({
-  text,
-  kind: "impact",
-  delay,
-});
-const serif = (text: string, delay = 0): CuePart => ({
-  text,
-  kind: "serif",
-  delay,
-});
+export type { Cue, CuePart, PartKind } from "./lib/timelineTools";
+export { toFrames } from "./lib/timelineTools";
 
 export const cues: Cue[] = [
   // Ouverture
@@ -201,39 +175,10 @@ export const cues: Cue[] = [
   },
 ];
 
-export type CueId = (typeof cues)[number]["id"];
-
 /** Durée totale (s) : la dernière réplique, puis un fondu au noir. */
 export const TOTAL_SECONDS = 82;
-export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * VIDEO.fps);
 
-const byId = new Map(cues.map((cue) => [cue.id, cue]));
-
-/** Instant (s) d'une réplique. */
-export const cueAt = (id: string): number => {
-  const cue = byId.get(id);
-  if (!cue) {
-    throw new Error(`Réplique inconnue : « ${id} »`);
-  }
-  return cue.at;
-};
-
-/** Instant (s) où apparaît la ligne `index` d'une réplique (mot-choc, etc.). */
-export const cuePartAt = (id: string, index: number): number => {
-  const cue = byId.get(id);
-  const part = cue?.parts[index];
-  if (!cue || !part) {
-    throw new Error(`Ligne ${index} inconnue pour la réplique « ${id} »`);
-  }
-  return cue.at + (part.delay ?? 0);
-};
-
-/** Fin (s) d'une réplique : sa fin explicite, sinon la réplique suivante. */
-export const cueEnd = (id: string): number => {
-  const index = cues.findIndex((cue) => cue.id === id);
-  const cue = cues[index];
-  return cue.end ?? cues[index + 1]?.at ?? TOTAL_SECONDS;
-};
-
-export const toFrames = (seconds: number): number =>
-  Math.round(seconds * VIDEO.fps);
+export const timeline1 = createTimeline(cues, TOTAL_SECONDS);
+export const TOTAL_FRAMES = timeline1.totalFrames;
+export const cueAt = timeline1.cueAt;
+export const cuePartAt = timeline1.cuePartAt;

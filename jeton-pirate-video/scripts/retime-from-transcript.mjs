@@ -15,11 +15,14 @@
  * Une réplique introuvable est placée par interpolation entre ses voisines.
  */
 import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const TIMELINE = join(ROOT, "src", "timeline.ts");
+// Conducteur à recaler : src/timeline.ts par défaut, ou TIMELINE=chemin.
+const TIMELINE = process.env.TIMELINE
+  ? resolve(process.env.TIMELINE)
+  : join(ROOT, "src", "timeline.ts");
 
 /** Avance des sous-titres sur la voix (s) : le mot apparaît juste avant d'être dit. */
 const LEAD = 0.08;

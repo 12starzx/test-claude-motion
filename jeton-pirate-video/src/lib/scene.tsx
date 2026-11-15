@@ -4,7 +4,7 @@
  */
 import { createContext, useContext } from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { cueAt, cuePartAt } from "../timeline";
+import { useTimeline } from "./timelineTools";
 import { VIDEO } from "../theme";
 import { clamp01, easeOut } from "./anim";
 
@@ -18,6 +18,7 @@ export const SceneProvider = SceneContext.Provider;
 export const useSceneTime = () => {
   const frame = useCurrentFrame();
   const { start, duration } = useContext(SceneContext);
+  const { cueAt, cuePartAt } = useTimeline();
   const t = frame / VIDEO.fps;
   return {
     t,

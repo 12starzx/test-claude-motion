@@ -8,8 +8,8 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { bodyFont, impactFont, serifFont } from "../fonts";
 import { clamp01, easeOut } from "../lib/anim";
-import { cues, TOTAL_SECONDS } from "../timeline";
-import type { Cue, CuePart } from "../timeline";
+import { useTimeline } from "../lib/timelineTools";
+import type { Cue, CuePart } from "../lib/timelineTools";
 import { CAPTION_TOP, palette, VIDEO } from "../theme";
 
 const STAGGER = { body: 0.1, impact: 0.17, serif: 0.14 } as const;
@@ -117,12 +117,10 @@ const Line: React.FC<{ part: CuePart; elapsed: number }> = ({
   );
 };
 
-const endOf = (index: number): number =>
-  cues[index].end ?? cues[index + 1]?.at ?? TOTAL_SECONDS;
-
 export const Captions: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / VIDEO.fps;
+  const { cues, endOf } = useTimeline();
   let active: { cue: Cue; end: number } | null = null;
   for (let i = cues.length - 1; i >= 0; i--) {
     if (cues[i].at <= t) {

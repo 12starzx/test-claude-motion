@@ -3,7 +3,8 @@
  * finitions et bande-son.
  */
 import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
-import { Soundtrack, soundFiles } from "./audio/Soundtrack";
+import { Soundtrack, soundFilesOf } from "./audio/Soundtrack";
+import { hitsV1, tracksV1 } from "./audio/hitsV1";
 import { Backdrop, Finish } from "./components/Backdrop";
 import { Captions } from "./components/Captions";
 import { SvgDefs } from "./components/art/Defs";
@@ -41,7 +42,8 @@ import {
   SceneReveal,
   SceneShore,
 } from "./scenes/Act4";
-import { cueAt, TOTAL_SECONDS, toFrames } from "./timeline";
+import { cueAt, timeline1, TOTAL_SECONDS, toFrames } from "./timeline";
+import { TimelineProvider } from "./lib/timelineTools";
 import { VIDEO } from "./theme";
 
 /** Chaque scène démarre sur une réplique du conducteur (null = début). */
@@ -110,35 +112,39 @@ const FadeOut: React.FC = () => {
 export const JetonVideo: React.FC = () => {
   const starts = sceneStarts();
   return (
-    <AssetGate files={Object.values(soundFiles)}>
-      <AbsoluteFill style={{ background: "#000" }}>
-        <SvgDefs />
-        <Backdrop />
-        {SCENES.map((scene, i) => {
-          const start = starts[i];
-          const end =
-            i + 1 < SCENES.length ? starts[i + 1] + TRANSITION : TOTAL_SECONDS;
-          const duration = end - start;
-          return (
-            <Sequence
-              key={scene.name}
-              name={scene.name}
-              from={toFrames(start)}
-              durationInFrames={toFrames(duration)}
-            >
-              <SceneProvider value={{ start, duration }}>
-                <SceneShell>
-                  <scene.Component />
-                </SceneShell>
-              </SceneProvider>
-            </Sequence>
-          );
-        })}
-        <Captions />
-        <Finish />
-        <FadeOut />
-        <Soundtrack sceneStarts={starts} />
-      </AbsoluteFill>
+    <AssetGate files={soundFilesOf(tracksV1)}>
+      <TimelineProvider value={timeline1}>
+        <AbsoluteFill style={{ background: "#000" }}>
+          <SvgDefs />
+          <Backdrop />
+          {SCENES.map((scene, i) => {
+            const start = starts[i];
+            const end =
+              i + 1 < SCENES.length
+                ? starts[i + 1] + TRANSITION
+                : TOTAL_SECONDS;
+            const duration = end - start;
+            return (
+              <Sequence
+                key={scene.name}
+                name={scene.name}
+                from={toFrames(start)}
+                durationInFrames={toFrames(duration)}
+              >
+                <SceneProvider value={{ start, duration }}>
+                  <SceneShell>
+                    <scene.Component />
+                  </SceneShell>
+                </SceneProvider>
+              </Sequence>
+            );
+          })}
+          <Captions />
+          <Finish />
+          <FadeOut />
+          <Soundtrack tracks={tracksV1} hits={hitsV1(starts)} />
+        </AbsoluteFill>
+      </TimelineProvider>
     </AssetGate>
   );
 };

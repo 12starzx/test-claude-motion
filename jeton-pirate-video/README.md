@@ -150,6 +150,29 @@ node scripts/build-music.mjs nowfunk morceau.mp4 public/audio/voix-off.mp3 publi
 
 À l'export, le son est normalisé à -14 LUFS (crête vraie -1 dB), le niveau visé par TikTok.
 
+## Vidéo 2 : « la mission »
+
+Même univers et même style, nouveau texte (`voix-off-2.txt`), 66 s. Elle partage la
+bibliothèque graphique, les sous-titres et le mixage de la vidéo 1, avec ses propres
+fichiers :
+
+| Élément    | Fichier                                          |
+| ---------- | ------------------------------------------------ |
+| Conducteur | `src/v2/timeline.ts`                             |
+| Scènes     | `src/v2/scenes.tsx`, `src/v2/props.tsx`          |
+| Montage    | `src/v2/Video2.tsx` (composition `JetonPirate2`) |
+| Voix       | `public/audio/voix-off-2.mp3`                    |
+| Musique    | `public/audio/musique-2.mp3` (non versionnée)    |
+
+Les scripts de calage visent un autre conducteur avec la variable `TIMELINE` :
+
+```console
+node scripts/align-voice.mjs public/audio/voix-off-2.mp3 voix-off-2.txt mots.json
+TIMELINE=src/v2/timeline.ts node scripts/retime-from-transcript.mjs mots.json
+TIMELINE=src/v2/timeline.ts node scripts/build-music.mjs nowfunk2 morceau.mp4 public/audio/voix-off-2.mp3 public/audio/musique-2.mp3
+npx remotion render JetonPirate2 out/jeton-pirate-2.mp4
+```
+
 ## Bande-son
 
 `npm run audio` synthétise toute la bande-son (aucun échantillon externe, donc libre de

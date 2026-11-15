@@ -18,7 +18,7 @@
  */
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -31,7 +31,13 @@ if (!planName || !track || !voice || !output) {
 }
 
 /* Conducteur ----------------------------------------------------------- */
-const timeline = readFileSync(join(ROOT, "src", "timeline.ts"), "utf8");
+// Conducteur : src/timeline.ts par défaut, ou TIMELINE=chemin.
+const timeline = readFileSync(
+  process.env.TIMELINE
+    ? resolve(process.env.TIMELINE)
+    : join(ROOT, "src", "timeline.ts"),
+  "utf8",
+);
 const cue = (id) => {
   const m = timeline.match(
     new RegExp(
@@ -50,6 +56,14 @@ const at = (id, part = 0) => {
   return c.at + (c.delays[part] ?? 0);
 };
 const total = Number(timeline.match(/TOTAL_SECONDS = ([\d.]+)/)[1]);
+/** Fin explicite d'une réplique (« end »). */
+const cueEndOf = (id) => {
+  const m = timeline.match(
+    new RegExp(`id: "${id}",\\s*at: [\\d.]+,\\s*end: ([\\d.]+),`),
+  );
+  if (!m) throw new Error(`Réplique sans fin explicite : ${id}`);
+  return Number(m[1]);
+};
 
 /**
  * Segment : `from` → `to` dans le morceau, placé à `offset`
@@ -90,6 +104,30 @@ const plans = {
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },
+  /**
+   * Vidéo 2 (« la mission ») avec le morceau @nowfunk : drop sur « POUR
+   * TOUJOURS. », frappe sur les munitions, silence sur « UN POISSON. », drop
+   * sur « JAMAIS. », calme pour le dernier soir, drop sur « IL EST LÀ. »,
+   * frappe finale sur « CASIER. ».
+   */
+  nowfunk2: () => {
+    const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
+    const oa = (at("toujours") - T.drop + (at("soir2", 1) - T.hit)) / 2;
+    const ob = at("jamais", 1) - T.drop;
+    const oc = at("estLa") - T.drop;
+    const beats = Math.round((at("casier", 2) - T.hit - oc) / T.beat);
+    const od = oc + beats * T.beat;
+    const bStart = cueEndOf("poisson") - 0.1; // silence sur « UN POISSON. »
+    const bEnd = at("dec4"); // calme pour le dernier soir
+    const cStart = at("dec4");
+    const dStart = at("dec5Fin"); // raccord pendant le plateau
+    return [
+      seg(-oa, T.end, oa, 0.03, 0.4),
+      seg(bStart - ob, bEnd - ob + 0.3, ob, 0.3, 0.3),
+      seg(cStart - oc, dStart - oc + 0.25, oc, 0.5, 0.25),
+      seg(dStart - od, T.end, od, 0.25, 0.4),
+    ];
+  },
   /** @moutses : drops à 16,68 s et 46,88 s, accalmie à 30,03 s, fin à 67 s. */
   moutses: () => {
     const T = { drop1: 16.68, breakdown: 30.03, drop2: 46.88, end: 67.0 };
@@ -103,7 +141,7 @@ const plans = {
 };
 
 /** Niveau d'entrée de chaque morceau (le n° 1 est mixé moins fort à l'origine). */
-const GAIN = { nowfunk: 0.85, moutses: 0.5 };
+const GAIN = { nowfunk: 0.85, nowfunk2: 0.85, moutses: 0.5 };
 
 const plan = plans[planName];
 if (!plan) throw new Error(`Plan inconnu : ${planName}`);
