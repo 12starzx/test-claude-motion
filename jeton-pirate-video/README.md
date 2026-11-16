@@ -196,6 +196,38 @@ trailer 1 (décembre 2023) : environ 90 millions de vues YouTube en 24 h ; trail
 Le conducteur de cette vidéo a été calé à la main sur les pauses mesurées de la voix :
 au débit très irrégulier, l'estimation automatique se décalait d'une phrase.
 
+## Vidéo 5 : « le blocus »
+
+Le jeton disparaît le 5 décembre : demain, tu bloques le lycée, tu rentres et tu joues
+toute la journée, jusqu'au coffre de 23 h 59 (`voix-off-5.txt`), 44,5 s. Fichiers :
+`src/v5/` (composition `JetonBlocus`), `public/audio/voix-off-5.mp3`, plan musical
+`nowfunk5` (drops sur « FAIS UN BLOCUS. » et « IL EST LÀ. », frappe finale sur
+« LE BLOCUS. »). Conducteur calé à la main.
+
+## Vidéo 6 : « la chance »
+
+Nouvelle ouverture (deux cartes de joueurs : celle du pote brille avec le jeton, la tienne
+attend son butin, un champignon), puis la rivalité : le pote dit « la chance », toi tu
+en fais toujours un de plus, trois soirs de suite, jusqu'au coffre d'une heure douze
+(`voix-off-6.txt`, voix « Victoria »), 41,8 s. La dernière image montre ce qu'il y a
+derrière « la chance » : +1 minute, +1 coffre, +1 zone.
+
+| Élément    | Fichier                                           |
+| ---------- | ------------------------------------------------- |
+| Conducteur | `src/v6/timeline.ts`                              |
+| Scènes     | `src/v6/scenes.tsx`                               |
+| Montage    | `src/v6/Video6.tsx` (composition `JetonLaChance`) |
+| Voix       | `public/audio/voix-off-6.mp3`                     |
+| Musique    | `public/audio/musique-6.mp3` (non versionnée)     |
+
+Plan musical `nowfunk6` : drop sur « FAUX. », retour au calme sur « Premier soir »,
+drop sur « IL EST LÀ. », frappe finale sur « LA CHANCE. ». La première scène démarre sans
+fondu (`SceneShell instant`) pour que la première image, qui sert de miniature, soit
+pleine.
+
+Conducteur calé à la main sur les pauses mesurées ; les mots répétés (« Toi », « rien »,
+« soir », « la chance ») ont été vérifiés par comparaison acoustique.
+
 ## Bande-son
 
 `npm run audio` synthétise toute la bande-son (aucun échantillon externe, donc libre de

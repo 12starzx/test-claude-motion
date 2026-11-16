@@ -193,6 +193,25 @@ const plans = {
       seg(dStart - od, T.end, od, 0.25, 0.4),
     ];
   },
+  /**
+   * Vidéo 6 (« la chance ») avec le morceau @nowfunk : intro sous l'accroche,
+   * drop sur « FAUX. », retour au calme pour les soirs sans rien (« Premier
+   * soir »), drop sur « IL EST LÀ. », frappe finale sur « LA CHANCE. ».
+   */
+  nowfunk6: () => {
+    const T = { drop: 21.75, hit: 45.05, end: 46.5, beat: 60 / 105.45 };
+    const oa = at("faux") - T.drop;
+    const ob = at("dernier", 1) - T.drop;
+    const beats = Math.round((at("reponds", 1) - T.hit - ob) / T.beat);
+    const od = ob + beats * T.beat;
+    const bStart = at("soir1"); // les soirs sans rien : retour au calme
+    const dStart = at("lendemain"); // raccord pendant le plateau
+    return [
+      seg(-oa, bStart - oa + 0.4, oa, 0.03, 0.4),
+      seg(bStart - ob, dStart - ob + 0.25, ob, 0.4, 0.25),
+      seg(dStart - od, T.end, od, 0.25, 0.4),
+    ];
+  },
   /** @moutses : drops à 16,68 s et 46,88 s, accalmie à 30,03 s, fin à 67 s. */
   moutses: () => {
     const T = { drop1: 16.68, breakdown: 30.03, drop2: 46.88, end: 67.0 };
@@ -212,6 +231,7 @@ const GAIN = {
   nowfunk3: 0.85,
   nowfunk4: 0.85,
   nowfunk5: 0.85,
+  nowfunk6: 0.85,
   moutses: 0.5,
 };
 

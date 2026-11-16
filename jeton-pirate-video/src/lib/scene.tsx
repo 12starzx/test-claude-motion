@@ -55,9 +55,11 @@ export const SceneShell: React.FC<{
   push?: number;
   /** Point de fuite de la poussée (px). */
   origin?: [number, number];
-}> = ({ children, push = 0.035, origin = [540, 1056] }) => {
+  /** Sans fondu d'entrée : la première image (miniature) est déjà pleine. */
+  instant?: boolean;
+}> = ({ children, push = 0.035, origin = [540, 1056], instant = false }) => {
   const { t, duration } = useSceneTime();
-  const enter = easeOut(clamp01(t / TRANSITION));
+  const enter = instant ? 1 : easeOut(clamp01(t / TRANSITION));
   const exit = clamp01((t - (duration - TRANSITION)) / TRANSITION);
   const opacity = enter * (1 - exit);
   const scale = 1.04 - 0.04 * enter + push * (t / Math.max(duration, 1));
