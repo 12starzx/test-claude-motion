@@ -1,0 +1,7 @@
+node_modules/
+# Visuels sources, détourages et rendus : contiennent des photos personnelles,
+# ils restent hors du dépôt (public). Les scripts permettent de tout régénérer.
+assets/
+out/
+public/textures/
+public/data/
