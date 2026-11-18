@@ -5,3 +5,4 @@ assets/
 out/
 public/textures/
 public/data/
+__pycache__/
