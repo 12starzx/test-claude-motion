@@ -2,7 +2,7 @@
 
 On récupère uniquement le masque, on bouche les petits trous intérieurs
 (ex. étiquette du pantalon), puis on l'applique sur les pixels d'origine.
-Sortie : assets/cutouts/{veste,pantalon,personne}.png
+Sortie : assets/cutouts/{veste,pantalon,personne}.png et personne-masque.png
 """
 import sys
 from pathlib import Path
@@ -42,6 +42,9 @@ for src, (dst, holes) in jobs.items():
     mask = np.asarray(remove(im, session=session, only_mask=True, post_process_mask=True)).copy()
     if holes:
         mask = fill_small_holes(mask, holes)
+    if src == "photo-lifestyle.jpg":
+        # Masque pleine taille : sert au flou d'arrière-plan du fond photo.
+        Image.fromarray(mask).save(OUT / "personne-masque.png")
     cut = im.copy()
     cut.putalpha(Image.fromarray(mask))
     cut = cut.crop(Image.fromarray(mask).point(lambda a: 255 if a > 12 else 0).getbbox())

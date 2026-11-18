@@ -1,5 +1,5 @@
-// Plaque BoonBuy en 3D : cadre blanc laqué, logo, « BOON BUY » en relief
-// et trois stickers détourés (personne, veste, pantalon).
+// Plaque BoonBuy en 3D : cadre blanc laqué dont la face porte une affiche —
+// photo lifestyle en fond, « BOON BUY » en gros relief orange, vêtements en stickers sur le côté.
 // Paramètres d'URL : ?view=front|three-quarter|side&size=2048
 import * as THREE from "three";
 import { SVGLoader } from "three/addons/loaders/SVGLoader.js";
@@ -19,13 +19,14 @@ const CAMERA = { fov: 30, distance: 25 };
 // ------------------------------------------------------------------ mise en page
 // Plaque de 10 × 10 unités ; la face avant est le plan z = 0.
 const PLATE = { size: 10, radius: 0.9, depth: 0.3, bevel: 0.2 };
-const SAFE = 4.3; // demi-largeur de la zone utile
+const PHOTO_INSET = 0.12; // liseré blanc entre la photo et l'arrondi de la plaque
 const LAYOUT = {
-  header: { top: SAFE, height: 1.45, gap: 0.38 },
-  bodyTop: 2.4,
-  person: { height: 6.75 },
-  jacket: { width: 5.0, x: 1.25, rotation: -4 },
-  pants: { height: 4.2, x: 2.2, rotation: 7 },
+  // Titre sur deux lignes, ancré en bas ; cap = hauteur des capitales.
+  title: { cap: 1.56, lineGap: 0.38, bottom: -4.25, x: 0, align: "center", depth: 0.36 },
+  logo: { size: 1.05, x: -3.95, y: 3.95 }, // null pour le retirer
+  // Vêtements : stickers détourés, étagés en diagonale sur le côté droit.
+  jacket: { width: 3.8, x: 2.05, y: 2.62, rotation: -4 },
+  pants: { height: 3.4, x: 3.08, y: 1.0, rotation: 6 },
 };
 
 const COLORS = {
@@ -60,7 +61,7 @@ function studioEnvironment() {
   };
   panel(36, 18, 3.2, [0, 24, 6], [0, 0, 0]); // softbox zénithale
   panel(8, 34, 2.6, [-24, 2, 10], [0, 0, 0]); // strip gauche
-  panel(8, 34, 2.0, [24, 2, 10], [0, 0, 0]); // strip droit
+  panel(6, 34, 0.75, [24, 2, 10], [0, 0, 0]); // strip droit (doux : évite un reflet brûlé de trois-quarts)
   panel(30, 14, 0.12, [0, 4, 30], [0, 0, 0]); // réflecteur frontal doux
   panel(34, 34, 0.9, [8, 0, -30], [0, 0, 0]); // fond clair : éclaire la face en vue rasante (profil)
   return env;
@@ -86,10 +87,8 @@ key.shadow.radius = 10;
 key.shadow.blurSamples = 20;
 rig.add(key, key.target);
 
-const fill = new THREE.DirectionalLight(0xffffff, 0.7);
-fill.position.set(8, -2, 10);
-rig.add(fill, fill.target);
-rig.add(new THREE.HemisphereLight(0xffffff, 0xd8d8d8, 1.1));
+// Débouchage par lumière hémisphérique : pas de point spéculaire parasite sur les lettres.
+rig.add(new THREE.HemisphereLight(0xffffff, 0xd8d8d8, 1.45));
 
 const maxAniso = renderer.capabilities.getMaxAnisotropy();
 const textureLoader = new THREE.TextureLoader();
@@ -172,34 +171,49 @@ function buildPlate() {
   return group;
 }
 
-async function buildWordmark(left, centerY, maxRight) {
+async function buildPhotoPanel() {
+  const map = await loadTexture("textures/fond-photo.png");
+  const side = PLATE.size - 2 * PLATE.bevel - 2 * PHOTO_INSET;
+  const radius = PLATE.radius - PLATE.bevel - PHOTO_INSET;
+  const geo = planarUV(new THREE.ShapeGeometry(roundedRect(side, side, radius), 32), side, side);
+  const mat = new THREE.MeshPhysicalMaterial({ map, roughness: 0.4, specularIntensity: 0.5, clearcoat: 0.8, clearcoatRoughness: 0.04 });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.receiveShadow = true;
+  mesh.position.z = 0.002;
+  return mesh;
+}
+
+// Titre extrudé, une ligne par entrée de data/wordmark.json, ancré par sa ligne de base basse.
+async function buildWordmark({ cap, lineGap, bottom, x, align, depth }) {
   const wm = await (await fetch("data/wordmark.json")).json();
-  const line = wm.lines[0];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg"><path d="${line.d}"/></svg>`;
-  const shapes = new SVGLoader().parse(svg).paths.flatMap((p) => SVGLoader.createShapes(p));
-  const width = line.bbox.x2 - line.bbox.x1;
-  const s = Math.min((maxRight - left) / width, 0.95 / wm.capHeight);
-  const depth = 0.3;
-  const bevel = 0.045;
-  const geo = new THREE.ExtrudeGeometry(shapes, {
-    depth: depth / s,
-    bevelEnabled: true,
-    bevelThickness: bevel / s,
-    bevelSize: (bevel * 0.8) / s,
-    bevelSegments: 6,
-    curveSegments: 16,
-  });
-  geo.scale(s, s, s);
-  geo.translate(-line.bbox.x1 * s, 0, bevel);
+  const s = cap / wm.capHeight;
+  const bevel = 0.05;
   const mat = new THREE.MeshPhysicalMaterial({
     color: COLORS.orange,
     roughness: 0.14,
     clearcoat: 1,
     clearcoatRoughness: 0.04,
   });
-  const mesh = shadowed(new THREE.Mesh(geo, mat));
-  mesh.position.set(left, centerY - (wm.capHeight * s) / 2, 0);
-  return mesh;
+  const group = new THREE.Group();
+  const n = wm.lines.length;
+  wm.lines.forEach((line, i) => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg"><path d="${line.d}"/></svg>`;
+    const shapes = new SVGLoader().parse(svg).paths.flatMap((p) => SVGLoader.createShapes(p));
+    const geo = new THREE.ExtrudeGeometry(shapes, {
+      depth: depth / s,
+      bevelEnabled: true,
+      bevelThickness: bevel / s,
+      bevelSize: (bevel * 0.8) / s,
+      bevelSegments: 6,
+      curveSegments: 16,
+    });
+    geo.scale(s, s, s);
+    const width = (line.bbox.x2 - line.bbox.x1) * s;
+    const left = align === "center" ? x - width / 2 : x;
+    geo.translate(left - line.bbox.x1 * s, bottom + (n - 1 - i) * (cap + lineGap), bevel);
+    group.add(shadowed(new THREE.Mesh(geo, mat)));
+  });
+  return group;
 }
 
 async function buildLogoTile(size, x, y) {
@@ -230,27 +244,20 @@ async function build() {
   const content = new THREE.Group();
   rig.add(buildPlate(), content);
 
-  const { header } = LAYOUT;
-  const headerY = header.top - header.height / 2;
-  content.add(await buildLogoTile(header.height, -SAFE + header.height / 2, headerY));
-  content.add(await buildWordmark(-SAFE + header.height + header.gap, headerY, SAFE));
+  content.add(await buildPhotoPanel());
+  content.add(await buildWordmark(LAYOUT.title));
+  if (LAYOUT.logo) content.add(await buildLogoTile(LAYOUT.logo.size, LAYOUT.logo.x, LAYOUT.logo.y));
 
   const stickers = await (await fetch("data/stickers.json")).json();
-  const bodyBottom = -SAFE;
-  const bodyCenter = (LAYOUT.bodyTop + bodyBottom) / 2;
-
-  const person = await buildSticker(stickers.personne, { height: LAYOUT.person.height });
-  person.position.set(-SAFE + person.userData.size.w / 2, bodyCenter, 0);
-
-  const pants = await buildSticker(stickers.pantalon, { height: LAYOUT.pants.height });
-  pants.position.set(LAYOUT.pants.x, bodyBottom + pants.userData.size.h / 2, 0.06); // posé sur la veste
-  pants.rotation.z = THREE.MathUtils.degToRad(LAYOUT.pants.rotation);
-
   const jacket = await buildSticker(stickers.veste, { width: LAYOUT.jacket.width });
-  jacket.position.set(LAYOUT.jacket.x, LAYOUT.bodyTop - jacket.userData.size.h / 2, 0);
+  jacket.position.set(LAYOUT.jacket.x, LAYOUT.jacket.y, 0.005);
   jacket.rotation.z = THREE.MathUtils.degToRad(LAYOUT.jacket.rotation);
 
-  content.add(person, pants, jacket);
+  const pants = await buildSticker(stickers.pantalon, { height: LAYOUT.pants.height });
+  pants.position.set(LAYOUT.pants.x, LAYOUT.pants.y, 0.065); // posé sur la veste
+  pants.rotation.z = THREE.MathUtils.degToRad(LAYOUT.pants.rotation);
+
+  content.add(jacket, pants);
 
   const view = VIEWS[VIEW] ?? VIEWS.front;
   rig.rotation.y = THREE.MathUtils.degToRad(view.yaw); // pivot : centre de la face avant

@@ -114,8 +114,52 @@ def build_sticker(name, target_h, border_ratio, hole_area=0, white=(250, 250, 25
     return {"texture": f"textures/sticker-{name}.png", "aspect": W / H, "outline": pts}
 
 
+# ---------------------------------------------------------------- fond photo
+# Cadrage carré dans la photo source (1449 × 2576) : x0, y0, côté, en pixels.
+# Le cadre déborde à droite de la photo : cette zone est complétée par réflexion,
+# puis floutée avec le reste de l'arrière-plan (elle passe sous les vêtements).
+BACKGROUND_CROP = (300, 520, 1300)
+
+
+def blur_without_subject(img, mask, sigma):
+    """Flou de l'arrière-plan seul (convolution normalisée) : la silhouette ne bave pas dans le flou."""
+    keep = 1.0 - mask
+    num = cv2.GaussianBlur(img * keep[..., None], (0, 0), sigma)
+    den = cv2.GaussianBlur(keep, (0, 0), sigma)[..., None]
+    return num / np.maximum(den, 1e-4)
+
+
+def build_background(size=2048, blur=14, bg_level=0.72, bottom_shade=0.55):
+    img = np.asarray(Image.open(SRC / "photo-lifestyle.jpg").convert("RGB")).astype(np.float32) / 255
+    mask = np.asarray(Image.open(CUT / "personne-masque.png")).astype(np.float32) / 255
+    x0, y0, side = BACKGROUND_CROP
+    pad_r = max(0, x0 + side - img.shape[1])
+    pad_b = max(0, y0 + side - img.shape[0])
+    img = cv2.copyMakeBorder(img, 0, pad_b, 0, pad_r, cv2.BORDER_REFLECT)
+    mask = cv2.copyMakeBorder(mask, 0, pad_b, 0, pad_r, cv2.BORDER_CONSTANT, value=0)
+
+    # Arrière-plan : flou « mode portrait » + assombrissement pour faire ressortir le sujet.
+    hard = cv2.dilate((mask > 0.15).astype(np.float32), np.ones((9, 9), np.uint8))
+    bg = blur_without_subject(img, hard, blur) * bg_level
+    alpha = cv2.GaussianBlur(mask, (0, 0), 1.2)[..., None]
+    comp = img * alpha + bg * (1 - alpha)
+
+    comp = comp[y0 : y0 + side, x0 : x0 + side]
+    comp = cv2.resize(comp, (size, size), interpolation=cv2.INTER_LANCZOS4)
+
+    # Dégradé sombre en bas (lisibilité du titre) + léger vignettage.
+    yy, xx = np.mgrid[0:size, 0:size].astype(np.float32) / size
+    shade = 1 - (1 - bottom_shade) * np.clip((yy - 0.45) / 0.55, 0, 1) ** 1.4
+    vignette = 1 - 0.28 * np.clip(((xx - 0.5) ** 2 + (yy - 0.45) ** 2) / 0.5, 0, 1)
+    comp = np.clip(comp * (shade * vignette)[..., None], 0, 1)
+
+    Image.fromarray((comp * 255 + 0.5).astype(np.uint8)).save(TEX / "fond-photo.png")
+    print("fond-photo.png", (size, size))
+
+
 if __name__ == "__main__":
     build_logo()
+    build_background()
     stickers = {
         "veste": build_sticker("veste", 1500, 0.022),
         "pantalon": build_sticker("pantalon", 1500, 0.026),
