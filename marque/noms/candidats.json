@@ -1,0 +1,1650 @@
+{
+  "date": "2026-11-19",
+  "methode": "Sept générateurs, chacun sous un angle (objets, gestes, lumière, progrès, inventé, classique, voix), puis trois jurys indépendants notent chaque nom de 0 à 10 : un lycéen de Première, un parent qui paie l'abonnement, un stratège de marque. Les dix premiers passent ensuite une vérification de conflits par recherche web.",
+  "angles_en_echec": [
+    "générer:gestes:r1"
+  ],
+  "nombre_de_noms": 64,
+  "candidats": [
+    {
+      "nom": "Bossa",
+      "total_sur_30": 17,
+      "notes": {
+        "eleve": {
+          "note": 6,
+          "avis": "« Je bosse sur Bossa » sort tout seul, même si ça fait bar d’ambiance."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Le clin d'œil à « bosser » plaît, mais on pense d'abord à la bossa-nova."
+        },
+        "strategie": {
+          "note": 8,
+          "avis": "Bosser, bossa-nova, bosse des maths : chaleureux, malin, naturel. Antériorités à vérifier."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Détournement de « bosser », croisé avec la bossa-nova et l’expression « avoir la bosse des maths ».",
+          "raison": "Il marie l’effort régulier et le rythme détendu de la bossa-nova, soit exactement la sensation de révisions maîtrisées que l’application veut installer."
+        }
+      ]
+    },
+    {
+      "nom": "Fluo",
+      "total_sur_30": 16,
+      "notes": {
+        "eleve": {
+          "note": 7,
+          "avis": "Le surligneur des révisions : court, percutant, je le dirais sans gêne."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Le surligneur évoque les révisions, mais le mot paraît criard et peu sérieux."
+        },
+        "strategie": {
+          "note": 5,
+          "avis": "Colle parfaitement à l'accent citron, mais mot générique, criard et difficile à protéger."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Abréviation familière et très usuelle de « fluorescent », la couleur des surligneurs et des étoiles qui brillent au plafond des chambres d’adolescents.",
+          "raison": "Déjà présent dans le quotidien des lycéens, il renvoie directement à l’unique accent citron du prototype et au geste même de la révision, surligner l’essentiel, en quatre lettres parfaitement lisibles sous une icône."
+        },
+        {
+          "angle": "voix",
+          "origine": "Abréviation familière de « fluorescent », le mot que tout lycéen utilise pour désigner son surligneur (« tu me prêtes ton fluo ? »).",
+          "raison": "Le surligneur est l'outil emblématique des révisions et sa couleur rappelle l'accent citron de l'identité actuelle, le tout dans un nom court, joyeux et impossible à mal écrire."
+        }
+      ]
+    },
+    {
+      "nom": "Lucarne",
+      "total_sur_30": 15,
+      "notes": {
+        "eleve": {
+          "note": 5,
+          "avis": "« Pleine lucarne » parle aux passionnés de foot, mais le mot fait grenier."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Joli mot, mais on pense au but en pleine lucarne, pas aux révisions."
+        },
+        "strategie": {
+          "note": 7,
+          "avis": "Lumière d'en haut et lucarne du foot : iconique, très français, mais référencement disputé."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot français qui désigne la fenêtre percée dans un toit pour laisser entrer la lumière, et que le football a popularisé avec le tir parfait logé « en pleine lucarne ».",
+          "raison": "Il prolonge la scène du prototype éclairée par le haut, avec un clin d’œil au football que les lycéens saisiront aussitôt et un vrai mot français, étranger au vocabulaire scolaire, que les parents trouveront sérieux et qui reste déposable."
+        }
+      ]
+    },
+    {
+      "nom": "Ajour",
+      "total_sur_30": 14.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "On entend « mise à jour », la notification qu’on repousse toujours."
+        },
+        "parent": {
+          "note": 8,
+          "avis": "Promesse idéale pour un parent : un enfant à jour. Sobre, sérieux, moderne."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Élégant, mais on l'écrirait en deux mots, et ajourné veut dire recalé au bac."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot rare mais bien réel qui désigne une ouverture laissant passer le jour, et qui se prononce exactement comme l’expression « à jour ».",
+          "raison": "Le nom réunit la lumière qui entre et la promesse même du produit, un élève à jour dans chaque matière toute l’année, et son orthographe se dicte d’une phrase : « comme à jour, en un seul mot »."
+        }
+      ]
+    },
+    {
+      "nom": "Capto",
+      "total_sur_30": 14.5,
+      "notes": {
+        "eleve": {
+          "note": 7.5,
+          "avis": "« T’as capté ? » et la photo du cours en un mot : naturel, je l’adopte."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Trop argotique, et « capter » évoque aussi la collecte de données personnelles."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Homonyme d'un logiciel de capture, et vante la photo plutôt que le classeur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Nom forgé sur le verbe « capter », qui signifie à la fois saisir une image et comprendre (« t'as capté ? »), avec la terminaison familière en -o.",
+          "raison": "Le double sens colle exactement au produit, puisqu'on capte la page en photo puis on capte le cours, et il s'appuie sur un verbe que les lycéens emploient tous les jours."
+        }
+      ]
+    },
+    {
+      "nom": "Claro",
+      "total_sur_30": 13.5,
+      "notes": {
+        "eleve": {
+          "note": 6.5,
+          "avis": "Court, limpide, compris par tous ceux qui font espagnol : facile à dire."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Simple et positif, mais générique, il évoque « c'est clair » plus que les cours."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Naturel et chaleureux, mais mot espagnol courant, marque d'un géant latino-américain des télécoms."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Mot espagnol signifiant « clair » et « évidemment », cousin direct de l'expression « c'est clair » que les lycéens emploient à tout bout de champ.",
+          "raison": "Il promet des cours limpides et une année lisible d'un coup d'œil, en deux syllabes nettes qui ne laissent aucune hésitation à l'oral comme à l'écrit."
+        }
+      ]
+    },
+    {
+      "nom": "Courange",
+      "total_sur_30": 13.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "On croirait une faute d’orthographe sur « courage », c’est gênant."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Triple sens habile, mais on croirait « courage » mal écrit, un comble pour l'école."
+        },
+        "strategie": {
+          "note": 6,
+          "avis": "Inventé et disponible : cours rangés et courage, mais le correcteur automatique écrira courage."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Mot-valise formé de « cours » et de « range », dans lequel on entend aussi « courage ».",
+          "raison": "Il raconte un classeur où les cours se rangent tout seuls et glisse un encouragement chaleureux qui plaît aux parents sans faire la leçon aux lycéens."
+        }
+      ]
+    },
+    {
+      "nom": "Tabula",
+      "total_sur_30": 13.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Ça sent le latin, et la blague « t’as bu, là ? » arrive aussitôt."
+        },
+        "parent": {
+          "note": 6,
+          "avis": "Sérieux, scolaire et cultivé, entre tableau noir et tablette, mais muet sur les révisions."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Latin froid ; la tabula rasa contredit l'archivage, et l'application Tabula note existe déjà."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Reprise du latin tabula, la tablette sur laquelle écrivaient les écoliers romains, dont la première syllabe rappelle aussi l'onglet (« tab » en anglais).",
+          "raison": "Net et posé, ce nom savant mais simple à prononcer rassure les parents et inscrit l'application dans la lignée des fournitures d'écolier plutôt que des gadgets."
+        },
+        {
+          "angle": "classique",
+          "origine": "Nom latin de la tablette de cire sur laquelle les écoliers romains prenaient leurs notes, lointain ancêtre du cahier.",
+          "raison": "C'est le support de cours originel remis au goût du jour : un mot rond, facile à prononcer et absent du vocabulaire courant, donc distinctif, qui relie avec malice deux mille ans de prise de notes."
+        }
+      ]
+    },
+    {
+      "nom": "Listo",
+      "total_sur_30": 13,
+      "notes": {
+        "eleve": {
+          "note": 5,
+          "avis": "Simple, compris grâce à l’espagnol, mais ça fait appli de listes de courses."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Évoque les listes et la préparation, mais fait penser à une appli de courses."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Naturel à dire, mais très répandu, et il évoque une simple liste de tâches."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot espagnol signifiant « prêt », dont la sonorité évoque aussi en français la liste des choses à faire.",
+          "raison": "Bref et naturel à prononcer, il dit l'objectif de chaque contrôle comme du bac, être prêt, tout en rappelant le suivi des devoirs que l'application tient à jour."
+        },
+        {
+          "angle": "invente",
+          "origine": "Croisement du français « liste » et de l’espagnol « listo », qui veut dire à la fois « prêt » et « malin ».",
+          "raison": "Il incarne l’état visé avant chaque contrôle et avant le bac (tout est listé, on est prêt), avec un double sens que les nombreux élèves qui apprennent l’espagnol saisissent aussitôt."
+        },
+        {
+          "angle": "voix",
+          "origine": "Mot espagnol signifiant « prêt » et « dégourdi », qui évoque aussi en français la liste des chapitres et des devoirs à cocher.",
+          "raison": "Il formule l'objectif de tout élève à la veille d'un contrôle, être prêt, et se prononce sans la moindre ambiguïté dans « je révise sur Listo »."
+        }
+      ]
+    },
+    {
+      "nom": "Léon",
+      "total_sur_30": 13,
+      "notes": {
+        "eleve": {
+          "note": 5,
+          "avis": "Un prénom, c’est attachant, mais on pense à Léon de Bruxelles."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Chaleureux comme un précepteur de confiance, mais on pense d'abord à Léon de Bruxelles."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Chaleureux et proche de leçon, mais prénom de petit frère, très encombré."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Prénom classique revenu à la mode, dont l'orthographe frôle malicieusement celle du mot « leçon ».",
+          "raison": "Il donne à l'appli l'allure d'un camarade fiable à qui l'on confie ses cours (« t'as mis ton cours sur Léon ? »), avec une chaleur que les parents trouvent rassurante."
+        }
+      ]
+    },
+    {
+      "nom": "Révo",
+      "total_sur_30": 12,
+      "notes": {
+        "eleve": {
+          "note": 5,
+          "avis": "Direct et parlant, mais on hésite sur l’accent, et ça rappelle Revolut."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "On entend « révolution » avant « révisions », un message court mais brouillé."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Abréviation descriptive, donc juridiquement faible ; accent gênant et nombreuses marques Revo."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Abréviation de « révision » qui sonne aussi comme le diminutif familier de « révolution ».",
+          "raison": "Ses deux syllabes énergiques s’adoptent tout de suite et placent les révisions au cœur de la marque, sans le ton austère du soutien scolaire."
+        },
+        {
+          "angle": "voix",
+          "origine": "Abréviation de « révisions » construite comme les raccourcis du lycée (« exo », « philo », « interro »), qui fait aussi penser à une petite révolution.",
+          "raison": "C'est littéralement ce qu'on vient y faire, sous une forme qu'un lycéen aurait pu inventer lui-même, ce qui la rend immédiatement familière."
+        }
+      ]
+    },
+    {
+      "nom": "Spira",
+      "total_sur_30": 12,
+      "notes": {
+        "eleve": {
+          "note": 4,
+          "avis": "Fluide à dire, mais on dirait une appli de respiration ou un aspirateur."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Rappelle le cahier à spirale et l'inspiration, mais la spirale de l'échec guette."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Icône évidente, mais la spirale évoque l'engrenage infernal et le cahier de collège."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Troncature de « spirale », la reliure du cahier, qui rejoint le latin spira, la spire.",
+          "raison": "Il évoque une révision en spirale où chaque leçon revient au bon moment, avec un écho à « inspirer » qui donne au nom une note sereine et ambitieuse."
+        }
+      ]
+    },
+    {
+      "nom": "Trova",
+      "total_sur_30": 12,
+      "notes": {
+        "eleve": {
+          "note": 4,
+          "avis": "Correct à dire, mais creux, et on pense tout de suite à Trivago."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque l'idée de retrouver ses cours, mais reste vague et sonne étranger."
+        },
+        "strategie": {
+          "note": 5,
+          "avis": "Court, on y entend trouver, champ libre en éducation, mais personnalité encore pâle."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Contraction de « tri » et de « trouver », Trova signifie justement « il trouve » en italien.",
+          "raison": "Il porte la promesse centrale du produit (tout est trié, donc tout se retrouve) en deux syllabes chantantes qu’on prononce et qu’on écrit sans hésiter."
+        }
+      ]
+    },
+    {
+      "nom": "Capito",
+      "total_sur_30": 11.5,
+      "notes": {
+        "eleve": {
+          "note": 4.5,
+          "avis": "Facile, mais c’est la blague italienne des profs et des pères."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Évoque la compréhension, mais sonne autoritaire et familier, façon film de mafia."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Ton de reproche, et une application francophone d'éducation financière porte déjà ce nom."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot italien signifiant « compris », passé dans le français familier, qui commence justement par « cap », la direction que l'on se fixe.",
+          "raison": "Il résume la promesse de l'application, garder le cap et avoir vraiment compris ses leçons, avec un clin d'œil complice qui parle aux lycéens tout en rassurant les parents."
+        },
+        {
+          "angle": "voix",
+          "origine": "Mot italien signifiant « compris », que les Français emploient déjà pour plaisanter (« c'est capito ? »).",
+          "raison": "Il résume la promesse d'un cours enfin compris, se glisse sans effort dans « je révise sur Capito » et parle aussi bien aux adolescents qu'aux parents."
+        }
+      ]
+    },
+    {
+      "nom": "Filrouge",
+      "total_sur_30": 11.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "C’est l’expression des profs en cours, ça fait trop scolaire."
+        },
+        "parent": {
+          "note": 6,
+          "avis": "Expression familière et rassurante, en phase avec le suivi annuel, mais plus formule que marque."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Expression très courante, déjà exploitée partout, et le rouge rappelle le stylo du correcteur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Fusion en un seul mot de l'expression « fil rouge », qui désigne ce qui relie toutes les étapes d'un parcours du début à la fin.",
+          "raison": "Il incarne une application qui accompagne l'élève toute l'année et relie chaque leçon, chaque devoir et chaque note jusqu'au bac."
+        }
+      ]
+    },
+    {
+      "nom": "Scripta",
+      "total_sur_30": 11.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Sérieux et un peu froid, on dirait une maison d’édition ou un logiciel."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Rassurant sur la trace écrite qui reste, mais ce latin solennel manque de modernité."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Ton d'éditeur juridique ou universitaire, nom très exploité, aucune complicité avec les lycéens."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Tiré de l'adage latin « Verba volant, scripta manent » : les paroles s'envolent, les écrits restent.",
+          "raison": "Il résume la promesse du classeur, où chaque cours écrit est conservé et rangé pour de bon, et sa sonorité nette rassure les parents sans paraître poussiéreuse aux lycéens."
+        }
+      ]
+    },
+    {
+      "nom": "Lampion",
+      "total_sur_30": 11,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Ça fait bal du 14 Juillet, et un pion le soir, non merci."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Ambiance kermesse, et le « pion » caché évoque la surveillance plutôt que l'aide."
+        },
+        "strategie": {
+          "note": 5,
+          "avis": "Lanterne très iconique, mais parfum de kermesse, et le pion caché évoque la surveillance."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Nom de la lanterne de papier des soirs de fête, emprunté à l’italien lampione, qui cache malicieusement le « pion », figure bien connue des couloirs du lycée.",
+          "raison": "Il apporte la chaleur d’une petite lumière qui accompagne les révisions du soir sans éblouir, avec une pointe d’humour qui fera sourire les élèves comme les parents."
+        }
+      ]
+    },
+    {
+      "nom": "Perfo",
+      "total_sur_30": 11,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "C’est la perforatrice du bureau, et « perf » évoque aussi la perfusion."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "La perforatrice est bien scolaire, mais « perf » évoque la pression ou la perfusion."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Malin pour un classeur, mais évoque la pression de la performance, voire la perfusion."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Abréviation scolaire de « perforatrice », l'outil qui fait entrer chaque feuille dans le classeur, avec un clin d'œil à la « perf » des bonnes performances.",
+          "raison": "Il évoque le geste même de ranger une page au bon endroit, sonne comme un mot de salle de classe et passe tout seul dans « t'as mis ton cours sur Perfo ? »."
+        }
+      ]
+    },
+    {
+      "nom": "Tomo",
+      "total_sur_30": 11,
+      "notes": {
+        "eleve": {
+          "note": 6,
+          "avis": "Les tomes de mangas, « ami » en japonais : simple, sympa, je le dirais."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Sympathique mais enfantin, façon manga, et le lien avec les cours reste lointain."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Conflit frontal : l'application Tomo AI, compagnon de révision par abonnement, existe déjà."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Dérivé de « tome », le volume d'une série, adouci par un « o » final ; le mot signifie par ailleurs « ami » en japonais.",
+          "raison": "Il invite à voir la Seconde, la Première et la Terminale comme les trois tomes d'une même histoire, dans un nom de deux syllabes chaleureux et facile à retenir."
+        },
+        {
+          "angle": "classique",
+          "origine": "Du grec « tomos », la partie découpée d'un ouvrage, qui a donné le mot français « tome ».",
+          "raison": "Familier des lycéens grâce aux tomes de mangas, il fait de chaque matière un volume de leur collection personnelle, et signifie en prime « ami » en japonais, ce qui ajoute une note de complicité."
+        }
+      ]
+    },
+    {
+      "nom": "Astrolabe",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Trop long et trop savant, on dirait un musée de la marine."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Cultivé et rassurant sur l'orientation, mais long, désuet et loin du quotidien scolaire."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Idée d'orientation et icône superbes, mais savant, long, jamais prononcé spontanément."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Instrument ancien dont le nom grec signifie « qui saisit les astres » et qui permettait aux navigateurs de se repérer grâce à la hauteur du soleil et des étoiles.",
+          "raison": "Il fait du classeur une carte du ciel qui relie les leçons comme des constellations et indique à chaque instant où l’on en est avant les contrôles et le bac, avec une touche d’érudition qui plaît aux parents."
+        }
+      ]
+    },
+    {
+      "nom": "Balise",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "On pense aux balises HTML, ou à « baliser », c’est-à-dire avoir peur."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Rassure par l'idée de repère, mais en argot, « baliser » signifie avoir peur."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Mot banal et, familièrement, baliser veut dire avoir peur : l'inverse de la promesse."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot courant qui désigne à la fois le feu signalant un passage aux marins la nuit et le repère qui jalonne un sentier.",
+          "raison": "Il traduit la promesse d’une année scolaire balisée, où chaque leçon et chaque échéance s’allume au bon moment, avec un mot simple et sûr que tout le monde écrit sans hésiter."
+        }
+      ]
+    },
+    {
+      "nom": "Imparo",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Le « im- » nasal accroche, et à l’oreille, impossible de savoir l’écrire."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Sens italien juste, mais opaque en France, où il sonne comme un médicament."
+        },
+        "strategie": {
+          "note": 5,
+          "avis": "Écho d'imparable et sens italien juste, mais froid, et l'application Impara existe déjà."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot italien signifiant « j'apprends », dont la sonorité rappelle l'adjectif français « imparable ».",
+          "raison": "Il relie l'apprentissage régulier à un sentiment de maîtrise solide, exactement ce que ressent l'élève quand ses révisions sont sous contrôle."
+        }
+      ]
+    },
+    {
+      "nom": "Lampo",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Court mais plat, on dirait une marque de lampes de bureau."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque une boutique de luminaires plutôt que les cours ou l'organisation."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "La lampe colle à l'univers visuel, mais sonorité de mascotte et sens italien perdu."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "De l'italien lampo, « éclair », que l'on retrouve dans chiusura lampo, la fermeture Éclair de la trousse, avec un clin d'œil à la lampe de bureau.",
+          "raison": "Il prolonge l'univers visuel éclairé par le haut et promet le petit déclic de clarté qu'on éprouve quand tout est enfin rangé, sans sonner comme un produit technologique."
+        }
+      ]
+    },
+    {
+      "nom": "Triano",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Joli son, mais vide de sens, et on entend « Trianon »."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Jolie sonorité, mais on pense à un piano, pas à l'école ni aux révisions."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Inventé, donc déposable, mais opaque, et trop proche du Trianon de Versailles."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Fusion de « tri », l'action du trieur, et d'« anneau », les anneaux du classeur, avec une finale qui chante comme « piano ».",
+          "raison": "Il résume la promesse, trier les cours et les tenir ensemble toute l'année, dans un mot musical et élégant, ni enfantin ni administratif."
+        }
+      ]
+    },
+    {
+      "nom": "Vado",
+      "total_sur_30": 10.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Court mais vide de sens, et tout le monde pensera à Dark Vador."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Court mais opaque, il ne dit rien des cours ni des révisions."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Court et déposable, mais son sens italien ne raconte rien du classeur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Du latin et de l'italien « vado », « je vais », mot qui désigne aussi en espagnol le gué permettant de traverser une rivière.",
+          "raison": "Ses deux syllabes dynamiques disent l'avancée continue de la seconde au bac, sur un ton chaleureux, jamais scolaire."
+        }
+      ]
+    },
+    {
+      "nom": "Chevet",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Doux, mais ça évoque la table de nuit et les livres de mamie."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Le livre de chevet rassure, mais le mot évoque aussi le chevet d'un malade."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Mot courant qui évoque le sommeil, le mobilier, voire le malade qu'on veille."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot courant qui évoque la lampe de chevet et l’expression « livre de chevet », l’ouvrage qu’on garde à portée de main et qu’on rouvre sans cesse.",
+          "raison": "Il promet un classeur fidèle, toujours là le soir sous la petite lumière de la chambre, sur un ton chaleureux et posé qui rassure les parents sans sonner scolaire aux oreilles des élèves."
+        }
+      ]
+    },
+    {
+      "nom": "Classo",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Trop proche de « classeur », on dirait des fournitures premier prix."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Immédiatement scolaire et organisé, mais un peu enfantin, et trop proche de Mon Classeur."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Trop proche de Mon Classeur et de la racine générique classe."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Racine de « classe » et de « classeur » prolongée d’un « o » vif, avec un écho de « lasso », l’outil qui rassemble tout.",
+          "raison": "Court, net et naturel dans une phrase (« mets-le dans Classo »), il évoque à la fois le classeur et ce qui est « classe », sans être un mot du dictionnaire."
+        }
+      ]
+    },
+    {
+      "nom": "Plico",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "« Plic, ploc » : ça fait jouet pour enfants, je ne le dirais pas."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque un jouet ou le plic-ploc de la pluie, sans promesse scolaire perceptible."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Clin d'œil malin à la copie double, mais homophone de la poussette Pliko."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Formé sur « pli », la feuille pliée de la copie double, et sur l'italien plico, qui désigne un pli ou un paquet de documents.",
+          "raison": "Sa sonorité légère évoque la feuille glissée au bon endroit, et l'expression « prendre le pli » traduit l'habitude de réviser régulièrement que l'application installe."
+        }
+      ]
+    },
+    {
+      "nom": "Rangeur",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "« Range ta chambre » en guise de nom : on dirait ma mère."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Limpide sur le rangement, mais rappelle une fourniture de bureau et oublie les révisions."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Descriptif et utilitaire, sans chaleur, il réduit le produit au seul rangement."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Nom d'objet inventé à partir du verbe « ranger », sur le modèle de « classeur » et de « trieur ».",
+          "raison": "Il formule la promesse en un seul mot, le classeur qui se range tout seul, et sonne comme une fourniture familière, immédiatement comprise des parents comme des élèves."
+        }
+      ]
+    },
+    {
+      "nom": "Stoa",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 4,
+          "avis": "Court et intrigant, mais ça fait gourou du stoïcisme sur TikTok."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Le calme stoïcien séduit, mais le nom reste trop énigmatique pour comprendre l'offre."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Court et serein, mais une application de stoïcisme nommée Stoa existe déjà."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Nom grec du portique d'Athènes où Zénon de Citium réunissait ses élèves, et qui a donné son nom au stoïcisme.",
+          "raison": "Deux syllabes calmes, simples à dire et à écrire, qui évoquent à la fois un lieu d'étude abrité et la sérénité stoïcienne : la promesse même de révisions maîtrisées, sans rien d'enfantin ni d'institutionnel."
+        }
+      ]
+    },
+    {
+      "nom": "Triana",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Joli, mais c’est un prénom de fille, beaucoup de garçons ne l’assumeront pas."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Élégant, mais on dirait un prénom, et le fil d'Ariane reste invisible."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Joli fil d'Ariane caché, mais quartier de Séville, prénom courant, nom très exploité."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Fusion de « tri » et d’« Ariane », en référence au fil d’Ariane qui guide hors du labyrinthe.",
+          "raison": "Élégant et chaleureux, il évoque un classeur qui trie chaque page puis guide l’élève de la rentrée jusqu’au bac, avec une douceur qui rassure les parents."
+        }
+      ]
+    },
+    {
+      "nom": "Zéno",
+      "total_sur_30": 10,
+      "notes": {
+        "eleve": {
+          "note": 6,
+          "avis": "On y entend « zen », c’est court et marquant, mais gare au « zéro »."
+        },
+        "parent": {
+          "note": 2,
+          "avis": "Trop proche de « zéro », la pire note qu'un parent puisse imaginer."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Une lettre le sépare de zéro, fâcheux pour une application de suivi des notes."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Forme raccourcie de Zénon, nom de deux philosophes grecs célèbres : le fondateur du stoïcisme et l'auteur du paradoxe d'Achille et de la tortue.",
+          "raison": "On y entend « zen » dès la première syllabe, et ce nom bref, net et intemporel incarne un esprit tranquille qui avance avec régularité, comme la tortue du paradoxe que le rapide Achille ne parvient jamais à rattraper."
+        }
+      ]
+    },
+    {
+      "nom": "Boncap",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Ça sonne comme un conseil de parents ou une école de voile."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Idée rassurante, mais soudure maladroite ; « cap » signifie mensonge en argot anglais."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Expression banale soudée, allure de service d'orientation, faible pouvoir distinctif."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Fusion en un seul mot de l'expression « bon cap », la direction juste à tenir.",
+          "raison": "Il promet à l'élève de savoir à chaque instant s'il suit la bonne trajectoire vers le bac, avec une simplicité qui rassure aussi les parents."
+        }
+      ]
+    },
+    {
+      "nom": "Chemina",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "On dirait un prénom, ou une appli de la SNCF."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "L'idée de cheminer rassure, mais on dirait un prénom, et l'école reste invisible."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Évoque un prénom ou une cheminée, et la chemise cartonnée ne s'entend plus."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Croisement de « chemise », la chemise cartonnée où le lycéen range ses feuilles, et du verbe « cheminer ».",
+          "raison": "Il évoque une progression régulière, pas à pas, tout au long de l'année, ce qui incarne la promesse de révisions maîtrisées et rassure autant l'élève que ses parents."
+        }
+      ]
+    },
+    {
+      "nom": "Gradus",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "Lourd et latin, on entend « gras » : personne ne dirait ça."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Sérieux et tourné vers la progression, mais ce latin austère sent la méthode d'autrefois."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Latin de manuel ancien, sonorité lourde et institutionnelle, à l'opposé de l'esprit lycéen."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot latin signifiant « marche » ou « degré », connu par l'expression « Gradus ad Parnassum », qui a donné son titre à plusieurs méthodes d'apprentissage célèbres.",
+          "raison": "Il évoque une progression marche après marche vers la réussite, avec une sonorité sérieuse qui inspire confiance aux parents sans paraître institutionnelle."
+        }
+      ]
+    },
+    {
+      "nom": "Numa",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Doux mais flou, on pense à Nouméa ou au mème « Numa Numa »."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Prénom à la mode et référence historique obscure, sans aucun lien avec l'école."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Court mais encombré, accélérateur parisien et chaîne hôtelière, référence romaine inconnue des lycéens."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Nom de Numa Pompilius, roi légendaire de Rome à qui la tradition attribue la réforme du calendrier qui donna à l'année ses douze mois.",
+          "raison": "Court, doux et résolument moderne, il fait aussi penser au numérique et raconte discrètement la promesse du produit : un classeur qui met de l'ordre dans toute l'année scolaire."
+        }
+      ]
+    },
+    {
+      "nom": "Orama",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Ça rime avec Obama, on hésite sur le « h », et le sens nous échappe."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque vaguement un panorama ou une marque de cosmétiques, sans message scolaire."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Vue d'ensemble pertinente, mais orthographe hésitante et moteur de recherche Orama déjà installé."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Du grec « horama », la vue ou le spectacle, que l'on retrouve dans le mot « panorama ».",
+          "raison": "Il évoque la vue d'ensemble que l'application offre sur l'année, entre ce qui est acquis et ce qui reste à revoir, avec trois syllabes ouvertes et lumineuses qui se retiennent aussitôt."
+        }
+      ]
+    },
+    {
+      "nom": "Tadam",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 3.5,
+          "avis": "Drôle une fois, mais ça fait spectacle de magie pour enfants."
+        },
+        "parent": {
+          "note": 2,
+          "avis": "Peu sérieux, il suggère une magie qui ferait les devoirs à la place du lycéen."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Chaleureux et drôle, mais orthographe flottante et magie qui ramène à l'intelligence artificielle."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Onomatopée française du dévoilement, celle que l'on lance quand quelque chose apparaît comme par magie (« et… tadam ! »).",
+          "raison": "Le nom met en scène le moment clé du produit, la photo qui se range toute seule dans la bonne matière et la bonne leçon, avec la pointe d'humour que recherche la marque."
+        }
+      ]
+    },
+    {
+      "nom": "Trimémo",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "On entend « trimestre », donc bulletin, et c’est laborieux à prononcer."
+        },
+        "parent": {
+          "note": 6,
+          "avis": "Dit exactement ce que fait l'appli, trier puis retenir, mais reste un peu technique."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Descriptif et fonctionnel, digne d'une gamme de fournitures de bureau."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Contraction de « tri » et de « mémo », les deux gestes du produit : classer, puis retenir.",
+          "raison": "Il énonce la promesse en trois syllabes limpides, sans jargon technologique, et sonne sérieux pour les parents tout en restant léger pour les élèves."
+        }
+      ]
+    },
+    {
+      "nom": "Éclaircie",
+      "total_sur_30": 9.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Joli mais long, dur à écrire, on dirait un bulletin météo."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Apaisant et positif, mais on pense à la météo, et l'école n'apparaît pas."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Joli, mais long, accentué, et l'on croirait une application météo."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot de la météo qui désigne le moment où les nuages s’écartent et où la lumière revient.",
+          "raison": "Il incarne exactement la clarté qui succède à la confusion, sur un ton calme et rassurant qui parle aux parents sans rien d’enfantin pour un élève de Terminale."
+        }
+      ]
+    },
+    {
+      "nom": "Archi",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 4,
+          "avis": "« Archi bien » se dit encore, mais on pense surtout aux archives poussiéreuses."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque l'architecture ou des archives poussiéreuses plutôt que des révisions vivantes."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Préfixe générique difficile à protéger, et archi évoque d'abord l'architecture."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Tiré du préfixe familier « archi » qui renforce un adjectif (« archiconnu », « archiplein ») et qui rappelle aussi le verbe « archiver », au cœur du classement automatique.",
+          "raison": "Il sonne comme une exclamation d'adolescent tout en suggérant un classeur parfaitement tenu, et se glisse naturellement dans « t'as mis ton cours sur Archi ? »."
+        }
+      ]
+    },
+    {
+      "nom": "Calmos",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Expression de parents, et ça sonne comme un calmant vendu en pharmacie."
+        },
+        "parent": {
+          "note": 2,
+          "avis": "Argot qui invite à lever le pied, l'inverse de ce qu'un parent finance."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Fidèle à la promesse, mais daté, et les parents y liront du laisser-aller."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Adverbe du français familier (« calmos ! ») formé sur « calme » avec la terminaison populaire en -os, comme « rapidos ».",
+          "raison": "Il incarne des révisions maîtrisées et sans panique, avec une pointe d'autodérision qui plaît aux adolescents et une promesse de sérénité qui rassure les parents."
+        }
+      ]
+    },
+    {
+      "nom": "Capsa",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Ça sonne comme un médicament ou une banque, aucune envie de l’ouvrir."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Opaque pour un parent, il évoque une capsule ou un médicament, pas l'école."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Court, mais Capsa renvoie surtout à des jeux de poker chinois déconseillés aux mineurs."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Du latin capsa, l'étui cylindrique où les écoliers romains rangeaient leurs rouleaux, lointain ancêtre de la trousse et du cartable.",
+          "raison": "Bref et percutant, il contient le mot « cap » et suggère un rangement fidèle qui aide l'élève à garder le cap jusqu'au bac."
+        },
+        {
+          "angle": "classique",
+          "origine": "Nom latin du coffret cylindrique dans lequel les écoliers romains rangeaient et transportaient leurs rouleaux, à l'origine des mots « caisse » et « châsse ».",
+          "raison": "C'est littéralement la boîte qui range et emporte tous les cours de l'élève, sous un nom de deux syllabes, percutant et neuf, qui s'écrit sans hésitation comme « capsule »."
+        }
+      ]
+    },
+    {
+      "nom": "Clémo",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "C’est le surnom du Clément de la classe, il va souffrir toute l’année."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Le « mémo » parle de révisions, mais l'ensemble sonne comme un surnom d'enfant."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Ressemble au surnom de Clément ou Clémence, accent gênant, clé peu perceptible."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Contraction de « clé » et de « mémo » : la clé de tout ce qu’il faut retenir.",
+          "raison": "Doux et familier comme un prénom, il installe un compagnon de confiance pour toute l’année, que les lycéens citent sans gêne et que les parents retiennent aussitôt."
+        }
+      ]
+    },
+    {
+      "nom": "Délos",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Ça fait restaurant grec, et prononce-t-on le « s » final ?"
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Élégant mais opaque, ce nom d'île grecque évoque une agence de voyages."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Érudit, accentué, orthographe incertaine à l'oral, nom déjà très exploité."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Nom de l'île grecque où serait né Apollon, dieu de la lumière et des arts, tiré d'un adjectif grec qui signifie « clair, visible ».",
+          "raison": "Il promet la clarté que recherche l'élève qui se sent débordé, avec un nom élégant, rare et lumineux qui inspire confiance aux parents."
+        }
+      ]
+    },
+    {
+      "nom": "Solstice",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Joli mot, mais ça fait parfum ou festival, pas appli de cours."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Beau mot d'astronomie au parfum ésotérique, sans lien perceptible avec les cours."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Mot très exploité qui évoque un événement rare, pas un compagnon quotidien."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Mot d’astronomie désignant le moment où le soleil atteint le point extrême de sa course, celui de décembre marquant la nuit la plus longue, après laquelle les jours rallongent.",
+          "raison": "Il raconte l’année scolaire comme une lumière qui gagne un peu de terrain chaque jour jusqu’au bac, avec une sonorité mûre et élégante qui ne fait ni enfantin ni institutionnel."
+        }
+      ]
+    },
+    {
+      "nom": "Valido",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "« Validé » vieillit déjà, et on pense à la borne du passe Navigo."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Tic de langage lycéen qui vieillira vite et évoque un composteur de tickets."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Expression lycéenne qui vieillit déjà, et sonorité administrative, presque juridique."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "voix",
+          "origine": "Inspiré du « validé ! » que les lycéens lancent pour approuver quelque chose, avec une terminaison en -o qui en fait un nom propre, le mot signifiant aussi « valable » en espagnol et en italien.",
+          "raison": "Il transforme chaque chapitre révisé en petite victoire cochée, une logique de progression qui motive l'élève et rassure le parent qui paie l'abonnement."
+        }
+      ]
+    },
+    {
+      "nom": "Écrito",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Ça rime avec burrito, et l’accent initial complique la saisie au clavier."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Rappelle l'écrit du bac, mais sonne fantaisiste et se confond avec « écriteau »."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Homophone d'écriteau : le test de l'orthographe échoue, et l'accent initial gêne en ligne."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Contraction d'« écritoire », le nécessaire d'écriture des écoliers d'autrefois, terminée par un « o » qui fait aussi penser aux écrits du bac.",
+          "raison": "Il ancre la marque dans l'univers de la copie et de l'examen tout en gardant une sonorité vive et chaleureuse qu'un lycéen peut adopter sans gêne."
+        }
+      ]
+    },
+    {
+      "nom": "Élucide",
+      "total_sur_30": 9,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "Prétentieux, et le « -cide » final rappelle insecticide ou pire."
+        },
+        "parent": {
+          "note": 4,
+          "avis": "Sérieux et intelligent, il évoque pourtant une enquête policière plus que l'organisation des cours."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Verbe conjugué au ton d'enquête policière, accent initial, peu naturel chez un adolescent."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Forme conjuguée du verbe « élucider », qui signifie mettre en lumière ce qui restait obscur et appartient à la famille du latin lux, « lumière ».",
+          "raison": "Le nom décrit le déclic de l’élève quand un chapitre confus devient limpide, avec une allure d’enquête menée méthodiquement qui séduit les adolescents et inspire confiance aux parents."
+        }
+      ]
+    },
+    {
+      "nom": "Signo",
+      "total_sur_30": 8.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "On ne sait pas comment le prononcer, et ça fait appli d’horoscope."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque un signe astrologique ou une marque de stylos, sans rapport évident avec les révisions."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Le gn rend la prononciation ambiguë et, en espagnol, signo évoque surtout l'horoscope."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Formé sur « signet », le ruban qui marque la page d'un livre, et sur le mot « signe ».",
+          "raison": "Il suggère avec discrétion que l'application garde la trace de chaque leçon et signale ce qui reste à réviser, avec une sonorité brève et assurée."
+        }
+      ]
+    },
+    {
+      "nom": "Trilune",
+      "total_sur_30": 8.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Mignon, mais ça fait veilleuse de bébé ou album jeunesse."
+        },
+        "parent": {
+          "note": 2,
+          "avis": "Évoque une veilleuse d'enfant ou un symbole ésotérique, sans aucun lien scolaire."
+        },
+        "strategie": {
+          "note": 4,
+          "avis": "Inventé et iconique, mais veilleuse d'enfant, voire symbole ésotérique de la triple lune."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Assemblage de « tri » et de « lune », comme une veilleuse qui éclaire les révisions du soir.",
+          "raison": "Poétique sans être enfantin, il prolonge naturellement l’univers visuel nocturne éclairé d’en haut et associe le rangement à une sensation de calme."
+        }
+      ]
+    },
+    {
+      "nom": "Voirclair",
+      "total_sur_30": 8.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "On dirait une chaîne d’opticiens, aucune chance que je le dise."
+        },
+        "parent": {
+          "note": 5,
+          "avis": "Promet de savoir où en est l'enfant, mais ressemble à une enseigne d'opticien."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Nom d'opticien tout trouvé, expression soudée peu déposable, jamais dite par un lycéen."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Fusion de l'expression « y voir clair », c'est-à-dire comprendre précisément où l'on en est.",
+          "raison": "Il exprime la promesse centrale de l'application, savoir à tout moment ce qui est acquis et ce qu'il reste à réviser, sur un ton calme et posé."
+        }
+      ]
+    },
+    {
+      "nom": "Albédo",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 4,
+          "avis": "Croisé en enseignement scientifique et dans Genshin, mais trop froid, trop intello."
+        },
+        "parent": {
+          "note": 1,
+          "avis": "Terme savant opaque, et l'on y entend « bédo », le joint. Rédhibitoire."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Trop technique, accent incertain, déjà associé à des mangas et des jeux vidéo."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Terme de physique tiré du latin albus, « blanc », qui désigne la part de lumière qu’une surface renvoie après l’avoir reçue et que l’on étudie au lycée.",
+          "raison": "Il résume le produit avec élégance, puisque le cours reçu en classe est renvoyé sous forme de questions, d’exercices et de fiches, et ses trois syllabes transparentes s’écrivent exactement comme elles se prononcent."
+        }
+      ]
+    },
+    {
+      "nom": "Animo",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 3,
+          "avis": "Ceux qui font espagnol entendront « courage », les autres une animalerie."
+        },
+        "parent": {
+          "note": 2,
+          "avis": "Se prononce exactement comme « animaux » ; on croirait une appli vétérinaire."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Homophone d'animaux : on croirait une application animalière, et le nom est très répandu."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Du latin « animus », l'esprit et le courage, devenu en espagnol comme en italien un cri d'encouragement équivalent à « Courage ! ».",
+          "raison": "Il apporte la touche de chaleur de la marque : un nom bref et énergique qui sonne comme un encouragement bienveillant pour accompagner l'élève jusqu'aux examens."
+        }
+      ]
+    },
+    {
+      "nom": "Grimpade",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "On dirait une salle d’escalade pour enfants, rien à voir avec le lycée."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque une salle d'escalade ou une sortie de colonie, pas l'organisation des cours."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Évoque une salle d'escalade et l'effort, pas la maîtrise sereine des révisions."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot inventé à partir du verbe « grimper », sur le modèle d'« escapade ».",
+          "raison": "Il donne l'image d'une ascension progressive et plutôt joyeuse, en écho à l'escalade très prisée des jeunes, sans jamais prendre un ton moralisateur."
+        }
+      ]
+    },
+    {
+      "nom": "Mémix",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "Ça fait jeu de mémoire pour enfants, avec un « -ix » façon Astérix."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Parle de mémorisation, mais sonne comme un complément alimentaire ou une appli musicale."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Anglicisme mix, accent et finale en x, sonorité datée des années 2000."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Mélange de « mémo » et de l’anglais « mix », pour dire que chaque cours se transforme en quiz, exercices et fiches.",
+          "raison": "Vif et un brin ludique, il parle spontanément aux lycéens tout en affichant l’essentiel aux yeux des parents : mieux retenir ce qui a été appris."
+        }
+      ]
+    },
+    {
+      "nom": "Nosco",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "On dirait une enseigne de supermarché, rien de scolaire ni d’attachant."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Latin obscur qui sonne comme une enseigne de supermarché ou un médicament."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Latin froid et opaque, la maxime ne s'entend pas, aucune chaleur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Verbe latin signifiant « j'apprends à connaître », dont l'impératif figure dans la maxime « Nosce te ipsum », « Connais-toi toi-même ».",
+          "raison": "Il traduit ce que l'application montre à l'élève, ce qu'il sait déjà et ce qu'il lui reste à apprendre, dans un nom bref, net et un brin énigmatique qui tranche avec les applications scolaires habituelles."
+        }
+      ]
+    },
+    {
+      "nom": "Parata",
+      "total_sur_30": 8,
+      "notes": {
+        "eleve": {
+          "note": 2,
+          "avis": "La première blague sera « patate », et le sens latin, personne ne le connaît."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "On pense à une parade, voire à une patate ; l'idée d'être paré échappe."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Latin peu parlant, signifie défilé en italien, et manque de chaleur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "classique",
+          "origine": "Mot latin signifiant « prête, préparée », de la même famille que le verbe « parer » et l'expression française « être paré ».",
+          "raison": "Il formule l'objectif commun de l'élève et du parent, être paré pour les contrôles et le bac, avec une sonorité chantante aux accents italiens qui le rend immédiatement sympathique."
+        }
+      ]
+    },
+    {
+      "nom": "Clairsoir",
+      "total_sur_30": 7.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "On dirait le nom d’une maison de retraite, impossible à assumer."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Poétique, mais on croirait un parfum, et le soir évoque des révisions tardives."
+        },
+        "strategie": {
+          "note": 3,
+          "avis": "Évoque une bougie parfumée, cantonne l'usage au soir, et l'orthographe hésite."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "lumiere",
+          "origine": "Nom inventé qui soude « clair » et « soir », deux mots que chacun sait écrire, pour évoquer un soir où tout s’éclaircit.",
+          "raison": "Il saisit la révision du soir sereine et maîtrisée, prolonge naturellement l’univers violet et nocturne du prototype et, parce qu’il est inventé, constitue une marque réellement protégeable."
+        }
+      ]
+    },
+    {
+      "nom": "Marpa",
+      "total_sur_30": 7.5,
+      "notes": {
+        "eleve": {
+          "note": 2.5,
+          "avis": "Le « marre » du début plombe tout, et le sens reste obscur."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Personne n'y reconnaît « marque-page », et la sonorité paraît lourde et étrange."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "En France, une MARPA est une résidence rurale pour personnes âgées : rédhibitoire."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "objets",
+          "origine": "Contraction de « marque-page », dont il garde la première syllabe de chaque mot.",
+          "raison": "Comme un marque-page, l'application se souvient de l'endroit où l'élève s'est arrêté et de ce qu'il lui reste à revoir, le tout dans un mot court, inédit et facile à protéger."
+        }
+      ]
+    },
+    {
+      "nom": "Anabase",
+      "total_sur_30": 6.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "Personne ne sait ce que c’est, ça sonne chimique et prétentieux."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Référence savante que peu de parents saisiront, et l'oreille entend plutôt « anabolisant »."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Référence trop érudite, sonorité de laboratoire ou de base de données."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Du grec « anabasis », « la montée », qui a donné son titre au récit de Xénophon et au poème de Saint-John Perse.",
+          "raison": "Il fait de l'année de révisions une ascension menée étape par étape, avec une élégance littéraire qui inspire confiance sans tomber dans le jargon scolaire."
+        }
+      ]
+    },
+    {
+      "nom": "Bonnevoie",
+      "total_sur_30": 6.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "Formule de bulletin trimestriel, et on hésite entre « voie » et « voix »."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Évoque l'élève à remettre sur les rails ; voie ou voix, on hésite."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Quartier de Luxembourg, hésitation entre voie et voix, vocabulaire de parent ou de professeur."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Fusion de l'expression « sur la bonne voie », que professeurs et parents emploient pour saluer une progression.",
+          "raison": "Il transforme un encouragement familier en marque bienveillante, qui rassure les parents et donne à l'élève le sentiment d'avancer dans la bonne direction."
+        }
+      ]
+    },
+    {
+      "nom": "Capitude",
+      "total_sur_30": 6.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "On entend « CAP » et « turpitude », on dirait un séminaire de motivation."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Jargon de développement personnel, et la finale rappelle « turpitude » ou « décrépitude »."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Sonne comme un cabinet de formation pour cadres. Aucun lycéen ne le dira."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "progres",
+          "origine": "Mot inventé qui croise « cap », « aptitude » et « habitude ».",
+          "raison": "Il réunit la direction, la compétence et la régularité, les trois ingrédients d'une année maîtrisée, dans un mot qui sonne français tout en restant inédit."
+        }
+      ]
+    },
+    {
+      "nom": "Classette",
+      "total_sur_30": 6.5,
+      "notes": {
+        "eleve": {
+          "note": 1.5,
+          "avis": "Le « -ette » fait primaire, on dirait une trousse de CE2."
+        },
+        "parent": {
+          "note": 3,
+          "avis": "Le diminutif évoque l'école primaire, et la cassette paraît bien datée."
+        },
+        "strategie": {
+          "note": 2,
+          "avis": "Suffixe enfantin en -ette, cassette d'un autre temps, racine classe trop générique."
+        }
+      },
+      "propositions": [
+        {
+          "angle": "invente",
+          "origine": "Croisement de « classe » et de « cassette », l’objet qui enregistre tout et que l’on réécoute à volonté.",
+          "raison": "Son clin d’œil rétro apporte chaleur et esprit à l’idée d’un classeur qui garde l’année entière en mémoire, et son orthographe calquée sur « cassette » ne laisse aucun doute."
+        }
+      ]
+    }
+  ]
+}

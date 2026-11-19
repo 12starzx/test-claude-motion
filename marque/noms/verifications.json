@@ -1,0 +1,727 @@
+{
+  "date": "2026-11-19",
+  "avertissement": "Vérifications par recherche web uniquement : les registres officiels (INPI, EUIPO, RDAP) n'étaient pas joignables depuis la session cloud. Le quota de 200 recherches web par tour a été épuisé en cours de route : les noms listés dans 'non_verifies_faute_de_quota' n'ont pas été réellement contrôlés par cette étape (leurs constats viennent des connaissances du modèle, à confirmer). La vérification de « Léon » n'est pas allée au bout.",
+  "non_verifies_faute_de_quota": [
+    "Capto",
+    "Claro",
+    "Courange",
+    "Listo",
+    "Tabula"
+  ],
+  "noms": {
+    "Fluo": {
+      "niveau_de_risque": "élevé",
+      "constats": [
+        {
+          "constat": "Application « Fluo AI » de l'éditeur Project Quik, classée dans la catégorie Éducation de l'App Store : apprentissage des langues assisté par IA, gratuite, version 1.4.0, mise à jour le 19 octobre 2026. Une application éducative active porte donc déjà exactement ce nom.",
+          "gravite": "élevé",
+          "source": "https://iphoneaddict.fr/apps/education/fluo-ai-773.html"
+        },
+        {
+          "constat": "Demande de marque américaine FLUO n° 99820703, déposée le 13 mai 2026 par Fluo Inc (Orlando) en classe 9 pour un logiciel d'apprentissage des langues sur téléphone mobile, en cours d'examen. Il s'agit vraisemblablement de l'éditeur de Fluo AI : le même nom est revendiqué pour un logiciel éducatif.",
+          "gravite": "élevé",
+          "source": "https://markinton.com/trademark/fluo-99820703"
+        },
+        {
+          "constat": "Dans le Grand Est, le transport scolaire des collégiens et des lycéens est commercialisé sous la marque « Fluo Grand Est ». L'inscription se fait sur fluo.grandest.fr/scolaire et la carte Fluo est proposée aux lycéens pour 1 € de plus que leur abonnement. Les lycéens de toute une région associent déjà « Fluo » à leur car scolaire, d'où une confusion quasi certaine auprès du public visé.",
+          "gravite": "élevé",
+          "source": "https://www.ville-guebwiller.fr/wp-content/uploads/2022/06/flyer-Transport-scolaire-FLUO-GRAND-EST-rentrée-2022-23.pdf"
+        },
+        {
+          "constat": "Depuis avril 2019, « Fluo » est la marque ombrelle de la Région Grand Est : TER Fluo, réseaux de cars Fluo 51, 57 et 88, Vélo Fluo, navettes vers Europa-Park. Plus de 500 000 cartes Fluo ont été distribuées. Des dépôts de marque de la Région sont très probables, y compris pour des applications en classe 9 ; ils restent à vérifier dans les bases INPI et EUIPO.",
+          "gravite": "élevé",
+          "source": "https://www.lejournaldesentreprises.com/breve/plus-de-500-000-cartes-fluo-grand-est-distribuees-2120579"
+        },
+        {
+          "constat": "Application officielle « Fluo Grand Est », éditée par la Région Grand Est, présente sur l'App Store et sur Google Play (environ 207 000 installations sur Android selon AppGoblin). Le nom est déjà occupé dans les boutiques d'applications françaises : risque direct de confusion et de mauvais référencement.",
+          "gravite": "élevé",
+          "source": "https://apps.apple.com/fr/app/fluo-grand-est/id562035546"
+        },
+        {
+          "constat": "Application « Vélo Fluo Grand Est » de location de vélos électriques dans plus de 50 gares : deuxième application publiée sous la même marque publique.",
+          "gravite": "moyen",
+          "source": "https://apps.apple.com/us/app/-/id6749009724"
+        },
+        {
+          "constat": "Le domaine fluo.eu sert d'assistant de mobilité officiel à la Région Grand Est (calcul d'itinéraires, transport scolaire). Un nom de domaine évident est donc déjà pris par un acteur public très actif.",
+          "gravite": "moyen",
+          "source": "https://tsi.grandest2.cityway.fr/setlang/en/83/0"
+        },
+        {
+          "constat": "Fluo, jeune pousse française de l'assurance (société JiVai, Roubaix, 2013) : son application d'analyse des assurances liées aux cartes bancaires a été téléchargée plus de 50 000 fois. Elle a levé 2 M€ auprès du Crédit Mutuel Arkéa, a été rachetée par Magnolia.fr en 2020, puis placée en redressement judiciaire et reprise à la barre du tribunal. Des dépôts de marque en France sont probables.",
+          "gravite": "moyen",
+          "source": "https://www.frenchweb.fr/insurtech-fluo-attire-credit-mutuel-arkea-a-son-capital-qui-investit-2-millions-deuros/280844"
+        },
+        {
+          "constat": "Une page d'avis Trustpilot France existe pour « fluo.com », vraisemblablement liée à cette jeune pousse de l'assurance. L'exploitant actuel du domaine n'a pas pu être confirmé, mais ce nom de domaine évident semble pris.",
+          "gravite": "moyen",
+          "source": "https://fr.trustpilot.com/review/fluo.com"
+        },
+        {
+          "constat": "« Fluo » est le module de facturation de l'éditeur Cosoluce pour les collectivités, qui sert notamment à facturer les cantines et les garderies. Il est complété par « E-fluo présences » pour le pointage des présences. C'est donc une marque logicielle française dans un domaine voisin de la vie scolaire.",
+          "gravite": "moyen",
+          "source": "https://www.soluris.fr/wp-content/uploads/2026/02/Fiche-Soluris-multi-facturation-Fluo.pdf"
+        },
+        {
+          "constat": "Projet d'application de vocabulaire à répétition espacée nommé « Fluo », annoncé comme bientôt disponible en commençant par le chinois : un autre produit éducatif fondé sur la mémorisation, en prélancement.",
+          "gravite": "moyen",
+          "source": "https://fluo-website.pages.dev/sitemap.xml"
+        },
+        {
+          "constat": "Tribunal de l'Union européenne, affaire T-120/17, arrêt du 11 octobre 2018 : l'EUIPO a refusé le signe figuratif « fluo » d'une société grecque, au moins pour une partie des produits. Il a jugé le mot descriptif (« lumineux, de couleur vive ») pour le public francophone. C'est un précédent défavorable pour enregistrer et défendre ce nom seul.",
+          "gravite": "moyen",
+          "source": "https://lagen.nu/celex/62017TJ0120"
+        },
+        {
+          "constat": "Mot courant du dictionnaire (Larousse : « fluo », adjectif invariable, familier). Il contrevient à l'exigence d'un nom non générique et n'offrirait qu'une protection faible, même s'il ne décrit pas directement une application scolaire.",
+          "gravite": "moyen",
+          "source": "https://www.larousse.fr/dictionnaires/francais/fluo"
+        },
+        {
+          "constat": "« Un fluo » désigne couramment le surligneur, et en Belgique « fluoter son cours » est une expression usuelle des étudiants en période de blocus. Pour une application de révision, le nom frôle donc le descriptif.",
+          "gravite": "moyen",
+          "source": "https://www.lalibre.be/belgique/enseignement/2021/12/27/blocus-pourquoi-il-ne-faut-pas-fluoter-tout-son-cours-en-etudiant-3X62G55BCNCZ7MRYT5EFX4V6F4/"
+        },
+        {
+          "constat": "Marque « FLUO » de téléphones, tablettes, batteries externes et accessoires, fabriqués et distribués en Grèce et en Turquie par M&T Electronics, vraisemblablement la société de l'affaire T-120/17. C'est un usage antérieur en classe 9 dans l'Union européenne.",
+          "gravite": "faible",
+          "source": "https://www.ifixit.com/Business/13375/M&T+Electronics"
+        },
+        {
+          "constat": "Gamme de surligneurs « Fluo'Peps » de Maped, grand fabricant français de fournitures scolaires. C'est un usage voisin dans l'univers du cartable, qui montre aussi à quel point « fluo » est banal en papeterie.",
+          "gravite": "faible",
+          "source": "https://kidero.be/en/product/99728-surligneur-maped-fluo-peps-pastel-orange"
+        },
+        {
+          "constat": "Kit de développement libre « Fluo » (fluo.dev) pour l'inscription et l'authentification dans les applications Flutter, créé à Paris en 2024 : homonyme dans le logiciel, destiné aux développeurs.",
+          "gravite": "faible",
+          "source": "https://startup-seeker.com/company/fluo~dev"
+        },
+        {
+          "constat": "« Fluo » sur Product Hunt (2019) : outil de formation pour ingénieurs logiciel, ancien et de niche, mais dans le domaine éducatif.",
+          "gravite": "faible",
+          "source": "https://www.producthunt.com/products/fluo"
+        },
+        {
+          "constat": "Demande de marque américaine FLUO n° 99513704 (MotiveLabs LLC, classe 42), en cours d'examen : logiciel en ligne d'analyse comportementale et de développement personnel.",
+          "gravite": "faible",
+          "source": "https://markinton.com/trademark/fluo-99513704"
+        },
+        {
+          "constat": "Demande de marque américaine FLUO n° 99683585 (Grive LLC, classes 9, 35 et 36), déposée le 4 mars 2026 : logiciels de portefeuille de cryptoactifs et de services financiers.",
+          "gravite": "faible",
+          "source": "https://trademarks.justia.com/996/83/fluo-99683585.html"
+        },
+        {
+          "constat": "Fluo Technologies Limited, éditeur britannique de l'application Klu et déposant de la marque WAYABLE en classe 9 : le nom figure dans la raison sociale d'une société du logiciel.",
+          "gravite": "faible",
+          "source": "https://www.ipo.gov.uk/t-tmj/tm-journals/2025-042/UK00004275423.html"
+        },
+        {
+          "constat": "Marque américaine FLUO enregistrée sous le n° 5442145 en classe 25 (vêtements), sans lien avec l'éducation.",
+          "gravite": "info",
+          "source": "https://trademark.justia.com/874/59/n-87459665.html"
+        },
+        {
+          "constat": "Application de discussion « Fluo » avec salons virtuels animés par des personnages d'IA, lancée sur Product Hunt en avril 2024.",
+          "gravite": "info",
+          "source": "https://www.producthunt.com/products/fluo-3"
+        },
+        {
+          "constat": "Éditeur FLUOMIND sur l'App Store : applications de filtres photo pour enfants FluoWorld et FluoCam.",
+          "gravite": "info",
+          "source": "https://apps.apple.com/ch/developer/fluomind/id572011946?l=en-GB"
+        },
+        {
+          "constat": "Application « Fluo S'Amuse » sur Google Play, compteur de points de minigolf publié en janvier 2026.",
+          "gravite": "info",
+          "source": "https://appgoblin.info/apps/com.fluosamuse.fluo_samuse_mobile_app"
+        },
+        {
+          "constat": "Agence de design « Fluo », dont l'accroche joue déjà sur l'idée de « surligner ce qui vous rend unique » : l'image de marque envisagée est déjà exploitée.",
+          "gravite": "info",
+          "source": "https://www.behance.net/Agencefluo"
+        },
+        {
+          "constat": "Association de danse « Groupe FLUO » à Nantes.",
+          "gravite": "info",
+          "source": "https://metropole.nantes.fr/mes-services-mon-quotidien/espace-associations-nantaises/annuaire-des-associations-nantaises/groupe-fluo"
+        },
+        {
+          "constat": "La recherche n'a trouvé aucun site actif sur fluo.fr, ni de compte « @fluo » clairement rattaché à une marque sur Instagram ou TikTok. Vu le nombre d'homonymes, la disponibilité de ce domaine et de ces identifiants doit être vérifiée directement (annuaire WHOIS, réseaux sociaux).",
+          "gravite": "info",
+          "source": ""
+        }
+      ],
+      "sens_indesirables": "Aucun sens argotique ni verlan gênant en français : « fluo » est l'abréviation familière de « fluorescent » (Larousse) et désigne aussi le surligneur. Quelques associations secondaires sont à garder en tête : le gilet de sécurité (et les gilets jaunes), les soirées et la mode des années 1980, et la proximité sonore avec « flou ». Ce dernier mot contredit la promesse de maîtrise, mais il peut se retourner en clin d'œil. En anglais, le mot est compris comme « fluorescent », avec un léger écho à « flu » (la grippe). En espagnol et en portugais, il évoque « flúor » (le fluor du dentifrice) ; en italien, « fluo » signifie simplement « fluorescent ». Rien de gênant n'a été relevé en allemand ni en arabe."
+    },
+    "Bossa": {
+      "niveau_de_risque": "élevé",
+      "constats": [
+        {
+          "constat": "Bossa Studios Limited, studio londonien de jeux vidéo (Surgeon Simulator, I Am Bread) qui exerce sous le nom de Bossa Games depuis 2023, a déposé aux États-Unis la marque verbale BOSSA (n° 97334496, le 28 mars 2022) pour des logiciels de jeu téléchargeables, en classes 9, 28 et 35 notamment ; l'agrégateur Gleanmark la donne pour enregistrée (statut à confirmer auprès de l'USPTO). Il s'agit d'une marque de logiciel strictement identique, détenue par un éditeur qui publie aussi sur mobile ; une éventuelle protection dans l'Union européenne ou au Royaume-Uni reste à vérifier sur eSearch plus et au registre britannique.",
+          "gravite": "élevé",
+          "source": "https://trademark.justia.com/973/34/bossa-97334496.html"
+        },
+        {
+          "constat": "Marque BOSSAFX (UK00004215976), déposée au Royaume-Uni le 9 juin 2025 en classes 9, 35, 36, 38 et 42 avec revendication d'une priorité EUIPO du 26 mars 2025, ce qui suppose une demande antérieure de marque de l'Union européenne ; BossaFX est le service de change en ligne du courtier polonais DM BOŚ, titulaire probable. L'élément d'attaque « BOSSA » couvre des logiciels en classe 9 : un dépôt de BOSSA pour une application risquerait une opposition fondée sur cette antériorité dans toute l'Union.",
+          "gravite": "élevé",
+          "source": "https://www.ipo.gov.uk/t-tmj/tm-journals/2025-026/UK00004215976.html"
+        },
+        {
+          "constat": "Marque BOSSAMOBILE (UK00004215948), déposée au Royaume-Uni le 9 juin 2025 en classe 9 (logiciels et applications mobiles), vraisemblablement par DM BOŚ, qui exploite l'application bossaMobile : nouvel indice que « bossa » est protégé comme marque ombrelle de logiciels, avec l'adjonction d'un simple terme descriptif.",
+          "gravite": "moyen",
+          "source": "https://www.ipo.gov.uk/t-tmj/tm-journals/2025-025/UK00004215948.html"
+        },
+        {
+          "constat": "Dom Maklerski BOŚ, filiale de courtage de la banque polonaise BOŚ, opère sous la marque « bossa » (bossa.pl) et diffuse l'application bossaMobile sur l'App Store et Google Play, ainsi que toute une gamme de logiciels (bossaAPI, bossaFX) : usage établi de « bossa » pour des applications financières au sein de l'Union européenne.",
+          "gravite": "moyen",
+          "source": "https://apps.apple.com/pl/app/bossamobile/id903880266"
+        },
+        {
+          "constat": "Bossa Games demeure un éditeur actif malgré des licenciements fin 2023 et début 2025 : il a encore déposé au Royaume-Uni la marque I AM MOTH en classes 9 et 41 le 5 août 2026 (Journal des marques britannique n° 2026/034). Dans les boutiques d'applications et la presse spécialisée, « Bossa » est donc déjà associé à ce studio.",
+          "gravite": "moyen",
+          "source": "https://en.wikipedia.org/wiki/Bossa_Games"
+        },
+        {
+          "constat": "Le 28 octobre 2024, la division d'opposition de l'EUIPO a rejeté, à la demande de Hugo Boss, la marque BOSSPOWERL déposée en classe 9 (chargeurs et accessoires technologiques), en retenant un profit indûment tiré de la renommée de BOSS. Un dépôt de BOSSA en classe 9 pourrait déclencher la même riposte ; le lien serait plus ténu pour des services éducatifs, Hugo Boss ayant échoué contre BOSS SHOT pour des produits trop éloignés.",
+          "gravite": "moyen",
+          "source": "https://www.worldipreview.com/trademark/hugo-boss-shuts-down-chinese-tech-firms-bosspowerl-trademark"
+        },
+        {
+          "constat": "En mars 2026, Hugo Boss a obtenu le rejet de la demande de marque de l'Union européenne BOSA pour des cosmétiques, après avoir fait échec à BOSSY COSMETICS en octobre 2025 : la société attaque régulièrement les signes proches de BOSS, même à une lettre près.",
+          "gravite": "moyen",
+          "source": "https://www.law360.com/articles/2454396"
+        },
+        {
+          "constat": "BossaFlow, application d'apprentissage du portugais brésilien sur l'App Store (gratuite, avec abonnements à 2,99 $ par mois ou 19,99 $ par an) : seul usage éducatif de « Bossa » relevé dans les boutiques, sous forme composée, pour une autre discipline et un autre public.",
+          "gravite": "faible",
+          "source": "https://apps.apple.com/app/id6758480159"
+        },
+        {
+          "constat": "BOSSA est aussi le sigle de la Beijing Overseas Study Service Association, association chinoise qui fédère environ 300 agences de conseil en études à l'étranger : secteur éducatif, mais simple sigle, sans application grand public ni activité en France.",
+          "gravite": "faible",
+          "source": "https://www.cbinsights.com/company/beijing-overseas-study-service-association"
+        },
+        {
+          "constat": "Bossa Invest, également connu sous le nom de Bossanova Investimentos, compte parmi les principaux fonds de capital-risque d'Amérique latine et a lancé en 2022 la banque en ligne BossaBank : forte notoriété au Brésil dans la technologie et la finance, sans lien avec l'éducation en France.",
+          "gravite": "faible",
+          "source": "https://capitalaberto.com.br/alem-do-capital/paulo-tomazela-ceo-da-bossa-invest-fala-no-alem-do-capital/"
+        },
+        {
+          "constat": "BossaBox, jeune entreprise brésilienne qui fournit des équipes de développement logiciel à de grandes entreprises (à l'équilibre depuis début 2024) : usage dans le logiciel, mais hors de France et sans rapport avec l'éducation.",
+          "gravite": "faible",
+          "source": "https://tiinside.com.br/en/30/10/2024/after-reaching-breakeven-bossabox-plans-to-triple-annual-revenue/"
+        },
+        {
+          "constat": "Bossa Nova Robotics, entreprise américaine de robots d'inventaire pour la grande distribution, dont le contrat avec Walmart a pris fin en 2020 : homonymie partielle sans rapport.",
+          "gravite": "faible",
+          "source": "https://en.wikipedia.org/wiki/Bossa_Nova_Robotics"
+        },
+        {
+          "constat": "Bossa Ticaret ve Sanayi İşletmeleri, industriel turc du coton et du denim fondé en 1951 et coté à la Bourse d'Istanbul, détient des marques BOSSA enregistrées par la voie internationale (classes 23, 24 et 25) : secteur sans rapport, mais titulaire habitué à protéger ce nom.",
+          "gravite": "faible",
+          "source": "https://markinton.com/trademark/bossa-79144158"
+        },
+        {
+          "constat": "BOSSA BRASIL, marque britannique de maroquinerie et de vêtements de luxe (Bossa Brasil Ltd.), publiée au Journal des marques britannique en classes 18 et 25 en 2025 et 2026 : secteur sans rapport.",
+          "gravite": "faible",
+          "source": "https://www.ipo.gov.uk/t-tmj/tm-journals/2026-031/UK00004416379.html"
+        },
+        {
+          "constat": "En France, les sociétés actives relevées sous ce nom appartiennent à la restauration : SAS BOSSA NOVA (Var, SIREN 929 466 704, immatriculée en 2024) et SARL BOSSA (SIREN 879 929 818, restauration rapide, active depuis 2019) ; une SARL BOSSA de Lorient est déclarée sans activité. Aucun conflit de dénomination dans l'éducation ou le logiciel.",
+          "gravite": "faible",
+          "source": "https://www.societe.com/societe/bossa-nova-929466704.html"
+        },
+        {
+          "constat": "BOSSA, utilitaire libre de programmation de microcontrôleurs Atmel SAM (ShumaTech) distribué notamment via Homebrew, et Bossa, moteur de flux de travail en Java hébergé sur SourceForge : logiciels homonymes, mais confidentiels et réservés aux développeurs.",
+          "gravite": "faible",
+          "source": "https://formulae.brew.sh/cask/bossa"
+        },
+        {
+          "constat": "Graphie voisine dans un pays francophone : le SPF BOSA, service public fédéral belge, propose l'application e-Campus pour la formation de ses agents ; confusion peu probable.",
+          "gravite": "faible",
+          "source": "https://bosa.belgium.be/en/applications"
+        },
+        {
+          "constat": "bossa.pl est le portail du courtier DM BOŚ ; aucun site actif n'apparaît dans les résultats pour bossa.fr ni bossa.com, dont la disponibilité doit être vérifiée par une recherche WHOIS (un .com de cinq lettres est rarement libre).",
+          "gravite": "faible",
+          "source": "https://bossa.pl/en/equity-research/terms-of-use"
+        },
+        {
+          "constat": "Sur les réseaux sociaux, The Handbook recense une marque de vêtements « Bossa » présente sur Instagram ; la disponibilité de l'identifiant @bossa sur Instagram et TikTok n'a pas pu être confirmée par la recherche.",
+          "gravite": "faible",
+          "source": "https://www.thehandbook.com/brand/bossa/"
+        },
+        {
+          "constat": "En arabe dialectal, بوسة (« bōsa » en Égypte, « boussa » au Maghreb, « bawseh » au Levant) signifie « bisou » : sens affectueux et non vulgaire, mais propice aux taquineries chez les adolescents arabophones.",
+          "gravite": "faible",
+          "source": "https://blogs.transparent.com/arabic/?p=13362"
+        },
+        {
+          "constat": "Hors du périmètre demandé : en hongrois, « bassza » se prononce presque « bossa » (le a hongrois sonne comme un o ouvert) et forme le juron le plus courant du pays, « bassza meg » (« putain ») ; sans incidence en France, mais à garder en tête pour une diffusion européenne.",
+          "gravite": "faible",
+          "source": "https://en.wiktionary.com/wiki/bazmeg"
+        },
+        {
+          "constat": "BOSSANOVA SAS (Lannion, SIREN 835 332 495), société de programmation informatique dont l'établissement est fermé depuis le 14 février 2024 : antériorité de dénomination éteinte, signalée pour mémoire.",
+          "gravite": "info",
+          "source": "https://api-avis-situation-sirene.insee.fr/identification/pdf/83533249500018"
+        },
+        {
+          "constat": "Demande américaine BOSSA AI (n° 97803365, classe 9, agent conversationnel pour la santé), déposée en février 2023 puis abandonnée en mars 2024 : sans effet aujourd'hui, mais révélatrice de l'attrait du nom pour des projets logiciels.",
+          "gravite": "info",
+          "source": "https://markinton.com/trademark/bossa-ai-97803365"
+        },
+        {
+          "constat": "Nombreuses applications musicales consacrées à la bossa-nova (BossaNovaPads, Brazilloops Bossa, Rádio Bossa Jazz Brasil) : pas de conflit juridique, mais un bruit de fond qui compliquera le référencement de « Bossa » seul dans les boutiques.",
+          "gravite": "info",
+          "source": "https://apps.apple.com/us/app/id1555082277"
+        },
+        {
+          "constat": "En portugais, « bossa » désigne une bosse et, au figuré, un don ou une aptitude (« ter bossa para a matemática ») : sens favorable qui rejoint « avoir la bosse des maths ».",
+          "gravite": "info",
+          "source": "https://www.dicio.com.br/bossa/"
+        }
+      ],
+      "sens_indesirables": "Aucun sens gênant relevé en français, anglais, espagnol, italien ou allemand : le nom évoque la bossa-nova (référence qui peut sembler datée à des adolescents), « bosser », verbe familier ancien et stable, et « avoir la bosse des maths » ; son verlan « sabo » n'a pas de sens établi et l'anglais ne le rapproche que de « boss », voire de « bossy ». En portugais, « bossa » signifie « bosse » et « don, aptitude », ce qui sert le concept, et en catalan « sac ». Points de vigilance : en arabe dialectal, بوسة (« bōsa », « boussa ») veut dire « bisou », sens affectueux mais propice aux taquineries, et, hors du périmètre demandé, le hongrois « bassza », prononcé presque « bossa », appartient au juron le plus courant du pays (« bassza meg »)."
+    },
+    "Lucarne": {
+      "niveau_de_risque": "moyen",
+      "constats": [
+        {
+          "constat": "« La Lucarne » est la case de documentaires d'auteur créée par ARTE France en 1997. Elle est aussi référencée comme structure de production et de distribution sous le nom « ARTE France – La Lucarne ». Le signe est quasi identique à « Lucarne ». Si ARTE l'a déposé en classe 41, qui couvre l'éducation comme le divertissement, une opposition est possible. La recherche en ligne n'a pas permis de confirmer un dépôt : il faut le vérifier en priorité sur data.inpi.fr et TMview, en classes 38 et 41.",
+          "gravite": "moyen",
+          "source": "https://www.centrepompidou.fr/fr/ressources/media/0LGAnWp"
+        },
+        {
+          "constat": "Ce point aggrave le précédent : ARTE est aussi présent sur le marché scolaire avec Educ'ARTE. Il s'agit d'une plateforme vidéo par abonnement destinée aux collèges et aux lycées, souvent financée par les régions. L'univers « La Lucarne » d'ARTE est donc proche du public visé, et parents comme enseignants pourraient faire le rapprochement.",
+          "gravite": "faible",
+          "source": "https://outilstice.com/educarte-le-meilleur-darte-pour-leducation/"
+        },
+        {
+          "constat": "« Lucarne Opposée » est un média francophone de football actif depuis 2008, animé par une vingtaine de contributeurs. Il comprend le site lucarne-opposee.fr, des émissions audio et des livres. Son domaine est sans rapport avec l'éducation, mais il occupe déjà le nom en ligne.",
+          "gravite": "faible",
+          "source": "https://www.breizh-info.com/2026/06/28/261684/lucarne-opposee-ou-lart-de-regarder-le-football-par-le-bon-bout-de-la-lorgnette/"
+        },
+        {
+          "constat": "La MJC-centre social « La Lucarne », à Louvres (Val-d'Oise), propose du soutien scolaire bénévole. C'est un usage associatif strictement local, sans portée de marque, mais il se situe dans le champ éducatif.",
+          "gravite": "faible",
+          "source": "https://www.jeveuxaider.gouv.fr/organisations/15927-mjc-centre-social-la-lucarne"
+        },
+        {
+          "constat": "Une application Android « A la Lucarne » (identifiant com.wimmov.alalucarne) est éditée par Wimmov, société marseillaise qui conçoit des applications de parrainage pour des professionnels. Elle est probablement liée à l'agence immobilière grenobloise « A La Lucarne de l'immobilier ». Ce secteur est sans rapport avec l'éducation.",
+          "gravite": "faible",
+          "source": "https://appgoblin.info/apps/com.wimmov.alalucarne/keywords/discovery"
+        },
+        {
+          "constat": "« Lucarne » est aussi une bibliothèque logicielle libre (licence MIT, version 0.2.0 publiée en 2026) publiée par un développeur français, Techalchemy. C'est une boîte à outils d'interface pour petits écrans Arduino et ESP32, accompagnée d'un éditeur « Lucarne Studio » qui fonctionne dans le navigateur. L'usage logiciel est réel, mais sans rapport avec l'éducation et sans marque déposée connue.",
+          "gravite": "faible",
+          "source": "https://www.arduinolibraries.info/libraries/lucarne"
+        },
+        {
+          "constat": "Le registre SIRENE compte plusieurs entités nommées « LA LUCARNE », sans lien avec l'éducation ni le logiciel : une SAS d'activités sportives à Évry-Courcouronnes (2022), une SARL de débit de boissons à Trouville-sur-Mer (2021), une coopérative de menuiserie à Éguzon-Chantôme et des associations. Une SARL « LUCARNE GROUP » a par ailleurs été fermée en 2012.",
+          "gravite": "faible",
+          "source": "https://api-avis-situation-sirene.insee.fr/identification/pdf/91427786800016"
+        },
+        {
+          "constat": "« Lucarne » est un mot courant du dictionnaire : fenêtre de toit, coin du but au football, et « petite lucarne » pour désigner la télévision. Arbitraire et non descriptif pour une application scolaire, il reste déposable. En revanche, les résultats de recherche sont saturés (fenêtres de toit, bricolage, football), ce qui nuit à la visibilité dans les moteurs de recherche et rend le nom difficile à défendre face à des usages voisins. Le nom va donc contre l'esprit du cahier des charges, qui écarte les mots du dictionnaire employés seuls.",
+          "gravite": "faible",
+          "source": "https://www.lalanguefrancaise.com/dictionnaire/definition/lucarne"
+        },
+        {
+          "constat": "Noms de domaine : aucun site actif n'apparaît pour lucarne.fr ni pour lucarne.com, et lucarne.pro ne pointe vers aucun site. Leur disponibilité n'a pas pu être vérifiée, car l'annuaire WHOIS n'est pas consultable avec les outils autorisés. S'agissant d'un mot courant, lucarne.fr et lucarne.com sont probablement déjà réservés.",
+          "gravite": "info",
+          "source": "https://builtwith.com/lucarne.pro"
+        },
+        {
+          "constat": "Boutiques d'applications : aucune application intitulée « Lucarne » n'existe sur l'App Store ni sur Google Play, et aucune en éducation. Dans la révision scolaire, le nom le plus proche est « Lucid », une application créée par deux lycéens de Vence, trop différente pour créer une confusion.",
+          "gravite": "info",
+          "source": "https://podcast.ausha.co/le-morning-radio-monaco/lucid-l-application-gratuite-de-revision-par-ia-creee-par-deux-lyceens-de-vence"
+        },
+        {
+          "constat": "Marques : aucune marque « Lucarne » n'a été repérée en ligne en classes 9, 16, 41 ou 42, que ce soit à l'INPI, à l'EUIPO, à l'OMPI ou à l'USPTO. La marque voisine la plus proche est « LUCERNE FESTIVAL », une demande américaine en cours en classes d'éducation et de divertissement, dont le signe est nettement différent à l'oral comme à l'écrit. Une recherche d'antériorité dans les registres reste indispensable.",
+          "gravite": "info",
+          "source": "https://trademarks.justia.com/794/18/lucerne-79418082.html"
+        },
+        {
+          "constat": "« LUCARNE » est un jeu vidéo indépendant publié sur itch.io par Bleu-Frigo, en plusieurs épisodes (« [300 HEURES] », « [500 HEURES] »). L'usage est confidentiel.",
+          "gravite": "info",
+          "source": "https://bleu-frigo.itch.io/lucarne300"
+        },
+        {
+          "constat": "« Lucarne » est le titre d'un court métrage documentaire de 2026, réalisé par Ulysse Sorabella et Hadrien Warrak avec des détenus de la maison d'arrêt de Bois-d'Arcy, et présenté au festival Cinéma du réel. C'est un titre d'œuvre isolé, sans incidence en matière de marque.",
+          "gravite": "info",
+          "source": "https://www.cinemadureel.org/?p=160951"
+        },
+        {
+          "constat": "« La Lucarne » a aussi désigné un festival parisien de films de football (au Max Linder puis au Point Éphémère, environ de 2013 à 2018). Un organisme montréalais du même nom organise les Rencontres internationales cinéma et sport depuis 2006. Ces usages culturels sont anciens ou étrangers.",
+          "gravite": "info",
+          "source": "https://www.timeout.fr/paris/le-blog/la-lucarne-festival-de-cinema-footeux-au-point-ephemere"
+        }
+      ],
+      "sens_indesirables": "Aucun sens fâcheux n'a été repéré. En français, le mot est connu et plutôt valorisant : une fenêtre de toit qui fait entrer la lumière, un tir « en pleine lucarne » au football et, dans une expression un peu vieillie, la « petite lucarne » pour la télévision. Son verlan (« carnelu ») ne veut rien dire. Une seule réserve, mineure : le mot contient « carne », qui désigne familièrement une viande dure ou une personne méchante (« vieille carne »), et qui signifie viande ou chair en espagnol, en italien et en portugais. Le rapprochement est très improbable, puisque le mot entier est bien connu. En anglais, « lucarne » est un terme rare d'architecture. En allemand de Suisse, « Lukarne » désigne également une lucarne. Aucune signification gênante n'a été trouvée en arabe."
+    },
+    "Ajour": {
+      "niveau_de_risque": "moyen",
+      "constats": [
+        {
+          "constat": "Média suisse « ajour » (Gassmann Media, Bienne) : seule plateforme d’information en ligne bilingue français-allemand du canton de Berne (ajour.ch), avec une application d’actualité « ajour » sur l’App Store consacrée à Bienne, au Seeland et au Jura bernois. Une offre d’emploi de septembre 2026 annonce son extension vers Berne (https://www.jobup.ch/en/jobs/detail/41ee73ee-d39f-461d-9778-253ad59124fa/). Le nom est identique, le public en partie francophone, et un dépôt de marque en Suisse est probable (à vérifier sur Swissreg). Le nom est donc déjà pris dans les magasins d’applications, et toute extension vers la Suisse romande se heurterait directement à ce média.",
+          "gravite": "moyen",
+          "source": "https://apps.apple.com/mt/app/ajour/id1606214211"
+        },
+        {
+          "constat": "Ajour System A/S (Odense, Danemark), éditeur de logiciels pour le bâtiment fondé en 2009 et racheté en février 2022 par le groupe danois EG, diffuse l’application iOS « EG Ajour » : gestion de la qualité, contrôle des défauts, suivi et documents de chantier (https://apps.apple.com/in/app/eg-ajour/id6476966763). Le même signe sert donc déjà de marque de logiciel dans l’Union européenne. Si une marque danoise ou de l’Union européenne couvre largement les logiciels (classes 9 et 42), une opposition reste possible malgré l’éloignement des secteurs.",
+          "gravite": "moyen",
+          "source": "https://www.cbinsights.com/company/ajour-system"
+        },
+        {
+          "constat": "Risque propre au nom : « Ajour » se prononce exactement comme « à jour », expression courante, à la fois descriptive et laudative pour un service qui tient cours et révisions à jour. L’INPI pourrait mettre en doute son caractère distinctif, et un concurrent pourrait en demander la nullité, en classes 9, 41 et 42. Même enregistrée, la marque resterait faible et n’empêcherait pas les concurrents d’employer « à jour ». Le référencement serait en outre noyé sous les innombrables pages consacrées aux « mises à jour ».",
+          "gravite": "moyen",
+          "source": "https://inpi.fr/comprendre-la-propriete-intellectuelle/la-marque"
+        },
+        {
+          "constat": "Au moins trois applications iOS portent déjà ce nom : « ajour » (le média suisse), « EG Ajour » (bâtiment) et une ancienne application « Ajour » de caisse et de comptabilité, dont la dernière mise à jour date de 2021. Comme Apple exige des noms d’application uniques, « Ajour » seul est vraisemblablement indisponible : la fiche devrait porter un nom composé (par exemple « Ajour : mon classeur »), et une recherche « Ajour » fera remonter ces homonymes. Aucune fiche Google Play « Ajour » n’est ressortie des recherches, mais ce résultat n’est pas concluant.",
+          "gravite": "moyen",
+          "source": "https://apps.appfollow.io/ios/ajour/1007293997?country=us"
+        },
+        {
+          "constat": "Le domaine ajour.com est exploité par AJOUR, une marque de lingerie en activité (franchise, vente en gros, partenariats), dont le site figure dans les références d’une agence de création de sites (https://web-systems.solutions/en/case/ajour-corp/). Il n’y a pas de risque de confusion avec des vêtements (classe 25), mais l’extension .com la plus évidente est indisponible.",
+          "gravite": "moyen",
+          "source": "https://ajour.com/types-of-cooperation/"
+        },
+        {
+          "constat": "L’éditeur Microsys propose sous le nom « Ajour » un logiciel Windows de gestion d’informations personnelles : calendrier, journal, organiseur et rappels. Sa diffusion est modeste, mais ses fonctions sont voisines du suivi des devoirs et des échéances, et il relève de la même classe 9.",
+          "gravite": "faible",
+          "source": "https://www.microsystools.com/products/ajour/help/checkajour-part-ajour/"
+        },
+        {
+          "constat": "« Jour », application américaine de journal intime guidé, a été présentée par TechCrunch (https://techcrunch.com/?p=1830747) et évaluée par Common Sense Media. Elle est proche d’« Ajour » à l’écrit comme à l’oral, mais son secteur (le bien-être) et son marché sont différents.",
+          "gravite": "faible",
+          "source": "https://www.commonsensemedia.org/app-reviews/jour-guided-journaling"
+        },
+        {
+          "constat": "« Ajour » désigne aussi un gestionnaire d’extensions libre (licence MIT) pour le jeu World of Warcraft, publié sur GitHub pour Windows, macOS et Linux. Le secteur est sans rapport et le risque juridique faible, mais ce logiciel occupe une partie des résultats de recherche.",
+          "gravite": "faible",
+          "source": "https://github.com/bing050802/ajour"
+        },
+        {
+          "constat": "La société belge « Ajour », installée à Poperinge, est une très petite entreprise de commerce de gros créée en 2021 et toujours active. Elle est sans lien avec l’éducation ni avec le logiciel.",
+          "gravite": "faible",
+          "source": "https://www.companyweb.be/en/0765697412/ajour"
+        },
+        {
+          "constat": "La société A-Jour Net (domaine a-jour-net.com) figure parmi les partenaires de RWS, spécialiste des services et logiciels de traduction. Sa graphie est voisine, mais son secteur est sans rapport.",
+          "gravite": "faible",
+          "source": "https://www.rws.com/partners/list/a-jour-net/"
+        },
+        {
+          "constat": "« Ajour » est aussi le titre d’un ouvrage d’inspiration poétique d’Alain Hoareau (2017), consacré au passage du temps. C’est un simple titre d’œuvre, sans portée de marque.",
+          "gravite": "info",
+          "source": "https://e.lavoisier.fr/produit/509890/9782140048500/ajour"
+        },
+        {
+          "constat": "Aucun usage n’a été trouvé dans l’éducation : les recherches « Ajour appli scolaire » et « Ajour éducation » ne font apparaître aucune application, marque ni société scolaire de ce nom. Aucune société française « Ajour » ni marque INPI « Ajour » n’est ressortie, et aucune page du site ajour.fr n’est indexée : la disponibilité du domaine reste à vérifier auprès de l’AFNIC.",
+          "gravite": "info",
+          "source": ""
+        },
+        {
+          "constat": "Limites de l’enquête : le quota de recherches en ligne a été épuisé après onze requêtes. Il reste à consulter directement les registres de l’INPI, de l’EUIPO et de Swissreg ainsi que la Base de données mondiale sur les marques de l’OMPI, en classes 9, 16, 41 et 42. Restent aussi à vérifier les comptes « ajour » sur Instagram, TikTok et YouTube, ainsi que les variantes « Ajoure », « A-jour » et « Àjour ».",
+          "gravite": "info",
+          "source": ""
+        }
+      ],
+      "sens_indesirables": "Le nom se prononce exactement comme l’expression « à jour ». À l’oral, la graphie n’a donc rien d’évident (« À jour », « A jour », « Ajour », « Ajours »), ce qui contredit l’exigence d’une orthographe unique, d’autant que le mot savant « ajour » (ouverture qui laisse passer le jour, broderie ajourée) est inconnu de la plupart des lycéens. Il évoque en outre la « mise à jour » d’un logiciel plus qu’un classeur. Plus gênant, il rappelle « ajourné », terme officiel qui désigne le candidat ayant échoué au baccalauréat (« AJ » dans les relevés de notes universitaires), ainsi que le verbe « ajourner », c’est-à-dire remettre à plus tard : l’inverse de la promesse de révisions maîtrisées. Rien de fâcheux en argot ni en verlan. En allemand, en danois, en norvégien et en suédois, « ajour » ou « à jour » signifie « à jour, au courant », ce qui explique les nombreuses marques nordiques de ce nom. En allemand comme en anglais, le terme désigne aussi une monture ou une broderie ajourée, et l’italien dit « a giorno » dans le même sens. Il n’a aucun sens en espagnol ni en portugais. En arabe, la sonorité rappelle seulement « ujūr » (salaires, rétributions) ou « ājurr » (brique), sans connotation gênante."
+    },
+    "Capto": {
+      "niveau_de_risque": "élevé",
+      "constats": [
+        {
+          "constat": "Vérification en ligne impossible. Le quota de recherches de la session était déjà épuisé à la première requête, et aucune des recherches prévues n'a donc abouti : « Capto application », « Capto app », « Capto appli scolaire », « Capto éducation », marques, sociétés, domaines et homophones. Les constats ci-dessous reposent sur des connaissances arrêtées à la mi-2026 et doivent être confirmés avant toute décision.",
+          "gravite": "info",
+          "source": ""
+        },
+        {
+          "constat": "« Capto » est déjà le nom d'un logiciel de capture et d'enregistrement d'écran pour Mac, édité par Global Delight Technologies (Inde). Il permet de faire des captures, de les annoter, de monter des tutoriels vidéo et de classer les captures dans une bibliothèque. Il est distribué sur le Mac App Store et sur Setapp (https://setapp.com/apps/capto), et présenté notamment, selon nos informations, comme un outil pour les enseignants et les créateurs de tutoriels. Le nom est identique, la catégorie de produits aussi (logiciels, classe 9), et l'univers est le même, celui de la « capture ». Cela entraîne trois risques : une opposition en cas de dépôt de la marque, un nom exact peut-être indisponible dans l'App Store, qui impose des noms uniques, et une cohabitation difficile dans les résultats de recherche. L'activité actuelle du logiciel et l'enregistrement de la marque restent à vérifier.",
+          "gravite": "élevé",
+          "source": "https://www.globaldelight.com/capto/"
+        },
+        {
+          "constat": "Capti (Capti Voice) est une application d'aide à la lecture (lecture à voix haute, outils d'évaluation de la lecture) éditée par Charmtech Labs (États-Unis) et utilisée par des établissements scolaires et universitaires. Elle n'a qu'une lettre d'écart avec « Capto », dans le secteur même de l'éducation. Le risque de confusion est réel si une marque « CAPTI » est protégée dans l'Union européenne ou à l'international, même si sa notoriété en France semble faible.",
+          "gravite": "moyen",
+          "source": "https://www.captivoice.com"
+        },
+        {
+          "constat": "Captio est une application espagnole de gestion des notes de frais, aujourd'hui intégrée au groupe Emburse. Son principe : photographier ses justificatifs pour qu'ils soient lus et classés automatiquement. Une seule lettre d'écart, la même nature de produit (logiciel) et une fonction très voisine (photo, reconnaissance de caractères, classement automatique) : la ressemblance est gênante en classes 9 et 42, malgré un public différent (les entreprises).",
+          "gravite": "moyen",
+          "source": "https://play.google.com/store/search?q=captio&c=apps"
+        },
+        {
+          "constat": "CAPTO est une marque de Cytiva (anciennement GE Healthcare Life Sciences) qui désigne une gamme très connue de résines de chromatographie (Capto Q, Capto S, Capto adhere, etc.). Le domaine est sans rapport (la bioproduction), mais le signe identique est déjà protégé. Il faudra vérifier les classes qu'il couvre et cibler précisément le dépôt (classes 9, 16, 41 et 42).",
+          "gravite": "faible",
+          "source": "https://www.cytivalifesciences.com"
+        },
+        {
+          "constat": "Adobe Captivate, logiciel de création de modules de formation en ligne, partage la racine « Capt- » dans l'éducation numérique. La ressemblance reste limitée, mais cette racine est très encombrée dans le logiciel (Captivate, Captio, Capti, Capto), ce qui réduirait le caractère distinctif de la marque et compliquerait sa défense.",
+          "gravite": "faible",
+          "source": "https://www.adobe.com/products/captivate.html"
+        },
+        {
+          "constat": "Le statut des domaines capto.com et capto.fr et celui des comptes « capto » sur Instagram, TikTok et X n'ont pas pu être vérifiés. Un nom de cinq lettres est très probablement déjà réservé en .com. Il faut le contrôler auprès de l'ICANN pour le .com et de l'Afnic (https://www.afnic.fr) pour le .fr.",
+          "gravite": "info",
+          "source": "https://lookup.icann.org/"
+        },
+        {
+          "constat": "Les registres n'ont pas été consultés. Il faut rechercher « CAPTO » et ses variantes (Kapto, Captô, Capti, Captio) auprès de l'INPI (https://data.inpi.fr), de l'EUIPO via TMview et de l'OMPI (https://branddb.wipo.int), en priorité dans les classes 9, 16, 41 et 42. Il faut aussi chercher les sociétés françaises homonymes dans l'Annuaire des entreprises (https://annuaire-entreprises.data.gouv.fr).",
+          "gravite": "info",
+          "source": "https://www.tmdn.org/tmview/"
+        },
+        {
+          "constat": "« capto » est une forme verbale courante en espagnol, en portugais et en italien (« je capte, je saisis, je perçois ») et un mot latin (« je cherche à saisir »). Le sens est positif, mais le terme sera moins distinctif auprès des locuteurs de ces langues.",
+          "gravite": "info",
+          "source": "https://en.wiktionary.org/wiki/capto"
+        }
+      ],
+      "sens_indesirables": "Aucun sens gênant identifié, mais ces vérifications n'ont pas pu être recoupées en ligne. En français, « Capto » évoque « capter » (saisir, comprendre : « t'as capté ? »), ce qui est plutôt positif. Il y a quelques nuances mineures. « Captation » a aussi un sens juridique ou de surveillance (captation de données, captation d'héritage). La syllabe « Cap » peut rappeler le CAP (diplôme professionnel) ou « t'es pas cap ». À l'écoute, l'orthographe n'est pas tout à fait évidente : « Kapto », « Captau » ou « Capteau » restent possibles. Le verlan (« Tocap ») ne donne aucun sens. En espagnol, en portugais et en italien, « capto » signifie « je capte, je saisis », et en latin « je cherche à saisir » : ces sens sont positifs. En italien, « captare » s'emploie toutefois aussi pour les interceptions (« captatore informatico » désigne le logiciel espion utilisé par la justice). En anglais, le mot n'a pas de sens propre, mais il rappelle « captor » (ravisseur) et « captive » (captif), et « cap » signifie « mensonge » dans l'argot des adolescents (« no cap ») : ces associations restent faibles. En allemand, aucun sens ni homophone gênant n'est connu. En arabe, aucun sens n'est connu, tout au plus un écho lointain avec « kabt » (refoulement, répression)."
+    },
+    "Courange": {
+      "niveau_de_risque": "moyen",
+      "constats": [
+        {
+          "constat": "Vérification en ligne impossible : le quota de recherches web était épuisé dès les premières requêtes (« Courange application », « Courange app », « Courange appli scolaire éducation », « Courange marque déposée INPI »), qui n'ont pas été exécutées. Rien n'a donc pu être contrôlé sur l'App Store, Google Play, les registres de marques (INPI, EUIPO, OMPI), les registres d'entreprises, les domaines ni les réseaux sociaux. Ces vérifications restent entièrement à faire, par exemple avec TMview, qui interroge en une fois les bases de l'INPI, de l'EUIPO et de nombreux offices nationaux.",
+          "gravite": "info",
+          "source": "https://www.tmdn.org/tmview/"
+        },
+        {
+          "constat": "Quasi-homophonie avec « courage » : une seule lettre d'écart à l'écrit et, à l'oral, seule la nasalisation de la deuxième voyelle (« an » au lieu de « a ») distingue les deux mots. Une marque antérieure « COURAGE » déposée en France ou dans l'Union européenne pour des logiciels et applications (classe 9), des services en ligne (classe 42) ou des services d'éducation (classe 41) pourrait fonder une opposition sérieuse. L'existence de telles marques n'a pas pu être vérifiée et doit être recherchée en priorité.",
+          "gravite": "moyen",
+          "source": "https://data.inpi.fr"
+        },
+        {
+          "constat": "Sonorité très proche d'« Orange », marque renommée de l'opérateur de télécommunications, omniprésente dans les applications et services numériques : « Courange » en reprend toute la finale « -range » et ne s'en distingue que par la première syllabe (« Cou- » au lieu de « O- »). Le risque de confusion paraît limité. Toutefois, une marque renommée bénéficie en France et dans l'Union européenne d'une protection élargie contre tout usage qui tirerait indûment profit de sa notoriété. Il est donc recommandé de consulter un conseil en propriété industrielle avant tout dépôt. Analyse fondée sur des connaissances générales, non vérifiée en ligne.",
+          "gravite": "moyen",
+          "source": "https://www.orange.com"
+        },
+        {
+          "constat": "Proximité sonore partielle avec « Courrèges », maison de mode française renommée (« Cou-rrèges » / « Cou-range »). Le secteur est éloigné (vêtements, parfums, accessoires) : le risque est donc faible pour une application scolaire.",
+          "gravite": "faible",
+          "source": "https://www.courreges.com"
+        },
+        {
+          "constat": "Risque de moquerie : « la courante », terme familier qui désigne la diarrhée, est assez proche à l'oreille et pourrait inspirer des surnoms moqueurs aux lycéens.",
+          "gravite": "faible",
+          "source": "https://fr.wiktionary.org/wiki/courante"
+        },
+        {
+          "constat": "Orthographe pas tout à fait évidente à l'oral : en entendant le nom, un élève peut écrire « Courrange », « Cour'ange », « Courenge » ou simplement « courage ». La réponse à « ça s'écrit comment ? » demande donc une explication (« comme courage, avec un n »). De plus, les moteurs de recherche et les boutiques d'applications risquent de corriger automatiquement « courange » en « courage » ou en « orange », au détriment de la visibilité de l'application.",
+          "gravite": "faible",
+          "source": ""
+        },
+        {
+          "constat": "Disponibilité des domaines courange.fr et courange.com non vérifiée. Il faut la contrôler dans l'annuaire Whois de l'AFNIC pour le .fr et auprès d'un bureau d'enregistrement pour le .com, puis réserver les deux domaines, ainsi que les comptes Instagram et TikTok correspondants, si le nom est retenu.",
+          "gravite": "info",
+          "source": "https://www.afnic.fr"
+        },
+        {
+          "constat": "Aucune ressemblance avec les noms des concurrents cités (Kartable, SchoolMouv, Nomad Education, Studocu, Digischool, Brainly, Quizlet, Pronote, Skolengo, Lumni, etc.) : sur ce point, le nom ne pose aucune difficulté.",
+          "gravite": "info",
+          "source": ""
+        }
+      ],
+      "sens_indesirables": "Aucun sens gênant connu en anglais, en espagnol, en portugais, en italien, en allemand ni en arabe : le mot n'existe dans aucune de ces langues, et un anglophone y verra surtout « courage » mal orthographié. En français, trois points de vigilance mineurs : la proximité sonore avec « la courante » (terme familier pour « diarrhée »), qui prête aux moqueries d'élèves ; la lecture possible en deux impératifs (« Cours ! Range ! »), qui évoque une injonction de parent ; le découpage « Cour-ange », qui ajoute une note un peu enfantine. Pas de sens en verlan (« Rangecou »)."
+    },
+    "Tabula": {
+      "niveau_de_risque": "moyen",
+      "constats": [
+        {
+          "constat": "Vérifications en ligne non effectuées : le quota de recherches en ligne, partagé par tous les agents de cette session, était épuisé dès la première requête. Aucune des recherches prévues (« Tabula application », « Tabula app », « Tabula appli scolaire », « Tabula éducation », « Tabula marque déposée », « Tabula société », tabula.fr, tabula.com) n'a donc pu être lancée. Les constats ci-dessous reposent sur des connaissances antérieures et doivent être confirmés, en priorité dans TMview (marques françaises, européennes et internationales, classes 9, 16, 41 et 42). Une nouvelle demande permettra de relancer ces recherches.",
+          "gravite": "info",
+          "source": "https://www.tmdn.org/tmview/"
+        },
+        {
+          "constat": "Boutiques d'applications et réseaux sociaux non contrôlés : la présence d'applications « Tabula » sur l'App Store et Google Play (catégorie Éducation comprise) et la disponibilité de l'identifiant @tabula sur Instagram, TikTok et X restent à vérifier. Pour un mot aussi court et aussi répandu, ces identifiants sont vraisemblablement déjà pris.",
+          "gravite": "info",
+          "source": "https://play.google.com/store/search?q=tabula&c=apps"
+        },
+        {
+          "constat": "Tabula, logiciel libre très connu qui extrait les tableaux contenus dans les fichiers PDF, très utilisé en journalisme de données et décliné en bibliothèques logicielles (tabula-java, tabula-py). C'est un usage notable dans le logiciel, voisin de votre promesse « photographier un cours et le transcrire » : il occupe les premiers résultats de recherche et brouillera le référencement de l'application.",
+          "gravite": "moyen",
+          "source": "https://tabula.technology/"
+        },
+        {
+          "constat": "Taboola, entreprise de technologie publicitaire cotée au Nasdaq dont les blocs de liens publicitaires figurent sous les articles de nombreux sites d'information, y compris en France. Son nom serait lui-même tiré de « tabula rasa ». Les deux noms sont visuellement proches (TABULA/TABOOLA) et deviennent homophones dès que l'on prononce « ta-bou-la », comme en latin restitué, en espagnol, en italien ou en allemand. La marque est vraisemblablement protégée pour des logiciels (classes 9 et 42), d'où un risque d'opposition. S'y ajoute, auprès des parents, une association d'image fâcheuse avec les pièges à clics.",
+          "gravite": "moyen",
+          "source": "https://www.taboola.com/"
+        },
+        {
+          "constat": "« Tabula » est un mot courant du dictionnaire latin (« tablette, planche, tableau »). Il signifie aussi « tableau » en letton et survit en français dans l'expression « tabula rasa ». Le nom est évocateur et a priori enregistrable pour une application scolaire, mais il est très convoité. L'existence de marques « TABULA » antérieures dans les classes 9, 16, 41 ou 42 est donc probable ; elle n'a pas pu être vérifiée.",
+          "gravite": "moyen",
+          "source": "https://fr.wiktionary.org/wiki/tabula"
+        },
+        {
+          "constat": "Noms de domaine évidents : tabula.fr et tabula.com, formés d'un mot de six lettres, sont très probablement enregistrés depuis longtemps. Le .com semble avoir servi à la société Tabula, Inc. Leur titulaire et leur usage actuel n'ont pas pu être contrôlés. Il faut prévoir un rachat peut-être coûteux ou une adresse de repli moins directe.",
+          "gravite": "moyen",
+          "source": "https://www.tabula.fr"
+        },
+        {
+          "constat": "Homophonie française : lu à la française, « Tabula » se prononce exactement comme « t'as bu, là ? ». Les lycéens feront la plaisanterie sur l'alcool dès qu'ils découvriront le nom, ce qui est malvenu pour un produit destiné à des mineurs et payé par les parents.",
+          "gravite": "moyen",
+          "source": ""
+        },
+        {
+          "constat": "Prononciation et orthographe hésitantes : on dit « ta-bu-la » à la française, mais « ta-bou-la » en latin restitué (celui des cours de latin) et dans la plupart des langues européennes. Entendu « ta-bou-la », le nom s'écrit spontanément « Taboula » et rappelle le taboulé : il ne passe pas le test « ça s'écrit comment ? ».",
+          "gravite": "moyen",
+          "source": "https://fr.wikipedia.org/wiki/Taboulé"
+        },
+        {
+          "constat": "Proximité avec Kartable, concurrent direct qui vise le même public : les deux noms partagent la séquence TAB(U)L et l'univers de la fourniture scolaire (tablette d'écolier, cartable). Leurs débuts différents (KAR- et TA-) limitent le risque juridique, mais le rapprochement peut entamer l'originalité du nom aux yeux des familles.",
+          "gravite": "faible",
+          "source": "https://www.kartable.fr/"
+        },
+        {
+          "constat": "Tableau (groupe Salesforce), logiciel de visualisation de données de renommée mondiale : « tabula » est la racine latine de « table », donc de « tableau », et les deux noms commencent par TAB. Le risque d'opposition est faible hors de l'analyse de données, mais le nom évoque davantage le tableur que le classeur.",
+          "gravite": "faible",
+          "source": "https://www.tableau.com/"
+        },
+        {
+          "constat": "Tabula Digita, ancienne société américaine de jeux vidéo éducatifs (série DimensionM, consacrée aux mathématiques), active à la fin des années 2000 et apparemment disparue. C'est un précédent de marque éducative bâtie sur « Tabula », sans présence connue en France. Ce point vient de souvenirs et reste à confirmer, et le lien n'a pas été vérifié.",
+          "gravite": "faible",
+          "source": "https://en.wikipedia.org/wiki/DimensionM"
+        },
+        {
+          "constat": "Tabula, Inc., jeune pousse californienne de circuits logiques programmables (FPGA), fermée en 2015 : c'est un homonyme du secteur technologique, sans lien avec l'éducation.",
+          "gravite": "faible",
+          "source": "https://en.wikipedia.org/wiki/Tabula_(company)"
+        },
+        {
+          "constat": "Homonymes sans rapport direct : la tabula, jeu de plateau romain ancêtre des jeux de tables (trictrac, jacquet), et Tabula Rasa, jeu de rôle en ligne massivement multijoueur de NCsoft, fermé en 2009. Ces usages diluent le nom sans créer de conflit.",
+          "gravite": "faible",
+          "source": "https://en.wikipedia.org/wiki/Tabula_(game)"
+        },
+        {
+          "constat": "Connotation de « table rase » : l'expression « tabula rasa », connue en français, en italien et en allemand, signifie tout effacer pour repartir de zéro. C'est l'inverse de la promesse d'un classeur qui conserve et organise les cours toute l'année, même si l'idée de nouveau départ peut servir pour la rentrée.",
+          "gravite": "faible",
+          "source": "https://fr.wikipedia.org/wiki/Tabula_rasa"
+        },
+        {
+          "constat": "Autres langues : aucun sens vulgaire ou gênant connu en anglais (où le mot évoque « tabular », c'est-à-dire tabulaire), en espagnol (« tabla », planche), en portugais (« tábula », tablette), en italien, en allemand ou en arabe (rapprochement neutre avec « tabla », tambour), ni en verlan. Les dictionnaires d'argot en ligne n'ont toutefois pas pu être consultés.",
+          "gravite": "info",
+          "source": "https://en.wiktionary.org/wiki/tabula"
+        }
+      ],
+      "sens_indesirables": "Le nom est pris en tenaille. Lu à la française, « Tabula » se prononce exactement comme « t'as bu, là ? » : les lycéens en tireront aussitôt une plaisanterie sur l'alcool, fâcheuse pour un produit destiné à des mineurs. Prononcé à la latine (« ta-bou-la », comme en cours de latin et dans la plupart des langues européennes), il s'écrit spontanément « Taboula », rappelle le taboulé et se prononce comme Taboola, plateforme de liens publicitaires associée aux pièges à clics. Par ailleurs, « tabula rasa » (« faire table rase ») signifie tout effacer, à l'inverse d'un classeur qui conserve tout, et le mot évoque le tableur et la tabulation. Je ne connais aucun sens vulgaire en verlan, en anglais, en espagnol, en portugais, en italien, en allemand ou en arabe (seulement des rapprochements neutres : « tabla », planche en espagnol et tambour en arabe), mais les dictionnaires d'argot n'ont pas pu être consultés en ligne."
+    },
+    "Claro": {
+      "niveau_de_risque": "élevé",
+      "constats": [
+        {
+          "constat": "Claro Software (Royaume-Uni) édite des logiciels et des applications d'aide à la lecture et à l'écriture destinés aux élèves et aux étudiants, notamment dyslexiques : ClaroRead, ClaroSpeak, ClaroPDF et ClaroScanPen, diffusées sur l'App Store et, pour certaines, sur Google Play. ClaroScanPen photographie un texte imprimé, le reconnaît et le lit à voix haute, une fonction très proche de la promesse « je photographie mon cours ». Même secteur (logiciel éducatif) et même racine : risque sérieux de confusion et d'opposition, d'autant que l'éditeur protège vraisemblablement ses noms par des marques en classe 9 (logiciels).",
+          "gravite": "élevé",
+          "source": "https://www.clarosoftware.com"
+        },
+        {
+          "constat": "« Claro » est la marque de l'opérateur de télécommunications du groupe mexicain América Móvil, l'un des premiers d'Amérique latine (Brésil, Colombie, Argentine, Chili, Pérou, Amérique centrale, Caraïbes), déclinée en applications très téléchargées (Mi Claro, Minha Claro, Claro video, Claro música, Claro drive). Marque de renommée internationale, très probablement enregistrée dans de nombreux pays pour les logiciels et les services numériques (classes 9, 38, 41 et 42) : un dépôt « Claro » s'exposerait à une opposition, et cet opérateur sature les résultats des moteurs de recherche et des boutiques d'applications.",
+          "gravite": "élevé",
+          "source": "https://www.americamovil.com"
+        },
+        {
+          "constat": "Claroline est une plateforme libre d'apprentissage en ligne née à l'Université catholique de Louvain (Belgique) et utilisée par des établissements d'enseignement et de formation francophones. Son nom commence par « Claro », dans le même domaine (logiciel éducatif) et la même zone linguistique : un examinateur ou un concurrent pourrait invoquer un risque de confusion, et les enseignants pourraient associer les deux noms.",
+          "gravite": "moyen",
+          "source": "https://github.com/claroline/Claroline"
+        },
+        {
+          "constat": "« Claro » est un mot courant de l'espagnol et du portugais (« clair », « lumineux », « bien sûr »), et l'espagnol est la langue vivante la plus étudiée en France après l'anglais : les lycéens en comprendront immédiatement le sens. Pour une application de révision, ce terme laudatif est faiblement distinctif ; une marque de l'Union européenne pourrait être refusée, car le caractère descriptif s'apprécie dans chacune des langues de l'Union. Le nom contredit en outre l'exigence du cahier des charges d'éviter un simple mot du dictionnaire.",
+          "gravite": "moyen",
+          "source": "https://dle.rae.es/claro"
+        },
+        {
+          "constat": "Les domaines évidents claro.com et claro.fr n'ont pas pu être vérifiés ; pour un mot espagnol courant de cinq lettres, ils sont très probablement déjà enregistrés (claro.com vraisemblablement par le groupe América Móvil ou par un spéculateur de noms de domaine), tout comme les comptes « claro » sur Instagram, TikTok et X. Il faudrait se rabattre sur une variante (claro-app.fr, monclaro.fr…), ce qui affaiblit l'appropriation du nom.",
+          "gravite": "moyen",
+          "source": "https://www.claro.com"
+        },
+        {
+          "constat": "« Klaro! » est un outil libre de gestion du consentement (RGPD) pour sites web, développé par la société allemande KIProtect : homophone exact dans le domaine du logiciel, mais sans lien avec l'éducation.",
+          "gravite": "faible",
+          "source": "https://github.com/kiprotect/klaro"
+        },
+        {
+          "constat": "« Clario » est la marque d'une application grand public de cybersécurité (Clario Tech) et, par ailleurs, d'un groupe américain de technologies pour les essais cliniques : quasi-homophone dans le logiciel, sans lien avec l'éducation.",
+          "gravite": "faible",
+          "source": "https://clario.co"
+        },
+        {
+          "constat": "Clairo, chanteuse américaine très écoutée par les adolescents, est un quasi-homophone ; combiné à l'étymologie mise en avant (« c'est clair »), il risque d'induire l'orthographe fautive « Clairo ». Les graphies « Klaro », « Clarot » ou « Clareau » restent aussi plausibles à l'oral, ce qui fragilise le critère d'une orthographe unique et évidente.",
+          "gravite": "faible",
+          "source": "https://en.wikipedia.org/wiki/Clairo"
+        },
+        {
+          "constat": "Usages sans rapport avec l'éducation qui encombrent les résultats de recherche : claro fair trade (commerce équitable, Suisse), Claro Products (produits pour lave-vaisselle, Autriche), Claro Shop (commerce en ligne, Mexique), Claromentis (logiciel d'intranet, Royaume-Uni) et la commune de Claro (Tessin, Suisse).",
+          "gravite": "faible",
+          "source": "https://www.claro.ch"
+        },
+        {
+          "constat": "Claro est le nom de plume de Christophe Claro, écrivain et traducteur littéraire français reconnu : usage culturel sans conflit commercial, mais visible dans les recherches françaises, notamment dans le monde du livre.",
+          "gravite": "info",
+          "source": "https://fr.wikipedia.org/wiki/Claro_(écrivain)"
+        },
+        {
+          "constat": "Aucune recherche web n'a pu être effectuée : le quota de recherches partagé de la session était épuisé dès la première requête. Les constats ci-dessus reposent sur des connaissances arrêtées à mi-2026 et doivent être confirmés sur les bases de marques (INPI, TMview de l'EUIPO, base mondiale de l'OMPI), sur l'App Store et Google Play en France, et par une interrogation WHOIS de claro.fr et de claro.com.",
+          "gravite": "info",
+          "source": "https://www.tmdn.org/tmview/"
+        }
+      ],
+      "sens_indesirables": "Aucun sens gênant ou vulgaire identifié en argot français, en verlan, en anglais, en espagnol, en portugais, en italien, en allemand ou en arabe. En espagnol et en portugais, « claro » signifie « clair » ou « bien sûr » (sens positif, mais mot courant donc peu distinctif) ; l'allemand connaît l'interjection familière « klaro ! » (« bien sûr ! »), un peu datée ; l'italien dit « chiaro », et « Claro » n'y évoque qu'une commune du Tessin ; l'anglais et l'arabe ne lui donnent aucun sens propre. Points de vigilance : association immédiate avec l'opérateur Claro pour les familles hispanophones et lusophones, et orthographe moins évidente qu'il n'y paraît à l'oral (« Clairo » par attraction avec « clair », « Klaro », « Clarot », « Clareau »)."
+    },
+    "Listo": {
+      "niveau_de_risque": "moyen",
+      "constats": [
+        {
+          "constat": "Aucune des recherches en ligne prévues n'a pu être effectuée : le quota de recherches de ce tour, partagé entre plusieurs agents, était déjà épuisé. Les constats ci-dessous reposent donc sur des connaissances antérieures (jusqu'à mi-2026). Ils restent à confirmer par une nouvelle série de recherches : INPI, EUIPO et TMview, App Store, Google Play, registres de noms de domaine (WHOIS) et réseaux sociaux.",
+          "gravite": "info",
+          "source": ""
+        },
+        {
+          "constat": "Listo Pencil Corporation (Alameda, Californie) est un fabricant américain ancien de crayons gras et de crayons marqueurs vendus sous la marque LISTO. Il s'agit donc de papeterie, un secteur voisin de l'univers scolaire. Le domaine listo.com, presque certainement déjà enregistré, lui appartiendrait (à confirmer). Sa présence en France est probablement marginale.",
+          "gravite": "moyen",
+          "source": "https://www.listo.com"
+        },
+        {
+          "constat": "Noms de domaine et comptes sociaux : listo.com est très vraisemblablement pris (voir ci-dessus). Le statut de listo.fr n'a pas pu être vérifié, mais un mot aussi court et aussi courant est très probablement déjà enregistré, tout comme l'identifiant @listo sur Instagram, TikTok et X. Il faudrait sans doute se rabattre sur des variantes (monlisto.fr, listo-appli.fr, etc.).",
+          "gravite": "moyen",
+          "source": "https://www.listo.fr"
+        },
+        {
+          "constat": "Applications homonymes probables : « Listo » est un nom tout trouvé pour une application de listes de courses ou de tâches. Plusieurs applications de ce nom existent vraisemblablement sur l'App Store et Google Play (non vérifié). Ce secteur voisin (organisation personnelle) nuirait à la visibilité dans les magasins d'applications. Il pourrait aussi fonder une opposition si l'un de ces éditeurs a déposé la marque pour des logiciels (classe 9).",
+          "gravite": "moyen",
+          "source": ""
+        },
+        {
+          "constat": "Distinctivité juridique faible : en espagnol, « listo » signifie « prêt » et « intelligent ». Une marque de l'Union européenne peut être refusée dès qu'un terme est descriptif dans une seule langue officielle. Pour des logiciels éducatifs ou de la préparation aux examens, l'EUIPO risque donc de juger « LISTO » descriptif ou purement élogieux. Un dépôt en France est plus envisageable, mais la marque resterait faible face aux nombreux usages et aux dépôts antérieurs probables de ce mot courant.",
+          "gravite": "moyen",
+          "source": ""
+        },
+        {
+          "constat": "« ¡Listos! » est une méthode d'espagnol pour les 11-14 ans publiée par Heinemann (groupe Pearson) au Royaume-Uni au milieu des années 2000. L'usage est éducatif, mais le titre est au pluriel, hors du marché français et l'ouvrage est probablement épuisé. Il reste à vérifier qu'aucun manuel d'espagnol français ne porte un titre proche.",
+          "gravite": "faible",
+          "source": ""
+        },
+        {
+          "constat": "Listonic est une application polonaise de listes de courses, bien implantée en France, qui partage la racine « List- ». Le secteur et le nom sont distincts, mais elle renforce l'association de « Listo » avec les listes de courses plutôt qu'avec le travail scolaire.",
+          "gravite": "faible",
+          "source": "https://listonic.com"
+        },
+        {
+          "constat": "LISTO (États-Unis) serait un réseau d'agences d'assurance automobile et de préparation des déclarations fiscales destiné à la clientèle hispanophone, notamment au Texas (à confirmer). Le secteur est sans rapport, mais cette marque active occupe une partie des résultats de recherche.",
+          "gravite": "faible",
+          "source": ""
+        },
+        {
+          "constat": "« Listo! » est l'enseigne des supérettes des stations-service Primax au Pérou (et, semble-t-il, dans d'autres pays andins). Le secteur et le marché sont sans rapport.",
+          "gravite": "faible",
+          "source": "https://www.primax.com.pe"
+        }
+      ],
+      "sens_indesirables": "Aucun sens grossier ou embarrassant connu, seulement des nuances mineures. Espagnol : « listo » signifie « prêt » (estar listo) et « intelligent, malin » (ser listo). En revanche, « pasarse de listo » (vouloir faire le malin) et « listillo » (petit malin, je-sais-tout) sont péjoratifs, et « ¡estás listo! » peut familièrement signifier « tu es fichu » ou « tu te fais des illusions ». En Colombie, « ¡listo! » veut simplement dire « d'accord ». Allemand : « List » signifie « ruse » (« listig » : rusé), une association légère. Portugais : « listo » est une forme du verbe « listar » (« je liste »), neutre. Italien : aucun sens ; le mot est proche de « lesto » (« vif, rapide »), plutôt positif. Anglais : aucun sens, il évoque « list ». Arabe : aucun sens fâcheux connu. Français : ni sens argotique ni verlan (« tolis » ne veut rien dire). La prononciation est évidente, l'orthographe quasi certaine (« Listeau » reste concevable), et un joli jeu de mots est possible avec « lis tôt ». Points de vigilance : le nom évoque d'abord une liste de tâches, et son sens « intelligent » le rapproche du cliché « Smart- » exclu par le cahier des charges. Enfin, la plupart des lycéens apprennent l'espagnol : pour eux, le nom sonne comme un mot de vocabulaire ou un titre de manuel d'espagnol plutôt que comme un classeur toutes matières."
+    }
+  }
+}

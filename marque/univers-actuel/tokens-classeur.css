@@ -1,0 +1,173 @@
+/* Univers visuel actuel de l'artefact « Classeur de Seconde » (https://claude.ai/artifact/PFgrK7cm8gzVfBfKV8H3Ae).
+   Extrait tel quel (lignes 4 à 174 de la source) le 2026-11-19 : polices Google Fonts, thème nuit AFTERGLOW (par défaut) et thème clair AUBE.
+   Référence pour la piste de logo qui prolonge l'univers existant. Ne pas modifier : c'est une copie de travail. */
+/* <link rel="preconnect" href="https://fonts.googleapis.com"> */
+/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> */
+/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@600;700&family=DM+Sans:opsz,wght@9..40,400..700&display=swap"> */
+/* AFTERGLOW - layout concept: a night-violet scene lit from the top and from one side; content floats on it as hairline dark-glass capsules (one solid violet hero card and one citron action per screen); phone shell = glass app bar over a single scroller + a floating glass tab bar with a ringed centre scan button; desktop = floating glass sidebar + one centred column. */
+:root{
+  /* type */
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+  --f-ui:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --fs-hero:clamp(34px,9.7vw,40px); --fs-h1:clamp(34px,10.2vw,40px); --fs-title:clamp(26px,7.4vw,32px); --fs-modal:26px;
+  --fs-h2:23px; --fs-sec:20px; --fs-h3:19px; --fs-h4:17px; --fs-read:16.5px; --fs-field:16px; --fs-body:15.5px;
+  --fs-ui:14px; --fs-sm:13.5px; --fs-xs:12.5px; --fs-cap:11.5px; --fs-2xs:10.5px;
+  --fs-num:58px; --fs-num-hero:64px; --fs-hand:22px; --fs-score:46px;
+  /* shape + layout */
+  --r-xl:28px; --r-lg:24px; --r-md:18px; --r-sm:14px;
+  --appbar-h:60px; --tabs-h:54px; --tabbar-h:68px;
+  --gl:max(16px,env(safe-area-inset-left,0px)); --gr:max(16px,env(safe-area-inset-right,0px));
+  /* motion: one ease-out for arrivals, one soft overshoot for touch, one in-out for ambient loops */
+  --ease-out:cubic-bezier(.16,1,.3,1); --swing:cubic-bezier(.34,1.42,.64,1); --ease-io:cubic-bezier(.65,0,.35,1);
+  --d-1:.16s; --d-2:.28s; --d-3:.44s; --d-4:.56s;
+  /* gloss on the two solid accents (same in both themes) */
+  --gloss-citron:inset 0 1px 0 rgba(255,255,255,.45); --gloss-hero:inset 0 1px 0 rgba(255,255,255,.22); --sheen-hero:rgba(255,255,255,.16);
+  /* NIGHT (default theme) */
+  /* scene */
+  --bg:#0B0720; --bg-solid:#171040;
+  --scene:radial-gradient(125% 40% at 50% -12%,rgba(104,76,236,.54) 0%,rgba(84,58,214,.27) 42%,rgba(84,58,214,0) 78%),radial-gradient(62% 34% at 112% 58%,rgba(132,90,246,.36) 0%,rgba(132,90,246,0) 70%),radial-gradient(70% 30% at -14% 98%,rgba(66,58,206,.26) 0%,rgba(66,58,206,0) 70%),linear-gradient(180deg,#130A33 0%,#0B0720 44%,#080516 100%);
+  --aura-1:rgba(112,86,246,.17); --aura-2:rgba(150,98,255,.13); --aura-3:rgba(74,84,232,.14);
+  /* ink */
+  --text:#F5F2FF; --text-2:#C8C0EC; --text-3:#B9B0E5; --text-strong:#FFFFFF; --read:#E9E5F8;
+  --hero-dim:#AEA5DA; --em-grad:linear-gradient(96deg,#FFFFFF 12%,#D3C8FF 94%);
+  --num-grad:linear-gradient(180deg,#FFFFFF 20%,#BDB0FF 100%);
+  /* glass */
+  --glass:rgba(255,255,255,.055); --glass-2:rgba(255,255,255,.095);
+  --card:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.032));
+  --hair:rgba(255,255,255,.11); --hair-2:rgba(255,255,255,.17); --hair-3:rgba(255,255,255,.30);
+  --hi:inset 0 1px 0 rgba(255,255,255,.09);
+  --field:rgba(255,255,255,.045);
+  --bar:rgba(15,10,40,.76); --sheet:rgba(24,17,60,.82); --sheet-glow:rgba(124,102,255,.30); --float:rgba(31,23,74,.97);
+  --scrim:rgba(5,3,16,.64); --fade:rgba(8,5,22,.88); --shadow-float:0 22px 48px -18px rgba(0,0,0,.72);
+  --badge:rgba(10,6,30,.74); --on-badge:#FFFFFF;
+  /* accents */
+  --hero-grad:linear-gradient(162deg,#5E43F0 0%,#4A2FD1 80%); --hero-glow:rgba(88,62,240,.60);
+  --on-hero:#FFFFFF; --on-hero-2:#E9E4FF; --hero-line:rgba(255,255,255,.18);
+  --accent:#C3B6FF; --accent-bg:rgba(150,128,255,.14); --accent-line:rgba(195,182,255,.42);
+  --ring:rgba(150,128,255,.26); --focus:#DCD4FF; --sel:rgba(150,128,255,.42);
+  --pill:#E9E3FF; --on-pill:#17142B; --pill-glow:rgba(233,227,255,.42);
+  --citron:#C6F25A; --on-citron:#17142B; --citron-glow:rgba(198,242,90,.42); --citron-ring:rgba(198,242,90,.40);
+  --wedge:rgba(150,128,255,.78); --spark:rgba(220,212,255,.85);
+  --tb-ink:#A79DD6; --tb-on:#FFFFFF; --tb-glow:rgba(150,125,255,.72);
+  --chk-fill:#1C1547; --chk-on:#C3B6FF;
+  --chk-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.6 7.4l3 3 5.8-6.8' fill='none' stroke='%2317142B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  /* states */
+  --ok:#7FE3AB; --ok-bg:rgba(110,225,160,.13); --ok-line:rgba(127,227,171,.45); --on-ok:#0B2A1A;
+  --warn:#FFCB7D; --warn-bg:rgba(255,196,110,.13); --warn-line:rgba(255,203,125,.42);
+  --bad:#FFB1B1; --bad-bg:rgba(255,120,120,.13); --bad-line:rgba(255,177,177,.45); --on-bad:#3A0D0D;
+  /* subjects: pastel lights on the night, dark ink on them */
+  --t-ink:#150F35; --t-yellow-ink:#2A2100;
+  --t-blue:#8DB6FF; --t-blue-bg:rgba(141,182,255,.15);
+  --t-red:#FF9FA3; --t-red-bg:rgba(255,159,163,.14);
+  --t-orange:#FFB27C; --t-orange-bg:rgba(255,178,124,.14);
+  --t-yellow:#F2D568; --t-yellow-bg:rgba(242,213,104,.13);
+  --t-green:#7EDDA6; --t-green-bg:rgba(126,221,166,.13);
+  --t-teal:#6ED9D0; --t-teal-bg:rgba(110,217,208,.13);
+  --t-indigo:#AAA7FF; --t-indigo-bg:rgba(170,167,255,.16);
+  --t-violet:#CFA6FF; --t-violet-bg:rgba(207,166,255,.15);
+  --t-pink:#FF9FD4; --t-pink-bg:rgba(255,159,212,.14);
+  --t-grey:#C5C2DA; --t-grey-bg:rgba(197,194,218,.12);
+  color-scheme:dark;
+}
+/* AUBE (light theme): the same scene at dawn */
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  --bg:#EEE9FF; --bg-solid:#FFFFFF;
+  --scene:radial-gradient(125% 40% at 50% -12%,rgba(124,102,255,.22) 0%,rgba(150,132,255,.11) 42%,rgba(150,132,255,0) 78%),radial-gradient(62% 34% at 112% 58%,rgba(255,170,214,.40) 0%,rgba(255,170,214,0) 70%),radial-gradient(70% 30% at -14% 98%,rgba(140,162,255,.34) 0%,rgba(140,162,255,0) 70%),linear-gradient(180deg,#E6DFFF 0%,#EFEAFF 44%,#F5F1FF 100%);
+  --aura-1:rgba(124,102,255,.10); --aura-2:rgba(255,150,210,.16); --aura-3:rgba(120,150,255,.16);
+  --text:#17142B; --text-2:#3F3963; --text-3:#4F4971; --text-strong:#0E0B22; --read:#1F1B38;
+  --hero-dim:#6B6590; --em-grad:linear-gradient(96deg,#3A22B8 12%,#7A62FF 94%);
+  --num-grad:linear-gradient(180deg,#2E1B95 16%,#6A52F0 100%);
+  --glass:rgba(255,255,255,.58); --glass-2:rgba(255,255,255,.84);
+  --card:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.54));
+  --hair:rgba(46,27,149,.10); --hair-2:rgba(46,27,149,.16); --hair-3:rgba(46,27,149,.32);
+  --hi:inset 0 1px 0 rgba(255,255,255,.90);
+  --field:rgba(255,255,255,.66);
+  --bar:rgba(250,248,255,.70); --sheet:rgba(250,248,255,.86); --sheet-glow:rgba(124,102,255,.20); --float:rgba(255,255,255,.98);
+  --scrim:rgba(38,26,96,.36); --fade:rgba(243,239,255,.90); --shadow-float:0 22px 48px -18px rgba(46,27,149,.40);
+  --badge:rgba(10,6,30,.74); --on-badge:#FFFFFF;
+  --hero-grad:linear-gradient(162deg,#5E43F0 0%,#4A2FD1 80%); --hero-glow:rgba(74,47,209,.46);
+  --on-hero:#FFFFFF; --on-hero-2:#E9E4FF; --hero-line:rgba(255,255,255,.22);
+  --accent:#4A2FD1; --accent-bg:rgba(74,47,209,.08); --accent-line:rgba(74,47,209,.34);
+  --ring:rgba(74,47,209,.18); --focus:#4A2FD1; --sel:rgba(124,102,255,.30);
+  --pill:#1B0F5E; --on-pill:#FFFFFF; --pill-glow:rgba(27,15,94,.42);
+  --citron:#C6F25A; --on-citron:#17142B; --citron-glow:rgba(132,172,22,.46); --citron-ring:rgba(104,140,10,.46);
+  --wedge:rgba(124,102,255,.62); --spark:rgba(74,47,209,.62);
+  --tb-ink:#5F5988; --tb-on:#2E1B95; --tb-glow:rgba(124,102,255,.46);
+  --chk-fill:#FFFFFF; --chk-on:#4A2FD1;
+  --chk-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.6 7.4l3 3 5.8-6.8' fill='none' stroke='%23FFFFFF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ok:#0B5C30; --ok-bg:rgba(24,140,80,.13); --ok-line:rgba(11,92,48,.42); --on-ok:#FFFFFF;
+  --warn:#764000; --warn-bg:rgba(214,140,20,.16); --warn-line:rgba(118,64,0,.38);
+  --bad:#99170F; --bad-bg:rgba(200,50,40,.10); --bad-line:rgba(153,23,15,.40); --on-bad:#FFFFFF;
+  --t-ink:#FFFFFF; --t-yellow-ink:#2B2200;
+  --t-blue:#2B62D9; --t-blue-bg:rgba(43,98,217,.11);
+  --t-red:#C8323B; --t-red-bg:rgba(200,50,59,.10);
+  --t-orange:#B5500F; --t-orange-bg:rgba(214,110,30,.13);
+  --t-yellow:#E8B923; --t-yellow-bg:rgba(232,185,35,.18);
+  --t-green:#1B7D46; --t-green-bg:rgba(27,125,70,.11);
+  --t-teal:#0B7B77; --t-teal-bg:rgba(11,123,119,.11);
+  --t-indigo:#4B44C8; --t-indigo-bg:rgba(75,68,200,.10);
+  --t-violet:#7B3DB8; --t-violet-bg:rgba(123,61,184,.10);
+  --t-pink:#B92C84; --t-pink-bg:rgba(185,44,132,.10);
+  --t-grey:#5B6072; --t-grey-bg:rgba(91,96,114,.11);
+  color-scheme:light;
+}}
+:root[data-theme="light"]{
+  --bg:#EEE9FF; --bg-solid:#FFFFFF;
+  --scene:radial-gradient(125% 40% at 50% -12%,rgba(124,102,255,.22) 0%,rgba(150,132,255,.11) 42%,rgba(150,132,255,0) 78%),radial-gradient(62% 34% at 112% 58%,rgba(255,170,214,.40) 0%,rgba(255,170,214,0) 70%),radial-gradient(70% 30% at -14% 98%,rgba(140,162,255,.34) 0%,rgba(140,162,255,0) 70%),linear-gradient(180deg,#E6DFFF 0%,#EFEAFF 44%,#F5F1FF 100%);
+  --aura-1:rgba(124,102,255,.10); --aura-2:rgba(255,150,210,.16); --aura-3:rgba(120,150,255,.16);
+  --text:#17142B; --text-2:#3F3963; --text-3:#4F4971; --text-strong:#0E0B22; --read:#1F1B38;
+  --hero-dim:#6B6590; --em-grad:linear-gradient(96deg,#3A22B8 12%,#7A62FF 94%);
+  --num-grad:linear-gradient(180deg,#2E1B95 16%,#6A52F0 100%);
+  --glass:rgba(255,255,255,.58); --glass-2:rgba(255,255,255,.84);
+  --card:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.54));
+  --hair:rgba(46,27,149,.10); --hair-2:rgba(46,27,149,.16); --hair-3:rgba(46,27,149,.32);
+  --hi:inset 0 1px 0 rgba(255,255,255,.90);
+  --field:rgba(255,255,255,.66);
+  --bar:rgba(250,248,255,.70); --sheet:rgba(250,248,255,.86); --sheet-glow:rgba(124,102,255,.20); --float:rgba(255,255,255,.98);
+  --scrim:rgba(38,26,96,.36); --fade:rgba(243,239,255,.90); --shadow-float:0 22px 48px -18px rgba(46,27,149,.40);
+  --badge:rgba(10,6,30,.74); --on-badge:#FFFFFF;
+  --hero-grad:linear-gradient(162deg,#5E43F0 0%,#4A2FD1 80%); --hero-glow:rgba(74,47,209,.46);
+  --on-hero:#FFFFFF; --on-hero-2:#E9E4FF; --hero-line:rgba(255,255,255,.22);
+  --accent:#4A2FD1; --accent-bg:rgba(74,47,209,.08); --accent-line:rgba(74,47,209,.34);
+  --ring:rgba(74,47,209,.18); --focus:#4A2FD1; --sel:rgba(124,102,255,.30);
+  --pill:#1B0F5E; --on-pill:#FFFFFF; --pill-glow:rgba(27,15,94,.42);
+  --citron:#C6F25A; --on-citron:#17142B; --citron-glow:rgba(132,172,22,.46); --citron-ring:rgba(104,140,10,.46);
+  --wedge:rgba(124,102,255,.62); --spark:rgba(74,47,209,.62);
+  --tb-ink:#5F5988; --tb-on:#2E1B95; --tb-glow:rgba(124,102,255,.46);
+  --chk-fill:#FFFFFF; --chk-on:#4A2FD1;
+  --chk-tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.6 7.4l3 3 5.8-6.8' fill='none' stroke='%23FFFFFF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ok:#0B5C30; --ok-bg:rgba(24,140,80,.13); --ok-line:rgba(11,92,48,.42); --on-ok:#FFFFFF;
+  --warn:#764000; --warn-bg:rgba(214,140,20,.16); --warn-line:rgba(118,64,0,.38);
+  --bad:#99170F; --bad-bg:rgba(200,50,40,.10); --bad-line:rgba(153,23,15,.40); --on-bad:#FFFFFF;
+  --t-ink:#FFFFFF; --t-yellow-ink:#2B2200;
+  --t-blue:#2B62D9; --t-blue-bg:rgba(43,98,217,.11);
+  --t-red:#C8323B; --t-red-bg:rgba(200,50,59,.10);
+  --t-orange:#B5500F; --t-orange-bg:rgba(214,110,30,.13);
+  --t-yellow:#E8B923; --t-yellow-bg:rgba(232,185,35,.18);
+  --t-green:#1B7D46; --t-green-bg:rgba(27,125,70,.11);
+  --t-teal:#0B7B77; --t-teal-bg:rgba(11,123,119,.11);
+  --t-indigo:#4B44C8; --t-indigo-bg:rgba(75,68,200,.10);
+  --t-violet:#7B3DB8; --t-violet-bg:rgba(123,61,184,.10);
+  --t-pink:#B92C84; --t-pink-bg:rgba(185,44,132,.10);
+  --t-grey:#5B6072; --t-grey-bg:rgba(91,96,114,.11);
+  color-scheme:light;
+}
+
+/* Base */
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font:400 var(--fs-body)/1.5 var(--f-ui);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit;margin:0}
+button{touch-action:manipulation}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+::selection{background:var(--sel);color:inherit}
+.ico{flex:none}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.muted{color:var(--text-2)} .faint{color:var(--text-3)} .small{font-size:var(--fs-sm)}
+p.muted,p.faint{margin:6px 0 12px;max-width:60ch}
+
+/* Scene + shell */
+.app{position:relative;isolation:isolate;height:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);color:var(--text)}

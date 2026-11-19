@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-19",
+  "source": "Consultation de disponibilité auprès des registres via le connecteur Vercel (lecture seule, aucune réservation). La disponibilité peut changer à tout moment ; le prix n'a pas été demandé.",
+  "Lucarne": {
+    "pris": ["lucarne.com", "lucarne.fr", "lucarne.app", "lucarne.io", "lucarne.co", "lucarne.eu", "lucarneapp.com", "malucarne.fr"],
+    "libres": ["getlucarne.com", "lucarne-app.com", "lucarne-app.fr", "monlucarne.fr", "malucarne.com", "lucarne.school", "lucarne.study"]
+  },
+  "Courange": {
+    "pris": ["courange.com"],
+    "libres": ["courange.fr", "courange.app", "courange.io", "courange.co", "courange.eu", "getcourange.com", "courangeapp.com"]
+  },
+  "non_verifie": "Ce qu'hébergent les domaines déjà pris (produit réel, parking, revente) n'a pas pu être vu : la session cloud ne joint pas ces sites."
+}
